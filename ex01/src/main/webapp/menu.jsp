@@ -18,6 +18,11 @@
         	<a class="nav-link active" aria-current="page" href="/kakao/local">지역검색</a>
         </li>
       </ul>
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+        <li class="nav-item">
+        	<a class="nav-link active" aria-current="page" href="/user/login">로그인</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

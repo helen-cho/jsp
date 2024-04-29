@@ -12,7 +12,6 @@
 			</form>
 		</div>
 	</div>
-	
 	<div id="div_book" class="row"></div>
 </div>
 <script id="temp_book" type="x-handlebars-template">
