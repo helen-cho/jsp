@@ -12,6 +12,7 @@
 	<div class="container">
 		<jsp:include page="top.jsp"/>
 		<jsp:include page="menu.jsp"/>
+		<jsp:include page="${pageName}"/>
 		<jsp:include page="bottom.jsp"/>
 	</div>
 </body>
