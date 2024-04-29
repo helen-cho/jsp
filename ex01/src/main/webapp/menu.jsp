@@ -19,10 +19,42 @@
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" id="login">
         	<a class="nav-link active" aria-current="page" href="/user/login">로그인</a>
+        </li>
+        <li class="nav-item" id="uid">
+        	<a class="nav-link active" aria-current="page" href="/user/mypage"></a>
+        </li>
+        <li class="nav-item" id="logout">
+        	<a class="nav-link active" aria-current="page" href="/user/logout">로그아웃</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<script>
+	const uid="${uid}";
+	if(uid){
+		$("#login").hide();
+		$("#logout").show();
+		$("#uid").show();
+		$("#uid a").html(uid);
+	}else{
+		$("#login").show();
+		$("#logout").hide();
+		$("#uid").hide();
+	}
+	
+	$("#logout").on("click", "a", function(e){
+		e.preventDefault();
+		if(confirm("로그아웃하실래요?")){
+			location.href="/user/logout";
+		}
+	});
+</script>
+
+
+
+
+
+

@@ -52,7 +52,8 @@
 						$(frm.upass).val("");
 						$(frm.upass).focus();
 					}else{
-						alert("로그인을 성공했습니다.")
+						alert("로그인을 성공했습니다.");
+						location.href="/";
 					}
 				}
 			});
