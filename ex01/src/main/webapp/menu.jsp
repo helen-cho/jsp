@@ -9,7 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="#">Home</a>
+        	<a class="nav-link active" aria-current="page" href="/">회사소개</a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link active" aria-current="page" href="/kakao/book">도서검색</a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link active" aria-current="page" href="/kakao/local">지역검색</a>
         </li>
       </ul>
     </div>
