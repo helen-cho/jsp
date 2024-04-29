@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,5 +31,21 @@ public class UserServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		switch(request.getServletPath()) {
+		case "/user/login":
+			PrintWriter out=response.getWriter();
+			int result=0;
+			out.print(result);
+			break;
+		}
 	}
 }
+
+
+
+
+
+
+
+
+

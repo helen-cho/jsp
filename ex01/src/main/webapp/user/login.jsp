@@ -10,7 +10,7 @@
 		<h1>로그인</h1>
 		<div class="card">
 			<div class="card-body">
-				<form name="frm" method="post">
+				<form name="frm">
 					<div class="input-group mb-2">
 						<span class="input-group-text">아이디</span>
 						<input name="uid" class="form-control">
@@ -38,6 +38,14 @@
 			$(frm.upass).focus();
 		}else{
 			//로그인체크
+			$.ajax({
+				type:"post",
+				url:"/user/login",
+				data:{uid, upass},
+				success:function(data){
+					alert(data);
+				}
+			});
 		}
 	});
 </script>
