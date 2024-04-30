@@ -20,10 +20,16 @@ public class UserServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
+		HttpSession session=request.getSession();
 		
 		switch(request.getServletPath()) {
+		case "/user/mypage":
+			String uid=(String)session.getAttribute("uid");
+			request.setAttribute("user",dao.read(uid));
+			request.setAttribute("pageName", "/user/mypage.jsp");
+			dis.forward(request, response);
+			break;
 		case "/user/logout":
-			HttpSession session=request.getSession();
 			session.invalidate();
 			response.sendRedirect("/");
 			break;
@@ -49,6 +55,7 @@ public class UserServlet extends HttpServlet {
 				if(vo.getUpass().equals(upass)) {
 					HttpSession session=request.getSession();
 					session.setAttribute("user", vo);
+					session.setAttribute("uid", uid);
 					result=1;
 				}else {
 					result=2;
