@@ -35,7 +35,7 @@
 	</div>
 </div>
 <script>
-	$("#modalInfo").on("click", "#btnSave", function(){
+	$("#modalInfo").on("click", "#btnSearch", function(){
 		new daum.Postcode({
             oncomplete:function(data){
                 console.log(data);
@@ -51,7 +51,7 @@
         }).open();
 	});
 	
-	$("#btnSave").on("click", function(){
+	$("#modalInfo").on("click", "#btnSave", function(){
 		const uname=$("#uname").val();
 		const phone=$("#phone").val();
 		const address1=$("#address1").val();

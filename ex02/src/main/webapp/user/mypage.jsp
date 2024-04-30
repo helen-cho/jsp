@@ -14,7 +14,7 @@
 					<hr>
 				</div>
 				<div class="mb-3">
-					주소: ${user.address1} ${user.address2}
+					주소: ${user.address1}<br>${user.address2}
 					<hr>
 				</div>
 				<div class="mb-3">
