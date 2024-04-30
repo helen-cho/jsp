@@ -5,10 +5,26 @@
 		<h1>마이페이지</h1>
 		<div class="card">
 			<div class="card-body">
-				<div>
+				<div class="mb-3">
 					이름: ${user.uname}(${user.uid})
-					<button class="btn btn-primary btn-sm ms-3">비밀번호변경</button>
+					<button class="btn btn-danger btn-sm ms-5">비밀번호변경</button>
+					<hr>
 				</div>
+				<div class="mb-3">
+					주소: ${user.address1} ${user.address2}
+					<hr>
+				</div>
+				<div class="mb-3">
+					전화: ${user.phone}
+					<hr>
+				</div>
+				<div>
+					가입일: ${user.jdate}
+					<hr>
+				</div>
+				<div class="text-center mt-3">
+					<button class="btn btn-success px-5">정보수정</button>
+				</div>	
 			</div>
 		</div>
 	</div>

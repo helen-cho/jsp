@@ -15,6 +15,11 @@ public class UserDAO { //Database Access Object
 				vo.setUid(rs.getString("uid"));
 				vo.setUpass(rs.getString("upass"));
 				vo.setUname(rs.getString("uname"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setAddress1(rs.getString("address1"));
+				vo.setAddress2(rs.getString("address2"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setJdate(rs.getTimestamp("jdate"));
 			}
 		}catch(Exception e) {
 			System.out.println("read:" + e.toString());
