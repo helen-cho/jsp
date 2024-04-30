@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	
 <style>
 #modalInfo {
 	top: 30%;
@@ -21,7 +22,7 @@
 				<input id="phone" class="form-control mb-3" placeholder="전화번호" value="${user.phone}">
 				<div class="input-group mb-1">
 					<input id="address1" class="form-control" value="${user.address1}">
-					<button class="btn btn-primary">검색</button>
+					<button id="btnSearch" class="btn btn-primary">검색</button>
 				</div>
 				<input id="address2" class="form-control" placeholder="상세주소" value="${user.address2}">
 			</div>
@@ -34,6 +35,22 @@
 	</div>
 </div>
 <script>
+	$("#modalInfo").on("click", "#btnSave", function(){
+		new daum.Postcode({
+            oncomplete:function(data){
+                console.log(data);
+                const building=data.buildingName;
+                let address="";
+                if(building!=""){
+                    address=data.address + "(" + building + ")";
+                }else{
+                    address=data.address;
+                }
+                $("#address1").val(address);
+            }
+        }).open();
+	});
+	
 	$("#btnSave").on("click", function(){
 		const uname=$("#uname").val();
 		const phone=$("#phone").val();
