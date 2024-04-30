@@ -9,12 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import model.*;
 
 @WebServlet(value={"/user/login", "/user/logout", "/user/mypage"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    UserDAO dao=new UserDAO();
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
@@ -34,7 +35,16 @@ public class UserServlet extends HttpServlet {
 			String uid=request.getParameter("uid");
 			String upass=request.getParameter("upass");
 			System.out.println(uid + ".........." + upass);
+			
 			int result=0;
+			UserVO vo=dao.read(uid);
+			if(vo.getUid() != null) {
+				if(vo.getUpass().equals(upass)) {
+					result=1;
+				}else {
+					result=2;
+				}
+			}
 			out.print(result);
 			break;
 		}

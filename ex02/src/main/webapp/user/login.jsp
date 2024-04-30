@@ -15,7 +15,7 @@
 					</div>
 					<div class="input-group mb-3">
 						<span class="input-group-text justify-content-center">비밀번호</span>
-						<input name="upass" class="form-control">
+						<input name="upass" type="password" class="form-control">
 					</div>
 					<button class="btn btn-primary w-100">로그인</button>
 				</form>
@@ -39,7 +39,18 @@
 				url:"/user/login",
 				data:{uid:uid, upass:upass},
 				success:function(data){
-					alert(data);
+					//alert(data);
+					if(data==1){
+						alert("성공")
+					}else if(data==2){
+						alert("비밀번호가 일치하지 않습니다.");
+						$(frm.upass).val("");
+						$(frm.upass).focus();
+					}else if(data==0){
+						alert("아이디가 존재하지 않습니다.");
+						$(frm.uid).val("");
+						$(frm.uid).focus();
+					}
 				}
 			});
 		}
