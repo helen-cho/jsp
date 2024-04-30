@@ -26,7 +26,7 @@
         	<a class="nav-link active" aria-current="page" href="/user/mypage"></a>
         </li>
         <li class="nav-item" id="logout">
-        	<a class="nav-link active" aria-current="page" href="/user/logout">로그아웃</a>
+        	<a class="nav-link active" aria-current="page" href="#">로그아웃</a>
         </li>
       </ul>
     </div>
@@ -43,6 +43,13 @@
 		$("#login").show();
 		$("#logout").hide();
 	}
+	
+	$("#logout").on("click", "a", function(e){
+		e.preventDefault();
+		if(confirm("정말로 로그아웃아실래요?")){
+			location.href="/user/logout";
+		}
+	});
 </script>
 
 

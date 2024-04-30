@@ -22,6 +22,11 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/user/logout":
+			HttpSession session=request.getSession();
+			session.invalidate();
+			response.sendRedirect("/");
+			break;
 		case "/user/login":
 			request.setAttribute("pageName", "/user/login.jsp");
 			dis.forward(request, response);
