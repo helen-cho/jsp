@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.*;
 
-@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update"})
+@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UserDAO dao=new UserDAO();
@@ -43,6 +43,11 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
+		case "/user/update/pass":
+			String uid1=request.getParameter("uid");
+			String npass=request.getParameter("npass");
+			dao.update(uid1, npass); //비밀번호변경
+			break;
 		case "/user/update":
 			UserVO vo=new UserVO();
 			String uid=request.getParameter("uid");

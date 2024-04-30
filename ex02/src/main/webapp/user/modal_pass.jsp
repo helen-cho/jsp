@@ -36,6 +36,35 @@
 		const cpass=$("#cpass").val();
 		if(upass=="" || npass=="" || cpass==""){
 			alert("모든 비밀번호를 입력하세요!");
+		}else{
+			$.ajax({
+				type:"post",
+				url:"/user/login",
+				data:{uid, upass},
+				success:function(data){
+					if(data==2){
+						alert("현재비밀번호가 일치하지 않습니다.");
+						$("#upass").val("");
+						$("#upass").focus();
+					}else{
+						if(npass!=cpass){
+							alert("새비밀번호 일치하지 않습니다.")
+						}else{
+							if(!confirm("비밀번호를 변경하실래요?")) return;
+							//비밀번호 변경
+							$.ajax({
+								type:"post",
+								url:"/user/update/pass",
+								data:{uid, npass},
+								success:function(){
+									alert("비밀번호가 변경되었습니다.");
+									location.href="/user/logout";
+								}
+							});
+						}
+					}
+				}
+			})
 		}
 	});
 </script>
