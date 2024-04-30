@@ -17,19 +17,28 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<input class="form-control mb-3" placeholder="이름" value="${user.uname}">
-				<input class="form-control mb-3" placeholder="전화번호" value="${user.phone}">
+				<input id="uname" class="form-control mb-3" placeholder="이름" value="${user.uname}">
+				<input id="phone" class="form-control mb-3" placeholder="전화번호" value="${user.phone}">
 				<div class="input-group mb-1">
-					<input class="form-control" value="${user.address1}">
+					<input id="address1" class="form-control" value="${user.address1}">
 					<button class="btn btn-primary">검색</button>
 				</div>
-				<input class="form-control" placeholder="상세주소" value="${user.address2}">
+				<input id="address2" class="form-control" placeholder="상세주소" value="${user.address2}">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save</button>
+				<button id="btnSave" type="button" class="btn btn-primary">Save</button>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	$("#btnSave").on("click", function(){
+		const uname=$("#uname").val();
+		const phone=$("#phone").val();
+		const address1=$("#address1").val();
+		const address2=$("#address2").val();
+		console.log(uname, phone, address1, address2, uid);
+	});
+</script>
