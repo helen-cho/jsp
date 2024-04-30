@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import model.*;
 
 @WebServlet(value={"/user/login", "/user/logout", "/user/mypage"})
@@ -40,6 +42,8 @@ public class UserServlet extends HttpServlet {
 			UserVO vo=dao.read(uid);
 			if(vo.getUid() != null) {
 				if(vo.getUpass().equals(upass)) {
+					HttpSession session=request.getSession();
+					session.setAttribute("user", vo);
 					result=1;
 				}else {
 					result=2;

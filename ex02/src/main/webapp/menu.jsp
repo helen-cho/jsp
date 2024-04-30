@@ -32,7 +32,18 @@
     </div>
   </div>
 </nav>
-
+<script>
+	const uid="${user.uid}";
+	const uname="${user.uname}";
+	if(uid){
+		$("#login").hide();
+		$("#logout").show();
+		$("#uid a").html(uname);
+	}else{
+		$("#login").show();
+		$("#logout").hide();
+	}
+</script>
 
 
 

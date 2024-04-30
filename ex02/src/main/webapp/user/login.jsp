@@ -41,7 +41,8 @@
 				success:function(data){
 					//alert(data);
 					if(data==1){
-						alert("성공")
+						//alert("성공")
+						location.href="/";
 					}else if(data==2){
 						alert("비밀번호가 일치하지 않습니다.");
 						$(frm.upass).val("");
