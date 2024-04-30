@@ -25,7 +25,7 @@
 				</div>
 				<input id="address2" class="form-control" placeholder="상세주소" value="${user.address2}">
 			</div>
-			<div class="modal-footer">
+			<div class="text-center mb-5">
 				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal">Close</button>
 				<button id="btnSave" type="button" class="btn btn-primary">Save</button>
@@ -40,5 +40,16 @@
 		const address1=$("#address1").val();
 		const address2=$("#address2").val();
 		console.log(uname, phone, address1, address2, uid);
+		if(confirm("수정하시겠습니까?")){
+			$.ajax({
+				type:"post",
+				url:"/user/update",
+				data:{uid, uname, phone, address1, address2},
+				success:function(){
+					alert("수정이완료되었습니다.");
+					location.href="/user/mypage";
+				}
+			});
+		}
 	});
 </script>

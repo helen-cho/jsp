@@ -11,6 +11,14 @@ public class UserVO {
 	private String address2;
 	private String photo;
 	private Date jdate;
+	private Date udate;
+	
+	public Date getUdate() {
+		return udate;
+	}
+	public void setUdate(Date udate) {
+		this.udate = udate;
+	}
 	
 	public String getPhone() {
 		return phone;

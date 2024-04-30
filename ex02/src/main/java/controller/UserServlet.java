@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.*;
 
-@WebServlet(value={"/user/login", "/user/logout", "/user/mypage"})
+@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UserDAO dao=new UserDAO();
@@ -40,17 +40,27 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
-		case "/user/login":
+		case "/user/update":
+			UserVO vo=new UserVO();
 			String uid=request.getParameter("uid");
+			vo.setUid(uid);
+			vo.setUname(request.getParameter("uname"));
+			vo.setPhone(request.getParameter("phone"));
+			vo.setAddress1(request.getParameter("address1"));
+			vo.setAddress2(request.getParameter("address2"));
+			System.out.print(vo.toString());
+			dao.update(vo); //데이터베이스에 업데이트
+			break;
+		case "/user/login":
+			uid=request.getParameter("uid");
 			String upass=request.getParameter("upass");
 			System.out.println(uid + ".........." + upass);
 			
 			int result=0;
-			UserVO vo=dao.read(uid);
+			vo=dao.read(uid);
 			if(vo.getUid() != null) {
 				if(vo.getUpass().equals(upass)) {
 					HttpSession session=request.getSession();

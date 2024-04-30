@@ -25,6 +25,10 @@
 					가입일: <fmt:formatDate value="${user.jdate}" pattern="yyyy년MM월dd일 HH:mm:ss"/>
 					<hr>
 				</div>
+				<div>
+					수정일: <fmt:formatDate value="${user.udate}" pattern="yyyy년MM월dd일 HH:mm:ss"/>
+					<hr>
+				</div>
 				<div class="text-center mt-3">
 					<button id="btnInfo" class="btn btn-success px-5">정보수정</button>
 				</div>	
