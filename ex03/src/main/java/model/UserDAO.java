@@ -1,8 +1,34 @@
 package model;
 import java.sql.*;
+import java.util.*;
 
 public class UserDAO { //Database Access Object
 	Connection con=Database.CON;
+	//사용자목록
+	public ArrayList<UserVO> list(){
+		ArrayList<UserVO> array=new ArrayList<UserVO>();
+		try {
+			String sql="select * from users order by jdate desc";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				UserVO vo=new UserVO();
+				vo.setUid(rs.getString("uid"));
+				vo.setUname(rs.getString("uname"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setAddress1(rs.getString("address1"));
+				vo.setAddress2(rs.getString("address2"));
+				vo.setJdate(rs.getTimestamp("jdate"));
+				array.add(vo);
+				System.out.println(vo.toString());
+			}
+		}catch(Exception e) {
+			System.out.println("사용자목록:" + e.toString());
+		}
+		return array;
+	}
+	
 	//회원가입
 	public void insert(UserVO vo) {
 		try {

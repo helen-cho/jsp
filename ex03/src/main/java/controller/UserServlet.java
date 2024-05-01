@@ -11,21 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.*;
 
-@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass", "/user/upload", "/user/join"})
+@WebServlet(value={"/user/list.json","/user/list", "/user/login", "/user/logout", 
+		"/user/mypage", "/user/update", "/user/update/pass", "/user/upload", "/user/join"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UserDAO dao=new UserDAO();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		HttpSession session=request.getSession();
-		
+		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
+		case "/user/list.json":
+			Gson gson=new Gson();
+			out.print(gson.toJson(dao.list()));
+			break;
+		case "/user/list":
+			request.setAttribute("pageName", "/user/list.jsp");
+			dis.forward(request, response);
+			break;
 		case "/user/join":
 			request.setAttribute("pageName", "/user/join.jsp");
 			dis.forward(request, response);

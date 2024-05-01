@@ -12,7 +12,7 @@
         	<a class="nav-link active" aria-current="page" href="/">회사소개</a>
         </li>
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/kakao/book">도서검색</a>
+        	<a class="nav-link active" aria-current="page" href="/user/list">사용자목록</a>
         </li>
         <li class="nav-item">
         	<a class="nav-link active" aria-current="page" href="/kakao/local">지역검색</a>
