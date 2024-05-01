@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	
 <style>
-#modalInfo {
-	top: 30%;
-}
+	#modalInfo {
+		top: 30%;
+	}
 </style>
 <!-- Modal -->
 <div class="modal fade" id="modalInfo" data-bs-backdrop="static"

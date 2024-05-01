@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import model.*;
 
-@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass"})
+@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass", "/user/upload"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UserDAO dao=new UserDAO();
@@ -43,6 +46,16 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
+		case "/user/upload":
+			String path="/upload/photo/";
+			MultipartRequest multi=new MultipartRequest(
+					request,
+					"c:" + path,
+					1024*1024*10,
+					new DefaultFileRenamePolicy());
+			String fileName=multi.getFilesystemName("photo");
+			System.out.println("fileName:" + fileName);
+			break;
 		case "/user/update/pass":
 			String uid1=request.getParameter("uid");
 			String npass=request.getParameter("npass");
