@@ -15,12 +15,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-      	<c:if test="${user.photo!=null}">
-      		<img id="photo" src="${user.photo}" width="200">
-      	</c:if>
-      	<c:if test="${user.photo==null}">
-      		<img id="photo" src="http://via.placeholder.com/200x200" width="200">
-      	</c:if>
+      	<img id="photo" src="" width="200">
         <input id="file" type="file" style="display:none;">
       </div>
       <div class="text-center my-3">
