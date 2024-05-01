@@ -16,7 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.*;
 
-@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass", "/user/upload"})
+@WebServlet(value={"/user/login", "/user/logout", "/user/mypage", "/user/update", "/user/update/pass", "/user/upload", "/user/join"})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UserDAO dao=new UserDAO();
@@ -26,6 +26,10 @@ public class UserServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		switch(request.getServletPath()) {
+		case "/user/join":
+			request.setAttribute("pageName", "/user/join.jsp");
+			dis.forward(request, response);
+			break;
 		case "/user/mypage":
 			String uid=(String)session.getAttribute("uid");
 			request.setAttribute("user",dao.read(uid));

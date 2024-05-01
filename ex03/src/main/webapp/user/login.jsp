@@ -17,7 +17,12 @@
 						<span class="input-group-text justify-content-center">비밀번호</span>
 						<input name="upass" type="password" class="form-control">
 					</div>
-					<button class="btn btn-primary w-100">로그인</button>
+					<div>
+						<button class="btn btn-primary w-100">로그인</button>
+					</div>	
+					<div class="text-end mt-2">
+						<a href="/user/join">회원가입</a>
+					</div>
 				</form>
 			</div>
 		</div>
