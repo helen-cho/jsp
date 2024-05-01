@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+	#div_user img{
+		border-radius:50%;
+		border: 1px solid gray;
+	}
+</style>    
 <div>
 	<h1>사용자목록</h1>
 	<div id="div_user"></div>
-	<script id="temp_user" type="x-handlebars-template">
+</div>
+<script id="temp_user" type="x-handlebars-template">
 		{{#each .}}
 		<div class="card mb-2 mx-5">
 			<div class="row card-body">
-				<div class="col-3 col-md-2">
-					<img src="{{photo}}" width="90%"/>
+				<div class="col-3 col-md-2 col-lg-1">
+					<img src="{{photo photo}}" width="90%"/>
 				</div>
 				<div class="col">
 					<div>{{uname}} ({{uid}})</div>
@@ -18,8 +25,16 @@
 			</div>
 		</div>
 		{{/each}}
-	</script>
-</div>
+</script>
+<script>
+	Handlebars.registerHelper("photo", function(photo){
+		if(photo){
+			return photo;
+		}else{
+			return "http://via.placeholder.com/50x50";
+		}
+	});
+</script>
 <script>
 	$.ajax({
 		type:"get",
