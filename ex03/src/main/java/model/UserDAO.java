@@ -3,6 +3,19 @@ import java.sql.*;
 
 public class UserDAO { //Database Access Object
 	Connection con=Database.CON;
+	//사진수정
+	public void updatePhoto(String uid, String photo) {
+		try {
+			String sql="update users set photo=? where uid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, photo);
+			ps.setString(2, uid);
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("사진수정:" + e.toString());
+		}
+	}
+	
 	//비밀번호수정
 	public void update(String uid, String npass) {
 		try {

@@ -54,7 +54,10 @@ public class UserServlet extends HttpServlet {
 					1024*1024*10,
 					new DefaultFileRenamePolicy());
 			String fileName=multi.getFilesystemName("photo");
-			System.out.println("fileName:" + fileName);
+			String uid2=multi.getParameter("uid");
+			System.out.println("fileName:" + fileName + "\nuid:" + uid2);
+			String photo=path + fileName;
+			dao.updatePhoto(uid2, photo); //사진이름수정
 			break;
 		case "/user/update/pass":
 			String uid1=request.getParameter("uid");

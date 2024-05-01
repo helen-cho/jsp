@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <style>
 	#modalPhoto {
 		top: 30%;
@@ -14,7 +15,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-      	<img id="photo" src="http://via.placeholder.com/200x200" width="200">
+      	<c:if test="${user.photo!=null}">
+      		<img id="photo" src="${user.photo}" width="200">
+      	</c:if>
+      	<c:if test="${user.photo==null}">
+      		<img id="photo" src="http://via.placeholder.com/200x200" width="200">
+      	</c:if>
         <input id="file" type="file" style="display:none;">
       </div>
       <div class="text-center my-3">
@@ -42,6 +48,7 @@
 				const file=$("#file")[0].files[0];
 				const formData = new FormData();
 				formData.append("photo", file);
+				formData.append("uid", uid);
 				$.ajax({
 					type:"post",
 					url:"/user/upload",
@@ -50,6 +57,7 @@
 					contentType:false,
 					success:function(){
 						alert("업로드성공!");
+						location.reload(true);
 					}
 				});
 			}

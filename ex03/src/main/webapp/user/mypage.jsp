@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <style>
 	.modal-body img, .card-body img {
 		border-radius: 50%;
@@ -14,7 +15,12 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="mb-3">
-					<img id="imgPhoto" src="http://via.placeholder.com/50x50">
+					<c:if test="${user.photo!=null}">
+						<img id="imgPhoto" src="${user.photo}" width="50">
+					</c:if>
+					<c:if test="${user.photo==null}">
+						<img id="imgPhoto" src="http://via.placeholder.com/50x50" width="50">
+					</c:if>					
 					<span class="ms-3">이름: ${user.uname}(${user.uid})</span>
 					<button id="btnPass" class="btn btn-danger btn-sm ms-5">비밀번호변경</button>
 					<hr>
