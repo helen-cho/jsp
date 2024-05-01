@@ -50,6 +50,14 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
+		case "/user/join":
+			UserVO user=new UserVO();
+			user.setUid(request.getParameter("uid"));
+			user.setUpass(request.getParameter("upass"));
+			user.setUname(request.getParameter("uname"));
+			System.out.println(user.toString());
+			dao.insert(user);
+			break;
 		case "/user/upload":
 			String path="/upload/photo/";
 			MultipartRequest multi=new MultipartRequest(

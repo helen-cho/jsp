@@ -3,6 +3,20 @@ import java.sql.*;
 
 public class UserDAO { //Database Access Object
 	Connection con=Database.CON;
+	//회원가입
+	public void insert(UserVO vo) {
+		try {
+			String sql="insert into users(uid, upass, uname) values(?, ?, ?)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getUid());
+			ps.setString(2, vo.getUpass());
+			ps.setString(3, vo.getUname());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("회원가입:" + e.toString());
+		}
+	}
+	
 	//사진수정
 	public void updatePhoto(String uid, String photo) {
 		try {
