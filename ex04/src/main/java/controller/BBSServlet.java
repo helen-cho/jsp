@@ -51,6 +51,22 @@ public class BBSServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		switch(request.getServletPath()) {
+		case "/bbs/insert":
+			BBSVO vo=new BBSVO();
+			vo.setWriter(request.getParameter("writer"));
+			vo.setTitle(request.getParameter("title"));
+			vo.setContents(request.getParameter("contents"));
+			System.out.println(vo.toString());
+			break;
+		}
 	}
-
 }
+
+
+
+
+
+
+

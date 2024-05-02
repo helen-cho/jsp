@@ -4,6 +4,7 @@
 	<div class="col-10">
 		<h1>글쓰기</h1>
 		<form name="frm" method="post">
+			<input name="writer" value="${user.uid}" type="hidden">
 			<input name="title" placeholder="제목을 입력하세요." class="form-control mb-2">
 			<textarea name="contents" rows="15" class="form-control" placeholder="내용을 입력하세요."></textarea>
 			<div class="text-center mt-3">

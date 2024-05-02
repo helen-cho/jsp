@@ -25,7 +25,7 @@ public class BBSDAOImpl implements BBSDAO{
 				vo.setPhoto(rs.getString("photo"));
 				vo.setContents(rs.getString("contents"));
 				array.add(vo);
-				System.out.println(vo.toString());
+				//System.out.println(vo.toString());
 			}
 		}catch(Exception e) {
 			System.out.println("게시판목록:" + e.toString());
@@ -55,7 +55,7 @@ public class BBSDAOImpl implements BBSDAO{
 				vo.setUname(rs.getString("uname"));
 				vo.setPhoto(rs.getString("photo"));
 				vo.setContents(rs.getString("contents"));
-				System.out.println(vo.toString());
+				//System.out.println(vo.toString());
 			}
 		}catch(Exception e) {
 			System.out.println("게시글정보:" + e.toString());
