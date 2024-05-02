@@ -3,7 +3,7 @@
 <div>
 	<h1>게시글정보</h1>
 	<div class="text-end mb-2" id="div_update">
-		<button class="btn btn-primary btn-sm px-3">수정</button>
+		<a href="/bbs/update?bid=${bbs.bid}" class="btn btn-primary btn-sm px-3">수정</a>
 		<button class="btn btn-danger btn-sm px-3 delete">삭제</button>
 	</div>
 	<div class="card">

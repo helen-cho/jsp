@@ -25,6 +25,13 @@ public class BBSServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/bbs/update":
+			String bid=request.getParameter("bid");
+			BBSVO bbs=dao.read(Integer.parseInt(bid));
+			request.setAttribute("bbs", bbs);
+			request.setAttribute("pageName", "/bbs/update.jsp");
+			dis.forward(request, response);
+			break;
 		case "/bbs/insert":
 			request.setAttribute("pageName", "/bbs/insert.jsp");
 			dis.forward(request, response);
@@ -38,7 +45,7 @@ public class BBSServlet extends HttpServlet {
 			out.print(gson.toJson(dao.list()));
 			break;
 		case "/bbs/read":
-			String bid=request.getParameter("bid");
+			bid=request.getParameter("bid");
 			System.out.println("bid................" + bid);
 			BBSVO vo=dao.read(Integer.parseInt(bid));
 			System.out.println("vo................." + vo.toString());
