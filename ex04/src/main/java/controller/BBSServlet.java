@@ -59,6 +59,8 @@ public class BBSServlet extends HttpServlet {
 			vo.setTitle(request.getParameter("title"));
 			vo.setContents(request.getParameter("contents"));
 			System.out.println(vo.toString());
+			dao.insert(vo);
+			response.sendRedirect("/bbs/list");
 			break;
 		}
 	}

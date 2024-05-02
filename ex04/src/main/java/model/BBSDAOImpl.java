@@ -35,8 +35,16 @@ public class BBSDAOImpl implements BBSDAO{
 
 	@Override
 	public void insert(BBSVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="insert into bbs(title,contents,writer) values(?,?,?)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getTitle());
+			ps.setString(2, vo.getContents());
+			ps.setString(3, vo.getWriter());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("등록:" + e.toString());
+		}
 	}
 
 	@Override
