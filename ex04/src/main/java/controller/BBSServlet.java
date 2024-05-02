@@ -33,6 +33,14 @@ public class BBSServlet extends HttpServlet {
 			Gson gson=new Gson();
 			out.print(gson.toJson(dao.list()));
 			break;
+		case "/bbs/read":
+			String bid=request.getParameter("bid");
+			System.out.println("bid................" + bid);
+			BBSVO vo=dao.read(Integer.parseInt(bid));
+			request.setAttribute("bbs", vo);
+			request.setAttribute("pageName", "/bbs/read.jsp");
+			dis.forward(request, response);
+			break;
 		}
 	}
 

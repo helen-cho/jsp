@@ -15,7 +15,7 @@
 		{{#each .}}
 			<tr>
 				<td>{{bid}}</td>
-				<td>{{title}}</td>
+				<td><a href="/bbs/read?bid={{bid}}">{{title}}</a></td>
 				<td>{{uname}}({{writer}})</td>
 				<td>{{bdate}}</td>
 			</tr>

@@ -39,8 +39,26 @@ public class BBSDAOImpl implements BBSDAO{
 
 	@Override
 	public BBSVO read(int bid) {
-		// TODO Auto-generated method stub
-		return null;
+		BBSVO vo=new BBSVO();
+		try {
+			String sql="select * from view_bbs where bid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, bid);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				vo.setBid(rs.getInt("bid"));
+				vo.setTitle(rs.getString("title"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setBdate(rs.getString("bdate"));
+				vo.setUname(rs.getString("uname"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setContents(rs.getString("contents"));
+				System.out.println(vo.toString());
+			}
+		}catch(Exception e) {
+			System.out.println("게시글정보:" + e.toString());
+		}
+		return vo;
 	}
 
 	@Override
