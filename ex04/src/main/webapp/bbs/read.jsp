@@ -34,6 +34,7 @@
 				data:{bid},
 				success:function(){
 					alert("삭제완료!");
+					location.href="/bbs/list";
 				}
 			});
 		}

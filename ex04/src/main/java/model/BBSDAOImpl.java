@@ -79,7 +79,20 @@ public class BBSDAOImpl implements BBSDAO{
 
 	@Override
 	public void delete(int bid) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="delete from bbs where bid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, bid);
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("삭제:" + e.toString());
+		}
 	}
 }
+
+
+
+
+
+
+

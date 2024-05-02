@@ -65,6 +65,7 @@ public class BBSServlet extends HttpServlet {
 		case "/bbs/delete":
 			String bid=request.getParameter("bid");
 			System.out.println("bid..............." + bid);
+			dao.delete(Integer.parseInt(bid));
 			break;
 		}
 	}
