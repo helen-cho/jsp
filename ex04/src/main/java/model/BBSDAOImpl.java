@@ -2,9 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.sql.*;
+import java.text.*;
 
 public class BBSDAOImpl implements BBSDAO{
 	Connection con=Database.CON;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 	
 	@Override
 	public ArrayList<BBSVO> list() {
@@ -18,7 +20,7 @@ public class BBSDAOImpl implements BBSDAO{
 				vo.setBid(rs.getInt("bid"));
 				vo.setTitle(rs.getString("title"));
 				vo.setWriter(rs.getString("writer"));
-				vo.setBdate(rs.getString("bdate"));
+				vo.setBdate(sdf.format(rs.getTimestamp("bdate")));
 				vo.setUname(rs.getString("uname"));
 				vo.setPhoto(rs.getString("photo"));
 				vo.setContents(rs.getString("contents"));
@@ -49,7 +51,7 @@ public class BBSDAOImpl implements BBSDAO{
 				vo.setBid(rs.getInt("bid"));
 				vo.setTitle(rs.getString("title"));
 				vo.setWriter(rs.getString("writer"));
-				vo.setBdate(rs.getString("bdate"));
+				vo.setBdate(sdf.format(rs.getTimestamp("bdate")));
 				vo.setUname(rs.getString("uname"));
 				vo.setPhoto(rs.getString("photo"));
 				vo.setContents(rs.getString("contents"));

@@ -25,6 +25,10 @@ public class BBSServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/bbs/insert":
+			request.setAttribute("pageName", "/bbs/insert.jsp");
+			dis.forward(request, response);
+			break;
 		case "/bbs/list":
 			request.setAttribute("pageName", "/bbs/list.jsp");
 			dis.forward(request, response);
@@ -37,6 +41,7 @@ public class BBSServlet extends HttpServlet {
 			String bid=request.getParameter("bid");
 			System.out.println("bid................" + bid);
 			BBSVO vo=dao.read(Integer.parseInt(bid));
+			System.out.println("vo................." + vo.toString());
 			request.setAttribute("bbs", vo);
 			request.setAttribute("pageName", "/bbs/read.jsp");
 			dis.forward(request, response);

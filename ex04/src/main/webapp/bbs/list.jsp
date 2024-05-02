@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <div>
 	<h1>게시판</h1>
+	<div class="text-end mb-2" id="div_write">
+		<a href="/bbs/insert" class="btn btn-primary btn-sm">글쓰기</a>
+	</div>
 	<div id="div_bbs"></div>
 </div>
 <script id="temp_bbs" type="x-hadlebars-template">
@@ -23,6 +26,13 @@
 	</table>
 </script>
 <script>
+	if(uid){
+		$("#div_write").show();
+	}else{
+		$("#div_write").hide();	
+	}
+	
+	let page=1;
 	getData();
 	function getData(){
 		$.ajax({
