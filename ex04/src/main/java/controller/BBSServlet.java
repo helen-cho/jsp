@@ -74,6 +74,15 @@ public class BBSServlet extends HttpServlet {
 			System.out.println("bid..............." + bid);
 			dao.delete(Integer.parseInt(bid));
 			break;
+		case "/bbs/update":
+			vo=new BBSVO();
+			vo.setBid(Integer.parseInt(request.getParameter("bid")));
+			vo.setTitle(request.getParameter("title"));
+			vo.setContents(request.getParameter("contents"));
+			System.out.println(vo.toString());
+			dao.update(vo);
+			response.sendRedirect("/bbs/list");
+			break;
 		}
 	}
 }

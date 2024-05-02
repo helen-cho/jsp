@@ -73,8 +73,16 @@ public class BBSDAOImpl implements BBSDAO{
 
 	@Override
 	public void update(BBSVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="update bbs set title=?, contents=?, bdate=now() where bid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getTitle());
+			ps.setString(2, vo.getContents());
+			ps.setInt(3, vo.getBid());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("수정:" + e.toString());
+		}
 	}
 
 	@Override

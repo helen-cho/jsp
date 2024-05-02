@@ -4,6 +4,7 @@
 	<div class="col-10">
 		<h1>글수정</h1>
 		<form name="frm" method="post">
+			<input name="bid" value="${bbs.bid}" type="hidden">
 			<input name="writer" value="${user.uid}" type="hidden">
 			<input name="title" value="${bbs.title}" placeholder="제목을 입력하세요." class="form-control mb-2">
 			<textarea name="contents" rows="15" class="form-control" placeholder="내용을 입력하세요.">${bbs.contents}</textarea>
@@ -22,7 +23,7 @@
 			alert("제목을 입력하세요!");
 			$(frm.title).focus();
 		}else{
-			if(!confirm("저장하실래요?")) return; 
+			if(!confirm("수정하실래요?")) return; 
 			frm.submit();
 		}
 	});
