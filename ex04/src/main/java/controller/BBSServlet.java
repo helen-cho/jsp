@@ -41,8 +41,12 @@ public class BBSServlet extends HttpServlet {
 			dis.forward(request, response);
 			break;
 		case "/bbs/list.json":
+			int page=request.getParameter("page")!=null ? 
+					Integer.parseInt(request.getParameter("page")) : 1;
+			int size=request.getParameter("size")!=null ? 
+					Integer.parseInt(request.getParameter("size")) : 10;
 			Gson gson=new Gson();
-			out.print(gson.toJson(dao.list()));
+			out.print(gson.toJson(dao.list(page, size)));
 			break;
 		case "/bbs/read":
 			bid=request.getParameter("bid");

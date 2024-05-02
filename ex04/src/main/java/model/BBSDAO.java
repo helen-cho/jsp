@@ -12,4 +12,6 @@ public interface BBSDAO {
 	public void update(BBSVO vo);
 	//한개 삭제
 	public void delete(int bid);
+	//페이징목록
+	public ArrayList<BBSVO> list(int page, int size);
 }

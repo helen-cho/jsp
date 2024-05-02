@@ -96,6 +96,34 @@ public class BBSDAOImpl implements BBSDAO{
 			System.out.println("삭제:" + e.toString());
 		}
 	}
+
+	@Override
+	public ArrayList<BBSVO> list(int page, int size) {
+		ArrayList<BBSVO> array=new ArrayList<BBSVO>();
+		try {
+			String sql="select * from view_bbs order by bid desc";
+			sql+=" limit ?, ?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, (page-1)*size);
+			ps.setInt(2, size);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				BBSVO vo=new BBSVO();
+				vo.setBid(rs.getInt("bid"));
+				vo.setTitle(rs.getString("title"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setBdate(sdf.format(rs.getTimestamp("bdate")));
+				vo.setUname(rs.getString("uname"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setContents(rs.getString("contents"));
+				array.add(vo);
+				//System.out.println(vo.toString());
+			}
+		}catch(Exception e) {
+			System.out.println("게시판목록:" + e.toString());
+		}
+		return array;
+	}
 }
 
 
