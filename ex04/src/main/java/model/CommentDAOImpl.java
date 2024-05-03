@@ -2,9 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.sql.*;
+import java.text.*;
 
 public class CommentDAOImpl implements CommentDAO{
 	Connection con=Database.CON;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Override
 	public ArrayList<CommentVO> list(int bid, int page, int size) {
@@ -23,7 +25,7 @@ public class CommentDAOImpl implements CommentDAO{
 				CommentVO vo=new CommentVO();
 				vo.setCid(rs.getInt("cid"));
 				vo.setBid(rs.getInt("bid"));
-				vo.setCdate(rs.getString("cdate"));
+				vo.setCdate(sdf.format(rs.getTimestamp("cdate")));
 				vo.setContents(rs.getString("contents"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setUname(rs.getString("uname"));

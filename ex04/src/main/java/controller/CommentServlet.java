@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value= {"/com/list.json", "/com/total"})
+@WebServlet(value= {"/com/list.json", "/com/total", "/com/insert"})
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommentDAOImpl dao=new CommentDAOImpl(); 
@@ -41,6 +41,21 @@ public class CommentServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		switch(request.getServletPath()) {
+		case "/com/insert":
+			CommentVO vo=new CommentVO();
+			vo.setBid(Integer.parseInt(request.getParameter("bid")));
+			vo.setContents(request.getParameter("contents"));
+			vo.setWriter(request.getParameter("uid"));
+			dao.insert(vo);
+			break;
+		}
 	}
-
 }
+
+
+
+
+
+
+

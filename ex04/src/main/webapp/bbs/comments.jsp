@@ -18,6 +18,10 @@
 
 <script id="temp_comments" type="x-handlebars-template">
 	{{#each .}}
+		<div class="text-muted">
+			<span>{{cdate}}</span>
+			<span>{{uname}}({{writer}})</sapn>
+		</div>
 		<div class="mb-5"><b>{{cid}}</b>: {{contents}}</div>
 	{{/each}}
 </script>
@@ -49,7 +53,16 @@
 			$("#contents").focus();
 			return;
 		}
-		alert(contents + "\n" + bid + "\n" + uid);	
+		$.ajax({
+			type:"post",
+			url:"/com/insert",
+			data:{bid, contents, uid},
+			success:function(){
+				page=1;
+				getTotal();
+				contents=$("#contents").val("");
+			}
+		});
 	});
 	
 	getData();
