@@ -6,11 +6,7 @@
 		<a href="/bbs/insert" class="btn btn-primary btn-sm">글쓰기</a>
 	</div>
 	<div id="div_bbs"></div>
-	<div class="text-center">
-		<button id="prev" class="btn btn-primary btn-sm">이전</button>
-		<span id="page"></span>
-		<button id="next" class="btn btn-primary btn-sm">다음</button>
-	</div>
+	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
 <script id="temp_bbs" type="x-hadlebars-template">
 	<table class="table table-striped table-hover">
@@ -40,16 +36,6 @@
 	let page=1;
 	const size=5;
 	
-	$("#prev").on("click", function(){
-		page--;
-		getData();
-	});
-	
-	$("#next").on("click", function(){
-		page++;
-		getData();
-	});
-	
 	getData();
 	function getData(){
 		$.ajax({
@@ -60,13 +46,37 @@
 			success:function(data){
 				const temp=Handlebars.compile($("#temp_bbs").html());
 				$("#div_bbs").html(temp(data));
-				
-				$("#page").html(page);
-				if(page==1) $("#prev").attr("disabled", true);
-				else $("#prev").attr("disabled", false);
 			}
 		});
 	}
+	
+	getTotal();
+	function getTotal(){
+		$.ajax({
+			type:"get",
+			url:"/bbs/total",
+			success:function(data){
+				const totalPage=Math.ceil(data/size);
+				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+			}
+		});
+	}
+	
+	//페이지네이션 출력
+	$('#pagination').twbsPagination({
+		totalPages:100, 
+		visiblePages: 5, 
+		startPage : 1,
+		initiateStartPageClick: false, 
+		first:'<i class="bi bi-chevron-double-left"></i>', 
+		prev :'<i class="bi bi-chevron-left"></i>',
+		next :'<i class="bi bi-chevron-right"></i>',
+		last :'<i class="bi bi-chevron-double-right"></i>',
+		onPageClick: function (event, clickPage) {
+			 page=clickPage; 
+			 getData();
+		}
+	});
 </script>
 
 

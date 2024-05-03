@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/bbs/list.json", "/bbs/list", "/bbs/insert", "/bbs/read", "/bbs/delete", "/bbs/update"})
+@WebServlet(value={"/bbs/total","/bbs/list.json", "/bbs/list", "/bbs/insert", "/bbs/read", "/bbs/delete", "/bbs/update"})
 public class BBSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     BBSDAOImpl dao=new BBSDAOImpl();
@@ -25,6 +25,9 @@ public class BBSServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/bbs/total":
+			out.print(dao.total());
+			break;
 		case "/bbs/update":
 			String bid=request.getParameter("bid");
 			BBSVO bbs=dao.read(Integer.parseInt(bid));

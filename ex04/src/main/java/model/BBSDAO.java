@@ -14,4 +14,11 @@ public interface BBSDAO {
 	public void delete(int bid);
 	//페이징목록
 	public ArrayList<BBSVO> list(int page, int size);
+	//데이터갯수구하기
+	public int total();
 }
+
+
+
+
+

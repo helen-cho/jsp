@@ -124,6 +124,20 @@ public class BBSDAOImpl implements BBSDAO{
 		}
 		return array;
 	}
+
+	@Override
+	public int total() {
+		int total=0;
+		try {
+			String sql="select count(*) total from bbs";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) total=rs.getInt("total");
+		}catch(Exception e) {
+			System.out.println("전체갯수:" + e.toString());
+		}
+		return total;
+	}
 }
 
 
