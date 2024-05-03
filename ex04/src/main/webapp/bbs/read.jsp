@@ -18,6 +18,9 @@
 		</div>
 	</div>
 </div>
+
+<jsp:include page="comments.jsp"/>
+
 <script>
 	const writer="${bbs.writer}";
 	if(uid==writer) $("#div_update").show();

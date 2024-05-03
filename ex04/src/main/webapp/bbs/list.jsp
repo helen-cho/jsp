@@ -32,9 +32,21 @@
 		{{#each .}}
 			<tr>
 				<td>{{bid}}</td>
-				<td><a href="/bbs/read?bid={{bid}}">{{title}}</a></td>
-				<td>{{uname}}({{writer}})</td>
-				<td>{{bdate}}</td>
+				<td>
+					<div class="ellipsis">
+						<a href="/bbs/read?bid={{bid}}">{{title}}</a>
+					</div>
+				</td>
+				<td>
+					<div class="ellipsis">
+						{{uname}}({{writer}})
+					</div>
+				</td>
+				<td>
+					<div class="ellipsis">
+						{{bdate}}
+					</div>
+				</td>
 			</tr>
 		{{/each}}
 	</table>

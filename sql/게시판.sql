@@ -110,6 +110,14 @@ select bid,contents,writer from comments;
 
 select count(*) from comments;
 
+create view view_comments as
+select uname, photo, comments.*
+from users, comments
+where uid=writer;
 
+select * from view_comments 
+where bid=181
+order by cid desc
+limit 0,3;
 
 
