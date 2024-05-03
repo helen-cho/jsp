@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="card mt-5">
+	<div class="card-header">
+		<span id="total"></span>
+	</div>
 	<div class="card-body">
-		<div class="card-header">
-			<span id="total"></span>
-		</div>
 		<div id="div_comments"></div>
-		<div id="pagination" class="pagination justify-content-center mt-5"></div>
 	</div>
 </div>
+<div id="pagination" class="pagination justify-content-center mt-3"></div>
+
 <script id="temp_comments" type="x-handlebars-template">
 	{{#each .}}
 		<div class="mb-5"><b>{{cid}}</b>: {{contents}}</div>
