@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value= {"/com/list.json"})
+@WebServlet(value= {"/com/list.json", "/com/total"})
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommentDAOImpl dao=new CommentDAOImpl(); 
@@ -23,6 +23,10 @@ public class CommentServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		switch(request.getServletPath()) {
+		case "/com/total": //테스트: /com/total?bid=181
+			int bid1=Integer.parseInt(request.getParameter("bid"));
+			out.print(dao.total(bid1));
+			break;
 		case "/com/list.json":
 			int page=request.getParameter("page")==null ?
 					1 : Integer.parseInt(request.getParameter("page"));

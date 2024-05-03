@@ -57,7 +57,23 @@ public class CommentDAOImpl implements CommentDAO{
 
 	@Override
 	public int total(int bid) {
-		// TODO Auto-generated method stub
-		return 0;
+		int total=0;
+		try {
+			String sql="select count(*) total from comments where bid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, bid);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) total=rs.getInt("total");
+		}catch(Exception e) {
+			System.out.println("전체갯수:" + e.toString());
+		}
+		return total;
 	}
 }
+
+
+
+
+
+
+

@@ -10,6 +10,7 @@ public class DBTest {
 		//System.out.println("red 갯수:" + dao.total("red"));
 		
 		CommentDAOImpl dao=new CommentDAOImpl();
-		dao.list(181, 1, 5);
+		//dao.list(181, 1, 5);
+		System.out.println("181의 댓글수........." + dao.total(181));
 	}
 }
