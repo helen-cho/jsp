@@ -1,6 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<div class="card mt-5">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="mt-5 text-end" id="div_insert">
+	<textarea id="contents" rows="5" class="form-control" placeholder="댓글 내용을 입력하세요."></textarea>
+	<button class="btn btn-primary px-5 mt-2 insert">등록</button>
+</div>
+<div class="mt-5" id="div_login">
+	<button class="btn btn-primary w-100 login">로그인</button>
+</div>
+<div class="card mt-2">
 	<div class="card-header">
 		<span id="total"></span>
 	</div>
@@ -20,6 +26,31 @@
 	const bid="${bbs.bid}";
 	let page=1;
 	let size=3;
+	
+	if(uid){
+		$("#div_insert").show();
+		$("#div_login").hide();
+	}else{
+		$("#div_insert").hide();
+		$("#div_login").show();
+	}
+	
+	//로그인버튼을 클릭한 경우
+	$("#div_login").on("click", ".login", function(){
+		sessionStorage.setItem("target", "/bbs/read?bid=" + bid);
+		location.href="/user/login";	
+	});
+	
+	//등록버튼을 클릭한 경우
+	$("#div_insert").on("click", ".insert", function(){
+		const contents=$("#contents").val();
+		if(contents==""){
+			alert("댓글내용을 입력하세요!");
+			$("#contents").focus();
+			return;
+		}
+		alert(contents + "\n" + bid + "\n" + uid);	
+	});
 	
 	getData();
 	function getData(){

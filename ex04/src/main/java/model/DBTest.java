@@ -11,6 +11,11 @@ public class DBTest {
 		
 		CommentDAOImpl dao=new CommentDAOImpl();
 		//dao.list(181, 1, 5);
-		System.out.println("181의 댓글수........." + dao.total(181));
+		//System.out.println("181의 댓글수........." + dao.total(181));
+		CommentVO vo=new CommentVO();
+		vo.setBid(181);
+		vo.setWriter("red");
+		vo.setContents("새로운 댓글입니다.");
+		dao.insert(vo);
 	}
 }

@@ -39,8 +39,16 @@ public class CommentDAOImpl implements CommentDAO{
 
 	@Override
 	public void insert(CommentVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="insert into comments(bid,writer,contents) values(?,?,?)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, vo.getBid());
+			ps.setString(2, vo.getWriter());
+			ps.setString(3, vo.getContents());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("입력:" + e.toString());
+		}
 	}
 
 	@Override
