@@ -7,7 +7,6 @@ import java.text.*;
 public class CommentDAOImpl implements CommentDAO{
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
 	@Override
 	public ArrayList<CommentVO> list(int bid, int page, int size) {
 		ArrayList<CommentVO> array=new ArrayList<CommentVO>();
@@ -61,7 +60,14 @@ public class CommentDAOImpl implements CommentDAO{
 
 	@Override
 	public void delete(int cid) {
-		// TODO Auto-generated method stub
+		try {
+			String sql="delete from comments where cid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, cid);
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("삭제:" + e.toString());
+		}
 		
 	}
 

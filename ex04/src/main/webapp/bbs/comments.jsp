@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<style>
+	.delete {
+		font-size:20px;
+		cursor:pointer;
+		color:red;
+	}
+</style>
 <div class="mt-5 text-end" id="div_insert">
 	<textarea id="contents" rows="5" class="form-control" placeholder="댓글 내용을 입력하세요."></textarea>
 	<button class="btn btn-primary px-5 mt-2 insert">등록</button>
@@ -21,11 +28,18 @@
 		<div class="text-muted">
 			<span>{{cdate}}</span>
 			<span>{{uname}}({{writer}})</sapn>
+			<i class="bi bi-trash3 ms-3 delete" style="{{delete writer}}" cid="{{cid}}"></i>
 		</div>
-		<div class="mb-5"><b>{{cid}}</b>: {{contents}}</div>
+		<div class="mb-5 ellipsis2"><b>{{cid}}</b>: {{contents}}</div>
 	{{/each}}
 </script>
-
+<script>
+	Handlebars.registerHelper("delete", function(writer){
+		if(uid!=writer){
+			return "display:none;";
+		}
+	});
+</script>
 <script>
 	const bid="${bbs.bid}";
 	let page=1;
@@ -38,6 +52,23 @@
 		$("#div_insert").hide();
 		$("#div_login").show();
 	}
+	
+	//삭제버튼을 클릭한 경우
+	$("#div_comments").on("click", ".delete", function(){
+		const cid=$(this).attr("cid");
+		if(confirm(cid + "번 댓글을 삭제하실래요?")){
+			//삭제하기
+			$.ajax({
+				type:"post",
+				url:"/com/delete",
+				data:{cid},
+				success:function(){
+					alert("삭제완료!");
+					getTotal();
+				}
+			});
+		}
+	});
 	
 	//로그인버튼을 클릭한 경우
 	$("#div_login").on("click", ".login", function(){

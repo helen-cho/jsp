@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value= {"/com/list.json", "/com/total", "/com/insert"})
+@WebServlet(value= {"/com/list.json", "/com/total", "/com/insert", "/com/delete"})
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommentDAOImpl dao=new CommentDAOImpl(); 
@@ -48,6 +48,10 @@ public class CommentServlet extends HttpServlet {
 			vo.setContents(request.getParameter("contents"));
 			vo.setWriter(request.getParameter("uid"));
 			dao.insert(vo);
+			break;
+		case "/com/delete":
+			int cid=Integer.parseInt(request.getParameter("cid"));
+			dao.delete(cid);
 			break;
 		}
 	}
