@@ -8,7 +8,7 @@
 	</div>
 	<div class="card">
 		<div class="card-body">
-			<div>${bbs.title}</div>
+			<div>[${bbs.bid}] ${bbs.title}</div>
 			<hr>
 			<div>${bbs.contents}</div>
 		</div>

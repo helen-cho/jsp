@@ -2,8 +2,21 @@
     pageEncoding="UTF-8"%>
 <div>
 	<h1>게시판</h1>
-	<div class="text-end mb-2" id="div_write">
-		<a href="/bbs/insert" class="btn btn-primary btn-sm">글쓰기</a>
+	<div class="row">
+		<div class="col-6 col-md-4 col-lg-3 mb-2">
+			<form name="frm">
+				<div class="input-group">
+					<input name="query" class="form-control">
+					<button class="btn btn-primary">검색</button>
+				</div>
+			</form>
+		</div>
+		<div class="col pt-2">
+			<span id="total"></span>
+		</div>
+		<div class="col text-end mb-2" id="div_write">
+			<a href="/bbs/insert" class="btn btn-primary btn-sm px-3">글쓰기</a>
+		</div>
 	</div>
 	<div id="div_bbs"></div>
 	<div id="pagination" class="pagination justify-content-center mt-5"></div>
@@ -34,7 +47,15 @@
 	}
 	
 	let page=1;
-	const size=5;
+	const size=10;
+	let query="";
+	
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		query=$(frm.query).val();
+		page=1;
+		getTotal();
+	});
 	
 	getData();
 	function getData(){
@@ -42,7 +63,7 @@
 			type:"get",
 			url:"/bbs/list.json",
 			dataType:"json",
-			data:{page, size},
+			data:{page, size, query},
 			success:function(data){
 				const temp=Handlebars.compile($("#temp_bbs").html());
 				$("#div_bbs").html(temp(data));
@@ -55,9 +76,16 @@
 		$.ajax({
 			type:"get",
 			url:"/bbs/total",
+			data:{query},
 			success:function(data){
-				const totalPage=Math.ceil(data/size);
-				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+				if(data ==0) {
+					alert("검색내용이 없습니다.");
+					$(frm.query).val("");
+				}else{
+					const totalPage=Math.ceil(data/size);
+					$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+					$("#total").html("검색수:" + data + "건")
+				}
 			}
 		});
 	}

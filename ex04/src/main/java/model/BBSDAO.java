@@ -16,6 +16,10 @@ public interface BBSDAO {
 	public ArrayList<BBSVO> list(int page, int size);
 	//데이터갯수구하기
 	public int total();
+	//검색 데이터 갯수 구하기
+	public int total(String query);
+	//페이징, 검색
+	public ArrayList<BBSVO> list(int page, int size, String query);
 }
 
 
