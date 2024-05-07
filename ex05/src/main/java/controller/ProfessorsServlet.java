@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json", "/pro/total", "/pro/read"})
+@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json", "/pro/total", "/pro/read", "/pro/delete"})
 public class ProfessorsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ProDAOImpl dao=new ProDAOImpl();
@@ -74,7 +74,12 @@ public class ProfessorsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		switch(request.getServletPath()) {
+		case "/pro/delete":
+			int result=dao.delete(request.getParameter("pcode"));
+			out.print(result);
+			break;
 		case "/pro/insert":
 			ProVO pro=new ProVO();
 			pro.setPcode(request.getParameter("pcode"));

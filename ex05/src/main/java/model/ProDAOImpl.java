@@ -103,8 +103,17 @@ public class ProDAOImpl implements ProDAO{
 	}
 
 	@Override
-	public void delete(String pcode) {
-		// TODO Auto-generated method stub
+	public int delete(String pcode) {
+		try {
+			String sql="delete from professors where pcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, pcode);
+			ps.execute();
+			return 1;
+		}catch(Exception e) {
+			System.out.println("교수삭제:" + e.toString());
+			return 0;
+		}
 		
 	}
 

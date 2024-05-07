@@ -21,5 +21,5 @@ public interface ProDAO {
 	public void update(ProVO vo);
 	
 	//교수정보삭제
-	public void delete(String pcode);
+	public int delete(String pcode);
 }

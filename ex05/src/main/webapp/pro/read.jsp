@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 	table .title {
-		background:gray;
-		color:white;
-		text-align:center;
+		background: gray;
+		color: white;
+		text-align: center;
 	}
 </style>
 <div class="row">
@@ -28,8 +28,31 @@
 			</tr>
 		</table>
 		<div class="text-center my-5">
-			<button class="btn btn-primary me-3">교수수정</button>
-			<button class="btn btn-danger">교수삭제</button>
+			<button class="btn btn-primary">교수수정</button>
+			<button class="btn btn-danger" id="delete">교수삭제</button>
 		</div>
 	</div>
 </div>
+<script>
+	$("#delete").on("click", function(){
+		const pcode="${pro.pcode}";
+		if(confirm(pcode + "번 교수를 삭제하실래요?")){
+			//교수삭제
+			$.ajax({
+				type:"post",
+				url:"/pro/delete",
+				data:{pcode},
+				success:function(data){
+					if(data==1){
+						alert("삭제완료!");
+						location.href="/pro/list";
+					}else{
+						alert("삭제실패!");
+					}
+				}
+			});
+		}
+	});
+</script>
+
+
