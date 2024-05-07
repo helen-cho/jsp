@@ -31,15 +31,15 @@
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">교수직급</span>
 						<div class="form-check m-2">
-							<input name="title" class="form-check-input" type="radio" checked>
+							<input value="정교수" name="title" class="form-check-input" type="radio" checked>
 							<label class="form-check-label">정교수</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="title" class="form-check-input" type="radio">
+							<input value="부교수" name="title" class="form-check-input" type="radio">
 							<label class="form-check-label">부교수</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="title" class="form-check-input" type="radio">
+							<input value="조교수" name="title" class="form-check-input" type="radio">
 							<label class="form-check-label">조교수</label>
 						</div>			
 					</div>

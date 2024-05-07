@@ -67,6 +67,30 @@ public class ProfessorsServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		switch(request.getServletPath()) {
+		case "/pro/insert":
+			ProVO pro=new ProVO();
+			pro.setPcode(request.getParameter("pcode"));
+			pro.setPname(request.getParameter("pname"));
+			pro.setDept(request.getParameter("dept"));
+			pro.setTitle(request.getParameter("title"));
+			pro.setHiredate(request.getParameter("hiredate"));
+			pro.setSalary(Integer.parseInt(request.getParameter("salary")));
+			System.out.println(pro.toString());
+			break;
+		}
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
