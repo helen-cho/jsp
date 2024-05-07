@@ -58,6 +58,7 @@ public class ProfessorsServlet extends HttpServlet {
 			out.print(gson.toJson(dao.list(vo)));
 			break;
 		case "/pro/insert":
+			request.setAttribute("code", dao.getCode());
 			request.setAttribute("pageName", "/pro/insert.jsp");
 			dis.forward(request, response);
 			break;

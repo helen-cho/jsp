@@ -77,4 +77,20 @@ public class ProDAOImpl implements ProDAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getCode() {
+		String code="";
+		try {
+			String sql="select max(pcode)+1 code from professors";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) code=rs.getString("code");
+		}catch(Exception e) {
+			System.out.println("새코드:" + e.toString());
+		}
+		return code;
+	}
 }
+
+

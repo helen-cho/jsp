@@ -2,6 +2,9 @@ package model;
 import java.util.*;
 
 public interface ProDAO {
+	//새교수번호
+	public String getCode();
+	
 	//교수목록
 	public ArrayList<ProVO> list(QueryVO vo);
 	
