@@ -14,6 +14,14 @@
 				<button class="btn btn-primary">검색</button>
 			</div>
 		</form>
+		<div class="col-2">
+			<select class="form-select" id="size">
+				<option value="2">2행</option>
+				<option value="3">3행</option>
+				<option value="4">4행</option>
+				<option value="5">5행</option>
+			</select>
+		</div>
 	</div>
 	<div id="div_pro"></div>
 </div>
@@ -42,7 +50,7 @@
 
 <script>
 	let page=1;
-	let size=4;
+	let size=$("#size").val();
 	let key=$(frm.key).val();
 	let word=$(frm.word).val();
 	
@@ -50,6 +58,13 @@
 		e.preventDefault();
 		key=$(frm.key).val();
 		word=$(frm.word).val();
+		size=$("#size").val();
+		page=1;
+		getData();
+	});
+	
+	$("#size").on("change", function(){
+		size=$("#size").val();
 		page=1;
 		getData();
 	});
