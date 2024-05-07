@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+	#size { 
+		width:100px;
+		float: right;
+	}
+</style>
 <div>
 	<h1>교수관리</h1>
 	<div class="row mt-5 mb-3">
-		<form class="col-10 col-md-6 " name="frm">
+		<form class="col" name="frm">
 			<div class="input-group">
 				<select class="form-select me-3" name="key">
 					<option value="pcode">교수번호</option>
@@ -14,7 +20,7 @@
 				<button class="btn btn-primary">검색</button>
 			</div>
 		</form>
-		<div class="col-2">
+		<div class="col">
 			<select class="form-select" id="size">
 				<option value="2">2행</option>
 				<option value="3">3행</option>
@@ -23,6 +29,7 @@
 			</select>
 		</div>
 	</div>
+	<hr>
 	<div id="div_pro"></div>
 	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
@@ -61,7 +68,8 @@
 		word=$(frm.word).val();
 		size=$("#size").val();
 		page=1;
-		getData();
+		//getData();
+		getTotal();
 	});
 	
 	$("#size").on("change", function(){
@@ -93,8 +101,20 @@
 			url:"/pro/total",
 			data:{key, word},
 			success:function(data){
+				if(data==0) {
+					alert("검색내용이 없습니다!");
+					$(frm.word).val("");
+					return;
+				}
+				
 				const totalPage=Math.ceil(data/size);
 				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+				if(data>size){
+					$("#pagination").show();
+				}else{
+					$("#pagination").hide();
+				}
+				
 			}
 		});
 	}
@@ -104,10 +124,10 @@
 		visiblePages: 5, 
 		startPage : 1,
 		initiateStartPageClick: false, 
-		first:'<i>처음</i>', 
-		prev :'<i>이전</i>',
-		next :'<i>다음</i>',
-		last :'<i>마지막</i>',
+		first:'<i class="bi bi-chevron-double-left"></i>', 
+		prev :'<i class="bi bi-chevron-left"></i>',
+		next :'<i class="bi bi-chevron-right"></i>',
+		last :'<i class="bi bi-chevron-double-right"></i>',
 		onPageClick: function (event, clickPage) {
 			 page=clickPage; 
 			 getData();
