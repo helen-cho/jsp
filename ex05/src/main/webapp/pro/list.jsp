@@ -2,10 +2,23 @@
     pageEncoding="UTF-8"%>
 <div>
 	<h1>교수관리</h1>
+	<div class="row mt-5 mb-3">
+		<form class="col-10 col-md-6 " name="frm">
+			<div class="input-group">
+				<select class="form-select me-3" name="key">
+					<option value="pcode">교수번호</option>
+					<option value="pname" selected>교수이름</option>
+					<option value="dept">교수학과</option>
+				</select>
+				<input placeholder="검색어" class="form-control" name="word">
+				<button class="btn btn-primary">검색</button>
+			</div>
+		</form>
+	</div>
 	<div id="div_pro"></div>
 </div>
 <script id="temp_pro" type="x-handlebars-template">
-	<table class="table table-border">
+	<table class="table table-border table-hover">
 		<tr>
 			<td>교수번호</td>
 			<td>교수이름</td>
@@ -30,8 +43,16 @@
 <script>
 	let page=1;
 	let size=4;
-	let key="pcode";
-	let word="";
+	let key=$(frm.key).val();
+	let word=$(frm.word).val();
+	
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		key=$(frm.key).val();
+		word=$(frm.word).val();
+		page=1;
+		getData();
+	});
 	
 	getData();
 	function getData(){
