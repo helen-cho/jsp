@@ -25,7 +25,8 @@ public class ProfessorsServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
 		case "/pro/read":
-			String pcode=request.getParameter("pcdoe");
+			String pcode=request.getParameter("pcode");
+			request.setAttribute("pro", dao.read(pcode));
 			request.setAttribute("pageName", "/pro/read.jsp");
 			dis.forward(request, response);
 			break;
