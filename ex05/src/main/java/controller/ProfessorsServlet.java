@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json"})
+@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json", "/pro/total"})
 public class ProfessorsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ProDAOImpl dao=new ProDAOImpl();
@@ -22,9 +22,18 @@ public class ProfessorsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
+		case "/pro/total": //테스트 /pro/total?key=dept&word=건축
+			String key1=request.getParameter("key")==null ? "pcode":
+				request.getParameter("key");
+			String word1=request.getParameter("word")==null ? "":
+				request.getParameter("word");
+			QueryVO vo1=new QueryVO();
+			vo1.setKey(key1);
+			vo1.setWord(word1);
+			out.print(dao.total(vo1));
+			break;
 		case "/pro/list":
 			request.setAttribute("pageName", "/pro/list.jsp");
 			dis.forward(request, response);

@@ -67,10 +67,12 @@
 	$("#size").on("change", function(){
 		size=$("#size").val();
 		page=1;
-		getData();
+		//getData();
+		getTotal();
 	});
 	
-	getData();
+	//getData();
+	getTotal();
 	function getData(){
 		$.ajax({
 			type:"get",
@@ -81,6 +83,18 @@
 				console.log(data);
 				const temp=Handlebars.compile($("#temp_pro").html());
 				$("#div_pro").html(temp(data));
+			}
+		});
+	}
+	
+	function getTotal(){
+		$.ajax({
+			type:"get",
+			url:"/pro/total",
+			data:{key, word},
+			success:function(data){
+				const totalPage=Math.ceil(data/size);
+				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
 			}
 		});
 	}
