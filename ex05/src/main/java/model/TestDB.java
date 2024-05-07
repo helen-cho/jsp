@@ -10,7 +10,7 @@ public class TestDB {
 		vo.setPage(1);
 		vo.setSize(2);
 		vo.setKey("dept");
-		vo.setWord("전산");
+		vo.setWord("건축");
 		dao.list(vo);
 		System.out.println("검색수:" + dao.total(vo));
 	}

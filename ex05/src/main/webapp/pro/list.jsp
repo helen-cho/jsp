@@ -24,6 +24,7 @@
 		</div>
 	</div>
 	<div id="div_pro"></div>
+	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
 <script id="temp_pro" type="x-handlebars-template">
 	<table class="table table-border table-hover">
@@ -83,4 +84,19 @@
 			}
 		});
 	}
+	
+	$('#pagination').twbsPagination({
+		totalPages:10, 
+		visiblePages: 5, 
+		startPage : 1,
+		initiateStartPageClick: false, 
+		first:'<i>처음</i>', 
+		prev :'<i>이전</i>',
+		next :'<i>다음</i>',
+		last :'<i>마지막</i>',
+		onPageClick: function (event, clickPage) {
+			 page=clickPage; 
+			 getData();
+		}
+	});
 </script>
