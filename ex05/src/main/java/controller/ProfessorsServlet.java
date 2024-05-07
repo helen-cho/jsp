@@ -38,11 +38,13 @@ public class ProfessorsServlet extends HttpServlet {
 				request.getParameter("key");
 			String word=request.getParameter("word")==null ? "":
 				request.getParameter("word");
+			
 			QueryVO vo=new QueryVO();
 			vo.setPage(page);
 			vo.setSize(size);
 			vo.setKey(key);
 			vo.setWord(word);
+			
 			Gson gson=new Gson();
 			out.print(gson.toJson(dao.list(vo)));
 			break;
