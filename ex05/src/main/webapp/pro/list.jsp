@@ -46,7 +46,7 @@
 		{{#each .}}
 		<tr>
 			<td>{{pcode}}</td>
-			<td>{{pname}}</td>
+			<td><a href="/pro/read?pcode={{pcode}}">{{pname}}</a></td>
 			<td>{{dept}}</td>
 			<td>{{title}}</td>
 			<td>{{salary}}</td>

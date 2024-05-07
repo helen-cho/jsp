@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json", "/pro/total"})
+@WebServlet(value={"/pro/list", "/pro/insert", "/pro/list.json", "/pro/total", "/pro/read"})
 public class ProfessorsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ProDAOImpl dao=new ProDAOImpl();
@@ -24,6 +24,11 @@ public class ProfessorsServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
+		case "/pro/read":
+			String pcode=request.getParameter("pcdoe");
+			request.setAttribute("pageName", "/pro/read.jsp");
+			dis.forward(request, response);
+			break;
 		case "/pro/total": //테스트 /pro/total?key=dept&word=건축
 			String key1=request.getParameter("key")==null ? "pcode":
 				request.getParameter("key");
@@ -78,6 +83,8 @@ public class ProfessorsServlet extends HttpServlet {
 			pro.setHiredate(request.getParameter("hiredate"));
 			pro.setSalary(Integer.parseInt(request.getParameter("salary")));
 			System.out.println(pro.toString());
+			dao.insert(pro);
+			response.sendRedirect("/pro/list");
 			break;
 		}
 	}

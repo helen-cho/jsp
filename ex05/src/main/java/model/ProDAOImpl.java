@@ -14,6 +14,7 @@ public class ProDAOImpl implements ProDAO{
 		try {
 			String sql="select * from professors";
 			sql += " where " + vo.getKey() + " like ?";
+			sql += " order by pcode desc";
 			sql += " limit ?, ?";
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, "%" + vo.getWord() + "%");
@@ -56,14 +57,43 @@ public class ProDAOImpl implements ProDAO{
 
 	@Override
 	public void insert(ProVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="insert into professors(pcode,pname,dept,title,hiredate,salary)";
+			sql+=" values(?,?,?,?,?,?)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getPcode());
+			ps.setString(2, vo.getPname());
+			ps.setString(3, vo.getDept());
+			ps.setString(4, vo.getTitle());
+			ps.setString(5, vo.getHiredate());
+			ps.setInt(6, vo.getSalary());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("교수등록:" + e.toString());
+		}
 	}
 
 	@Override
 	public ProVO read(String pcode) {
-		// TODO Auto-generated method stub
-		return null;
+		ProVO pro=new ProVO();
+		try {
+			String sql="select * from professors where pcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, pcode);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				pro.setPcode(rs.getString("pcode"));
+				pro.setPname(rs.getString("pname"));
+				pro.setDept(rs.getString("dept"));
+				pro.setTitle(rs.getString("title"));
+				pro.setHiredate(sdf.format(rs.getTimestamp("hiredate")));
+				pro.setSalary(rs.getInt("salary"));
+				System.out.println(pro.toString());
+			}
+		}catch(Exception e) {
+			System.out.println("교수정보:" + e.toString());
+		}
+		return pro;
 	}
 
 	@Override
