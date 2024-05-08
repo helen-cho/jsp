@@ -7,4 +7,7 @@ public interface StuDAO {
 	
 	//검색수
 	public int total(QueryVO vo);
+	
+	//새로운학번 구하기
+	public String getCode();
 }

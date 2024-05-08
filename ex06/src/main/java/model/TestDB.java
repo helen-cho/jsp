@@ -11,6 +11,7 @@ public class TestDB {
 		vo.setWord("건축");
 		dao.list(vo);
 		System.out.println("검색수:" + dao.total(vo));
+		System.out.println("새로운학번:" + dao.getCode());
 	}
 
 }

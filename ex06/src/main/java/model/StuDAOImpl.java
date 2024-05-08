@@ -54,6 +54,22 @@ public class StuDAOImpl implements StuDAO{
 		}
 		return total;
 	}
+
+	@Override
+	public String getCode() {
+		String code="";
+		try {
+			String sql="select max(scode)+1 code from students";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				code=rs.getString("code");
+			}
+		}catch(Exception e) {
+			System.out.println("새로운코드:" + e.toString());
+		}
+		return code;
+	}
 }
 
 
