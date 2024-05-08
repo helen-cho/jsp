@@ -30,7 +30,7 @@
 			<td>교수학과</td>
 		</tr>
 		{{#each .}}
-		<tr class="text-center">
+		<tr class="text-center pro" pcode="{{pcode}}" pname="{{pname}}" style="cursor:pointer">
 			<td>{{pcode}}</td>
 			<td>{{pname}}</td>
 			<td>{{dept}}</td>
@@ -42,6 +42,17 @@
 	let size=100;
 	let key="pcode";
 	let word="";
+	
+	//각행의 tr를 클릭한경우
+	$("#div_pro").on("click", ".pro", function(){
+		const pcode=$(this).attr("pcode");
+		const pname=$(this).attr("pname");
+		//alert(pcode + pname);
+		$(frm.advisor).val(pcode);
+		$(frm.pname).val(pname);
+		$("#modal").modal("hide");
+	});
+	
 	getData();
 	function getData(){
 		$.ajax({
