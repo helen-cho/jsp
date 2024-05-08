@@ -13,7 +13,7 @@
 				<select class="form-select me-3" name="key">
 					<option value="scode">학생번호</option>
 					<option value="sname" selected>학생이름</option>
-					<option value="sdept">학생학과</option>
+					<option value="dept">학생학과</option>
 					<option value="pname">지도교수</option>
 				</select>
 				<input placeholder="검색어" class="form-control" name="word">
