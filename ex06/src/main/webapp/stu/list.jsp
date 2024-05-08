@@ -45,7 +45,7 @@
 		{{#each .}}
 		<tr class="text-center">
 			<td>{{scode}}</td>
-			<td>{{sname}}</td>
+			<td><a href="/stu/read?scode={{scode}}">{{sname}}</a></td>
 			<td>{{sdept}}</td>
 			<td>{{year}}학년</td>
 			<td>{{birthday}}</td>

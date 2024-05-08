@@ -88,6 +88,31 @@ public class StuDAOImpl implements StuDAO{
 			System.out.println("학생등록:" + e.toString());
 		}
 	}
+
+	@Override
+	public StuVO read(String scode) {
+		StuVO vo=new StuVO();
+		try {
+			String sql="select * from view_stu";
+			sql += " where scode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, scode);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				vo.setScode(rs.getString("scode"));
+				vo.setSname(rs.getString("sname"));
+				vo.setSdept(rs.getString("dept"));
+				vo.setAdvisor(rs.getString("advisor"));
+				vo.setPname(rs.getString("pname"));
+				vo.setBirthday(rs.getString("birthday"));
+				vo.setYear(rs.getInt("year"));
+				System.out.println(vo.toString());
+			}
+		}catch(Exception e) {
+			System.out.println("학생정보:" + e.toString());
+		}
+		return vo;
+	}
 }
 
 

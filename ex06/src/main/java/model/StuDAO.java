@@ -13,4 +13,7 @@ public interface StuDAO {
 	
 	//학생등록
 	public void insert(StuVO vo);
+	
+	//학생정보
+	public StuVO read(String scode);
 }

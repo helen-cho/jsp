@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/stu/list", "/stu/list.json", "/stu/total", "/stu/insert"})
+@WebServlet(value={"/stu/list", "/stu/list.json", "/stu/total", "/stu/insert", "/stu/read"})
 public class StudentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     StuDAOImpl dao=new StuDAOImpl();
@@ -25,6 +25,11 @@ public class StudentsServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/stu/read":
+			request.setAttribute("stu", dao.read(request.getParameter("scode")));
+			request.setAttribute("pageName", "/stu/read.jsp");
+			dis.forward(request, response);
+			break;
 		case "/stu/insert":
 			request.setAttribute("code", dao.getCode());
 			request.setAttribute("pageName", "/stu/insert.jsp");
