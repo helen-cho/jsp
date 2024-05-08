@@ -28,12 +28,19 @@
 			</tr>
 		</table>
 		<div class="text-center my-5">
-			<button class="btn btn-primary">교수수정</button>
+			<button class="btn btn-primary" id="update">교수수정</button>
 			<button class="btn btn-danger" id="delete">교수삭제</button>
 		</div>
 	</div>
 </div>
 <script>
+	//수정버튼을 클릭한경우
+	$("#update").on("click", function(){
+		const pcode="${pro.pcode}";
+		location.href="/pro/update?pcode=" + pcode;
+	});
+	
+	//삭제버튼을 클릭한경우
 	$("#delete").on("click", function(){
 		const pcode="${pro.pcode}";
 		if(confirm(pcode + "번 교수를 삭제하실래요?")){
