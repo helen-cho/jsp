@@ -19,6 +19,9 @@
         <li class="nav-item">
         	<a class="nav-link active" aria-current="page" href="/stu/list">학생관리</a>
         </li>
+        <li class="nav-item">
+        	<a class="nav-link active" aria-current="page" href="/stu/insert">학생등록</a>
+        </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
         <li class="nav-item" id="login">
