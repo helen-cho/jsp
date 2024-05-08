@@ -26,6 +26,7 @@ public class StudentsServlet extends HttpServlet {
 		
 		switch(request.getServletPath()) {
 		case "/stu/insert":
+			request.setAttribute("code", dao.getCode());
 			request.setAttribute("pageName", "/stu/insert.jsp");
 			dis.forward(request, response);
 			break;

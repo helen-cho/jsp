@@ -50,7 +50,7 @@
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">지도교수</span>
 						<input name="advisor" class="form-control">
-						<button class="btn btn-primary" type="button">검색</button>
+						<button class="btn btn-primary" type="button" id="search">검색</button>
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">생년월일</span>
@@ -65,7 +65,15 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="modal.jsp"/>
+
 <script>
+
+	//검색버튼을 클릭한 경우
+	$("#search").on("click", function(){
+		$("#modal").modal("show");	
+	});
+	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		const pname=$(frm.pname).val();
