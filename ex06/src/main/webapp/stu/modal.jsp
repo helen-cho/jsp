@@ -40,8 +40,13 @@
 <script>
 	let page=1;
 	let size=100;
-	let key="pcode";
-	let word="";
+	let key="dept";
+	let word=$(frm.dept).val();
+	
+	$(frm.dept).on("change", function(){
+		word=$(frm.dept).val();
+		getData();
+	});
 	
 	//각행의 tr를 클릭한경우
 	$("#div_pro").on("click", ".pro", function(){

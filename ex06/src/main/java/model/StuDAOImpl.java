@@ -70,6 +70,24 @@ public class StuDAOImpl implements StuDAO{
 		}
 		return code;
 	}
+
+	@Override
+	public void insert(StuVO vo) {
+		try {
+			String sql="insert into students(scode,sname,dept,year,birthday,advisor)";
+			sql+=" values(?,?,?,?,?,?)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getScode());
+			ps.setString(2, vo.getSname());
+			ps.setString(3, vo.getSdept());
+			ps.setInt(4, vo.getYear());
+			ps.setString(5, vo.getBirthday());
+			ps.setString(6, vo.getAdvisor());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("학생등록:" + e.toString());
+		}
+	}
 }
 
 

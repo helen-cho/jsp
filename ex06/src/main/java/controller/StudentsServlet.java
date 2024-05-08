@@ -52,8 +52,27 @@ public class StudentsServlet extends HttpServlet {
 		}
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		switch(request.getServletPath()) {
+		case "/stu/insert":
+			StuVO vo=new StuVO();
+			vo.setScode(request.getParameter("scode"));
+			vo.setSname(request.getParameter("sname"));
+			vo.setSdept(request.getParameter("dept"));
+			vo.setYear(Integer.parseInt(request.getParameter("year")));
+			vo.setAdvisor(request.getParameter("advisor"));
+			vo.setBirthday(request.getParameter("birthday"));
+			dao.insert(vo);
+			response.sendRedirect("/stu/list");
+			break;
+		}
 	}
-
 }
+
+
+
+
+
+
+

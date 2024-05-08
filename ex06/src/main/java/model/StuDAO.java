@@ -10,4 +10,7 @@ public interface StuDAO {
 	
 	//새로운학번 구하기
 	public String getCode();
+	
+	//학생등록
+	public void insert(StuVO vo);
 }

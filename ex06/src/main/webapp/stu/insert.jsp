@@ -75,6 +75,10 @@
 		$("#modal").modal("show");	
 	});
 	
+	$(frm.advisor).on("click", function(){
+		$("#modal").modal("show");	
+	});
+	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		const sname=$(frm.sname).val();
