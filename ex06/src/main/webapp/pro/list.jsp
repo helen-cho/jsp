@@ -29,13 +29,12 @@
 			</select>
 		</div>
 	</div>
-	<hr>
 	<div id="div_pro"></div>
 	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
 <script id="temp_pro" type="x-handlebars-template">
-	<table class="table table-border table-hover">
-		<tr>
+	<table class="table table-bordered table-hover">
+		<tr class="text-center">
 			<td>교수번호</td>
 			<td>교수이름</td>
 			<td>교수학과</td>
@@ -44,7 +43,7 @@
 			<td>임용일자</td>
 		</tr>
 		{{#each .}}
-		<tr>
+		<tr class="text-center">
 			<td>{{pcode}}</td>
 			<td><a href="/pro/read?pcode={{pcode}}">{{pname}}</a></td>
 			<td>{{dept}}</td>

@@ -39,8 +39,27 @@ public class StuDAOImpl implements StuDAO{
 
 	@Override
 	public int total(QueryVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int total=0;
+		try {
+			String sql="select count(*) from view_stu";
+			sql += " where " + vo.getKey() +  " like ?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, "%" + vo.getWord() + "%");
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt("count(*)");
+			}
+		}catch(Exception e) {
+			System.out.println("검색수:" + e.toString());
+		}
+		return total;
 	}
-
 }
+
+
+
+
+
+
+
+

@@ -29,12 +29,12 @@
 			</select>
 		</div>
 	</div>
-	<hr>
 	<div id="div_stu"></div>
+	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
 <script id="temp_stu" type="x-handlebars-templage">
-	<table class="table table-borderd table-hover">
-		<tr>
+	<table class="table table-bordered table-hover">
+		<tr class="text-center">
 			<td>학생번호</td>
 			<td>학생이름</td>
 			<td>학생학과</td>
@@ -43,7 +43,7 @@
 			<td>지도교수</td>
 		</tr>
 		{{#each .}}
-		<tr>
+		<tr class="text-center">
 			<td>{{scode}}</td>
 			<td>{{sname}}</td>
 			<td>{{sdept}}</td>
@@ -66,16 +66,19 @@
 		size=$("#size").val();
 		key=$(frm.key).val();
 		word=$(frm.word).val();
-		getData();
+		//getData();
+		getTotal();
 	});
 	
 	$("#size").on("change", function(){
 		size=$("#size").val();
 		page=1;
-		getData();
+		//getData();
+		getTotal();
 	});
 	
-	getData();
+	//getData();
+	getTotal();
 	function getData(){
 		$.ajax({
 			type:"get",
@@ -89,4 +92,40 @@
 			}
 		});
 	}
+	
+	function getTotal() {
+		$.ajax({
+			type:"get",
+			url:"/stu/total",
+			data:{key, word},
+			success:function(data){
+				if(data==0) {
+					alert("검색내용이 없습니다.");
+					return;
+				}
+				const totalPage=Math.ceil(data/size);
+				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+				if(data > size){
+					$("#pagination").show();
+				}else{
+					$("#pagination").hide();
+				}
+			}
+		});
+	}
+	
+	$('#pagination').twbsPagination({
+		totalPages:10, 
+		visiblePages: 5, 
+		startPage : 1,
+		initiateStartPageClick: false, 
+		first:'<i class="bi bi-chevron-double-left"></i>', 
+		prev :'<i class="bi bi-chevron-left"></i>',
+		next :'<i class="bi bi-chevron-right"></i>',
+		last :'<i class="bi bi-chevron-double-right"></i>',
+		onPageClick: function (event, clickPage) {
+			 page=clickPage; 
+			 getData();
+		}
+	});
 </script>
