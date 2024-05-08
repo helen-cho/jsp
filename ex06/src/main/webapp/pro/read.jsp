@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 	table .title {
 		background: gray;
@@ -24,7 +25,7 @@
 				<td class="title">교수직급</td>
 				<td>${pro.title}</td>
 				<td class="title">교수급여</td>
-				<td>${pro.salary}</td>
+				<td><fmt:formatNumber pattern="#,###" value="${pro.salary}"/></td>
 			</tr>
 		</table>
 		<div class="text-center my-5">
