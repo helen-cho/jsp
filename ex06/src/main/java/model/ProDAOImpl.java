@@ -98,8 +98,20 @@ public class ProDAOImpl implements ProDAO{
 
 	@Override
 	public void update(ProVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			String sql="update professors set pname=?,dept=?,title=?,hiredate=?,salary=?";
+			sql += " where pcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getPname());
+			ps.setString(2, vo.getDept());
+			ps.setString(3, vo.getTitle());
+			ps.setString(4, vo.getHiredate());
+			ps.setInt(5, vo.getSalary());
+			ps.setString(6, vo.getPcode());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("교수수정:" + e.toString());
+		}
 	}
 
 	@Override

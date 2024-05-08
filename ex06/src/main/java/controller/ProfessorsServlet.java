@@ -98,6 +98,18 @@ public class ProfessorsServlet extends HttpServlet {
 			dao.insert(pro);
 			response.sendRedirect("/pro/list");
 			break;
+		case "/pro/update":
+			pro=new ProVO();
+			pro.setPcode(request.getParameter("pcode"));
+			pro.setPname(request.getParameter("pname"));
+			pro.setDept(request.getParameter("dept"));
+			pro.setTitle(request.getParameter("title"));
+			pro.setHiredate(request.getParameter("hiredate"));
+			pro.setSalary(Integer.parseInt(request.getParameter("salary")));
+			System.out.println(pro.toString());
+			dao.update(pro);
+			response.sendRedirect("/pro/read?pcode=" + pro.getPcode());
+			break;
 		}
 	}
 

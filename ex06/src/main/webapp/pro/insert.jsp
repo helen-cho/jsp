@@ -24,7 +24,7 @@
 						<span class="input-group-text justify-content-center">교수학과</span>
 						<select class="form-select" name="dept">
 							<option value="전산">컴퓨터정보공학과</option>
-							<option value="전기">전기공학과</option>
+							<option value="전자">전자공학과</option>
 							<option value="건축">건축공학과</option>
 						</select>
 					</div>

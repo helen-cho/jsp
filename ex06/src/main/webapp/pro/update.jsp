@@ -53,7 +53,7 @@
 						<input name="hiredate" class="form-control" type="date" value="${pro.hiredate}">
 					</div>
 					<div class="text-center mt-3">
-						<button class="btn btn-primary">교수등록</button>
+						<button class="btn btn-primary">정보수정</button>
 						<button class="btn btn-secondary" type="reset">등록취소</button>
 					</div>
 				</form>
