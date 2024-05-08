@@ -3,7 +3,7 @@ package model;
 public class StuVO extends ProVO{
 	private String scode;
 	private String sname;
-	private String dept;
+	private String sdept;
 	private int year;
 	private String birthday;
 	private String advisor; //지도교수번호
@@ -20,11 +20,11 @@ public class StuVO extends ProVO{
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public String getDept() {
-		return dept;
+	public String getSdept() {
+		return sdept;
 	}
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setSdept(String sdept) {
+		this.sdept = sdept;
 	}
 	public int getYear() {
 		return year;
@@ -44,10 +44,9 @@ public class StuVO extends ProVO{
 	public void setAdvisor(String advisor) {
 		this.advisor = advisor;
 	}
-	
 	@Override
 	public String toString() {
-		return "StuVO [scode=" + scode + ", sname=" + sname + ", dept=" + dept + ", year=" + year + ", birthday="
+		return "StuVO [scode=" + scode + ", sname=" + sname + ", sdept=" + sdept + ", year=" + year + ", birthday="
 				+ birthday + ", advisor=" + advisor + ", getPname()=" + getPname() + "]";
 	}
 }

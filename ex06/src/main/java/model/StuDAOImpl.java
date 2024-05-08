@@ -23,7 +23,7 @@ public class StuDAOImpl implements StuDAO{
 				StuVO stu=new StuVO();
 				stu.setScode(rs.getString("scode"));
 				stu.setSname(rs.getString("sname"));
-				stu.setDept(rs.getString("dept"));
+				stu.setSdept(rs.getString("dept"));
 				stu.setAdvisor(rs.getString("advisor"));
 				stu.setPname(rs.getString("pname"));
 				stu.setBirthday(rs.getString("birthday"));
