@@ -10,6 +10,10 @@
 <div class="row">
 	<div class="col">
 		<div><h1>학생정보</h1></div>
+		<div class="text-end mt-5 mb-2">
+			<button class="btn btn-primary" id="update">학생수정</button>
+			<button class="btn btn-danger" id="delete">학생삭제</button>
+		</div>
 		<table class="table table-bordered">
 			<tr>
 				<td class="title">학생번호</td>
@@ -28,10 +32,6 @@
 				<td>${stu.pname}(${stu.advisor})</td>
 			</tr>
 		</table>
-		<div class="text-center my-5">
-			<button class="btn btn-primary" id="update">학생수정</button>
-			<button class="btn btn-danger" id="delete">학생삭제</button>
-		</div>
 	</div>
 </div>
 <script>

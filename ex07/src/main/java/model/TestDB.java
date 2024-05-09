@@ -10,6 +10,7 @@ public class TestDB {
 		vo.setPage(1);
 		vo.setSize(2);
 		dao.list(vo);
+		System.out.println("검색수:" + dao.total(vo));
 	}
 
 }

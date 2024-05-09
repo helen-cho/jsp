@@ -37,4 +37,27 @@ public class CouDAOImpl implements CouDAO{
 		return array;
 	}
 
+	@Override
+	public int total(QueryVO vo) {
+		int result=0;
+		try {
+			String sql="select count(*) from view_cou";
+			sql += " where " + vo.getKey() + " like ?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, "%" + vo.getWord() + "%");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				result=rs.getInt("count(*)");
+			}
+		}catch(Exception e) {
+			System.out.println("검색수:" + e.toString());
+		}
+		return result;
+	}
 }
+
+
+
+
+
+

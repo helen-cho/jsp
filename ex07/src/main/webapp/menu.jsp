@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">HOME</a>
@@ -8,24 +9,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/">학교소개</a>
+        	<a class="nav-link <c:out value='${pageName=="/about.jsp"?"active":""}'/>" aria-current="page" href="/">학교소개</a>
         </li>
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/pro/list">교수관리</a>
+        	<a class="nav-link <c:out value='${pageName=="/pro/list.jsp"?"active":""}'/>" aria-current="page" href="/pro/list">교수관리</a>
         </li>
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/pro/insert">교수등록</a>
+        	<a class="nav-link <c:out value='${pageName=="/pro/insert.jsp"?"active":""}'/>" aria-current="page" href="/pro/insert">교수등록</a>
         </li>
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/stu/list">학생관리</a>
+        	<a class="nav-link <c:out value='${pageName=="/stu/list.jsp"?"active":""}'/>" aria-current="page" href="/stu/list">학생관리</a>
         </li>
         <li class="nav-item">
-        	<a class="nav-link active" aria-current="page" href="/stu/insert">학생등록</a>
+        	<a class="nav-link <c:out value='${pageName=="/stu/insert.jsp"?"active":""}'/>" aria-current="page" href="/stu/insert">학생등록</a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link <c:out value='${pageName=="/cou/list.jsp"?"active":""}'/>" aria-current="page" href="/cou/list">강좌관리</a>
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
         <li class="nav-item" id="login">
-        	<a class="nav-link active" aria-current="page" href="/user/login">로그인</a>
+        	<a class="nav-link" aria-current="page" href="/user/login">로그인</a>
         </li>
         <li class="nav-item" id="uid">
         	<a class="nav-link active" aria-current="page" href="/user/mypage"></a>

@@ -10,6 +10,10 @@
 <div class="row">
 	<div class="col">
 		<div><h1>교수정보</h1></div>
+		<div class="text-end mt-5 mb-2">
+			<button class="btn btn-primary" id="update">교수수정</button>
+			<button class="btn btn-danger" id="delete">교수삭제</button>
+		</div>
 		<table class="table table-bordered">
 			<tr>
 				<td class="title">교수번호</td>
@@ -28,10 +32,6 @@
 				<td><fmt:formatNumber pattern="#,###" value="${pro.salary}"/></td>
 			</tr>
 		</table>
-		<div class="text-center my-5">
-			<button class="btn btn-primary" id="update">교수수정</button>
-			<button class="btn btn-danger" id="delete">교수삭제</button>
-		</div>
 	</div>
 </div>
 <script>
