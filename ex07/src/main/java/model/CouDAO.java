@@ -2,6 +2,9 @@ package model;
 import java.util.*;
 
 public interface CouDAO {
+	//강좌등록
+	public void insert(CouVO vo);
+	
 	//새로운 강좌코드
 	public String getCode();
 	

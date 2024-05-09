@@ -14,6 +14,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      	<div class="mb-1">
+      		<select class="form-select" id="word">
+      			<option value="전산">컴퓨터공학과</option>
+      			<option value="전자">전자공학과</option>
+      			<option value="건축">건축공학과</option>
+      		</select>
+      	</div>
         <div id="div_pro"></div>
       </div>
       <div class="modal-footer">
@@ -41,7 +48,12 @@
 	let page=1;
 	let size=100;
 	let key="dept";
-	let word=$(frm.dept).val();
+	let word=$("#word").val();
+	
+	$("#word").on("change", function(){
+		word=$("#word").val();
+		getData();
+	});
 	
 	//각행의 tr를 클릭한경우
 	$("#div_pro").on("click", ".pro", function(){

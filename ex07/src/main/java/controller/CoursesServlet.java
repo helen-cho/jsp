@@ -62,7 +62,8 @@ public class CoursesServlet extends HttpServlet {
 			vo.setInstructor(request.getParameter("instructor"));
 			vo.setHours(Integer.parseInt(request.getParameter("hours")));
 			System.out.println(vo.toString());
-			
+			dao.insert(vo);
+			response.sendRedirect("/cou/list");
 			break;
 		}
 	}

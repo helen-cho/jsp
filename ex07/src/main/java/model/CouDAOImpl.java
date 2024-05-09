@@ -12,6 +12,7 @@ public class CouDAOImpl implements CouDAO{
 		try {
 			String sql="select * from view_cou";
 			sql += " where " + vo.getKey() + " like ?";
+			sql += " order by lcode desc";
 			sql += " limit ?, ?";
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, "%" + vo.getWord() + "%");
@@ -69,6 +70,24 @@ public class CouDAOImpl implements CouDAO{
 			System.out.println("강좌코드:" + e.toString());
 		}
 		return code;
+	}
+
+	@Override
+	public void insert(CouVO vo) {
+		try {
+			String sql="insert into courses(lcode,lname,hours,room,instructor,capacity,persons)";
+			sql += " values(?,?,?,?,?,?,0)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getLcode());
+			ps.setString(2, vo.getLname());
+			ps.setInt(3, vo.getHours());
+			ps.setString(4, vo.getRoom());
+			ps.setString(5, vo.getInstructor());
+			ps.setInt(6, vo.getCapacity());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("강좌등록:" + e.toString());
+		}
 	}
 }
 

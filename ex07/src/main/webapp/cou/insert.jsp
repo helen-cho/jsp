@@ -28,11 +28,11 @@
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">최대수강인원</span>
-						<input name="capacity" class="form-control" value="0" type="number">
+						<input name="capacity" class="form-control" value="30" type="number">
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">강의실</span>
-						<input name="room" class="form-control">
+						<input name="room" class="form-control" value="203">
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">강의시수</span>
