@@ -127,6 +127,24 @@ public class StuDAOImpl implements StuDAO{
 			return false;
 		}
 	}
+
+	@Override
+	public void update(StuVO vo) {
+		try {
+			String sql="update students set sname=?,dept=?,year=?,birthday=?,advisor=?";
+			sql+=" where scode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(6, vo.getScode());
+			ps.setString(1, vo.getSname());
+			ps.setString(2, vo.getSdept());
+			ps.setInt(3, vo.getYear());
+			ps.setString(4, vo.getBirthday());
+			ps.setString(5, vo.getAdvisor());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("학생수정:" + e.toString());
+		}
+	}
 }
 
 

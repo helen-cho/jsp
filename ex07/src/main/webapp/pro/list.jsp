@@ -108,7 +108,7 @@
 				
 				const totalPage=Math.ceil(data/size);
 				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
-				if(data>size){
+				if(parseInt(data)>size){
 					$("#pagination").show();
 				}else{
 					$("#pagination").hide();

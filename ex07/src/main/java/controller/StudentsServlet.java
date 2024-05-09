@@ -26,6 +26,7 @@ public class StudentsServlet extends HttpServlet {
 		
 		switch(request.getServletPath()) {
 		case "/stu/update":
+			request.setAttribute("stu", dao.read(request.getParameter("scode")));
 			request.setAttribute("pageName", "/stu/update.jsp");
 			dis.forward(request, response);
 			break;
@@ -79,6 +80,17 @@ public class StudentsServlet extends HttpServlet {
 		case "/stu/delete":
 			String scode=request.getParameter("scode");
 			out.print(dao.delete(scode));
+			break;
+		case "/stu/update":
+			vo=new StuVO();
+			vo.setScode(request.getParameter("scode"));
+			vo.setSname(request.getParameter("sname"));
+			vo.setSdept(request.getParameter("dept"));
+			vo.setYear(Integer.parseInt(request.getParameter("year")));
+			vo.setAdvisor(request.getParameter("advisor"));
+			vo.setBirthday(request.getParameter("birthday"));
+			dao.update(vo);
+			response.sendRedirect("/stu/read?scode=" + request.getParameter("scode"));
 			break;
 		}
 	}

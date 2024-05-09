@@ -2,6 +2,9 @@ package model;
 import java.util.*;
 
 public interface StuDAO {
+	//학생수정
+	public void update(StuVO vo);
+	
 	//학생삭제
 	public boolean delete(String scode);
 	
