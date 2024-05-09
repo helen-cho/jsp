@@ -27,6 +27,7 @@ public class CouDAOImpl implements CouDAO{
 				cou.setInstructor(rs.getInt("instructor"));
 				cou.setPersons(rs.getInt("persons"));
 				cou.setPname(rs.getString("pname"));
+				cou.setCapacity(rs.getInt("capacity"));
 				System.out.println(cou.toString());
 				array.add(cou);
 			}
