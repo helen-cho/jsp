@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import model.*;
 
-@WebServlet(value= {"/cou/list", "/cou/list.json", "/cou/total"})
+@WebServlet(value= {"/cou/list", "/cou/list.json", "/cou/total", "/cou/insert"})
 public class CoursesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CouDAOImpl dao=new CouDAOImpl();
@@ -23,6 +23,10 @@ public class CoursesServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
+		case "/cou/insert":
+			request.setAttribute("pageName", "/cou/insert.jsp");
+			dis.forward(request, response);
+			break;
 		case "/cou/list":
 			request.setAttribute("pageName", "/cou/list.jsp");
 			dis.forward(request, response);

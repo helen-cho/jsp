@@ -26,6 +26,9 @@
         <li class="nav-item">
         	<a class="nav-link <c:out value='${pageName=="/cou/list.jsp"?"active":""}'/>" aria-current="page" href="/cou/list">강좌관리</a>
         </li>
+        <li class="nav-item">
+        	<a class="nav-link <c:out value='${pageName=="/cou/insert.jsp"?"active":""}'/>" aria-current="page" href="/cou/insert">강좌등록</a>
+        </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
         <li class="nav-item" id="login">
