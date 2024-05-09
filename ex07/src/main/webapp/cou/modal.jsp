@@ -43,17 +43,12 @@
 	let key="dept";
 	let word=$(frm.dept).val();
 	
-	$(frm.dept).on("change", function(){
-		word=$(frm.dept).val();
-		getData();
-	});
-	
 	//각행의 tr를 클릭한경우
 	$("#div_pro").on("click", ".pro", function(){
 		const pcode=$(this).attr("pcode");
 		const pname=$(this).attr("pname");
 		//alert(pcode + pname);
-		$(frm.advisor).val(pcode);
+		$(frm.instructor).val(pcode);
 		$(frm.pname).val(pname);
 		$("#modal").modal("hide");
 	});

@@ -22,7 +22,7 @@
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text justify-content-center">담당교수</span>
-						<input name="instructor" class="form-control" placeholder="교수번호" readonly>
+						<input name="instructor" class="form-control me-1" placeholder="교수번호" readonly>
 						<input name="pname" class="form-control" placeholder="교수이름" readonly>
 						<button class="btn btn-primary" type="button" id="search">검색</button>
 					</div>
@@ -62,14 +62,14 @@
 	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
-		const sname=$(frm.sname).val();
-		const advisor=$(frm.advisor).val();
-		if(sname=="" || advisor==""){
-			alert("학생이름과 지도교수를 입력하세요!");
-			$(frm.sname).focus();
+		const lname=$(frm.lname).val();
+		const instructor=$(frm.instructor).val();
+		if(lname=="" || instructor==""){
+			alert("강좌이름과 담당교수를 입력하세요!");
+			$(frm.lname).focus();
 			return;
 		}
-		if(confirm("새로운 학생을 등록하실래요?")){
+		if(confirm("새로운 강좌를 등록하실래요?")){
 			frm.method="post";
 			frm.submit();
 		}

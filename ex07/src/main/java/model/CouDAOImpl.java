@@ -24,7 +24,7 @@ public class CouDAOImpl implements CouDAO{
 				cou.setLname(rs.getString("lname"));
 				cou.setHours(rs.getInt("hours"));
 				cou.setRoom(rs.getString("room"));
-				cou.setInstructor(rs.getInt("instructor"));
+				cou.setInstructor(rs.getString("instructor"));
 				cou.setPersons(rs.getInt("persons"));
 				cou.setPname(rs.getString("pname"));
 				cou.setCapacity(rs.getInt("capacity"));
@@ -53,6 +53,22 @@ public class CouDAOImpl implements CouDAO{
 			System.out.println("검색수:" + e.toString());
 		}
 		return result;
+	}
+
+	@Override
+	public String getCode() {
+		String code="";
+		try {
+			String sql="select concat('N',substring(max(lcode),2)+1) code from courses";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				code=rs.getString("code");
+			}
+		}catch(Exception e) {
+			System.out.println("강좌코드:" + e.toString());
+		}
+		return code;
 	}
 }
 

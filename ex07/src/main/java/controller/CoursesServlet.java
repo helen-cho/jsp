@@ -24,6 +24,7 @@ public class CoursesServlet extends HttpServlet {
 		
 		switch(request.getServletPath()) {
 		case "/cou/insert":
+			request.setAttribute("code", dao.getCode());
 			request.setAttribute("pageName", "/cou/insert.jsp");
 			dis.forward(request, response);
 			break;
@@ -50,7 +51,28 @@ public class CoursesServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		switch(request.getServletPath()) {
+		case "/cou/insert":
+			CouVO vo=new CouVO();
+			vo.setLcode(request.getParameter("lcode"));
+			vo.setLname(request.getParameter("lname"));
+			vo.setRoom(request.getParameter("room"));
+			vo.setCapacity(Integer.parseInt(request.getParameter("capacity")));
+			vo.setInstructor(request.getParameter("instructor"));
+			vo.setHours(Integer.parseInt(request.getParameter("hours")));
+			System.out.println(vo.toString());
+			
+			break;
+		}
 	}
 
 }
+
+
+
+
+
+
+
+

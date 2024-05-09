@@ -5,7 +5,7 @@ public class CouVO extends ProVO{
 	private String lname;
 	private int hours;
 	private String room;
-	private int instructor;
+	private String instructor;
 	private int capacity;
 	private int persons;
 	
@@ -33,10 +33,10 @@ public class CouVO extends ProVO{
 	public void setRoom(String room) {
 		this.room = room;
 	}
-	public int getInstructor() {
+	public String getInstructor() {
 		return instructor;
 	}
-	public void setInstructor(int instructor) {
+	public void setInstructor(String instructor) {
 		this.instructor = instructor;
 	}
 	public int getCapacity() {
