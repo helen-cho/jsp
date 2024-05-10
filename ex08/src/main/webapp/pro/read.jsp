@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<style>
-	table .title {
-		background: gray;
-		color: white;
-		text-align: center;
-	}
-</style>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <div class="row">
 	<div class="col">
 		<div><h1>교수정보</h1></div>
@@ -16,19 +10,19 @@
 		</div>
 		<table class="table table-bordered">
 			<tr>
-				<td class="title">교수번호</td>
+				<td class="bg-primary text-white text-center">교수번호</td>
 				<td>${pro.pcode}</td>
-				<td class="title">교수이름</td>
+				<td class="bg-primary text-white text-center">교수이름</td>
 				<td>${pro.pname}</td>
-				<td class="title">교수학과</td>
+				<td class="bg-primary text-white text-center">교수학과</td>
 				<td>${pro.dept}</td>
 			</tr>
 			<tr>
-				<td class="title">임용일자</td>
+				<td class="bg-primary text-white text-center">임용일자</td>
 				<td>${pro.hiredate}</td>
-				<td class="title">교수직급</td>
+				<td class="bg-primary text-white text-center">교수직급</td>
 				<td>${pro.title}</td>
-				<td class="title">교수급여</td>
+				<td class="bg-primary text-white text-center">교수급여</td>
 				<td><fmt:formatNumber pattern="#,###" value="${pro.salary}"/></td>
 			</tr>
 		</table>

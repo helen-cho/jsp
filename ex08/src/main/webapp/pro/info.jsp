@@ -20,11 +20,11 @@
 <script id="temp_cou" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
 		<tr class="text-center">
-			<td>강좌번호</td>
-			<td>강좌이름</td>
-			<td>강의시간</td>
-			<td>강의실</td>
-			<td>신청인원</td>
+			<td class="bg-primary text-white">강좌번호</td>
+			<td class="bg-primary text-white">강좌이름</td>
+			<td class="bg-primary text-white">강의시간</td>
+			<td class="bg-primary text-white">강의실</td>
+			<td class="bg-primary text-white">신청인원</td>
 		</tr>
 		{{#each .}}
 		<tr class="text-center">
@@ -39,12 +39,12 @@
 </script>
 <script id="temp_stu" type="x-handlebars-templage">
 	<table class="table table-bordered table-hover">
-		<tr class="text-center">
-			<td>학생번호</td>
-			<td>학생이름</td>
-			<td>학생학과</td>
-			<td>학생학년</td>
-			<td>생년월일</td>
+		<tr class="bg-primary text-white text-center">
+			<td class="bg-primary text-white">학생번호</td>
+			<td class="bg-primary text-white">학생이름</td>
+			<td class="bg-primary text-white">학생학과</td>
+			<td class="bg-primary text-white">학생학년</td>
+			<td class="bg-primary text-white">생년월일</td>
 		</tr>
 		{{#each .}}
 		<tr class="text-center">
