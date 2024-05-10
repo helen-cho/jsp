@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import model.*;
 
-@WebServlet(value= {"/cou/list", "/cou/list.json", "/cou/total", "/cou/insert", "/cou/read"})
+@WebServlet(value= {"/cou/update", "/cou/list", "/cou/list.json", "/cou/total", "/cou/insert", "/cou/read", "/cou/delete"})
 public class CoursesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CouDAOImpl dao=new CouDAOImpl();
@@ -23,8 +23,15 @@ public class CoursesServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		
 		switch(request.getServletPath()) {
-		case "/cou/read":
+		case "/cou/update":
 			String lcode=request.getParameter("lcode");
+			request.setAttribute("cou", dao.read(lcode));
+			request.setAttribute("pageName", "/cou/update.jsp");
+			dis.forward(request, response);
+			break;
+		case "/cou/read":
+			lcode=request.getParameter("lcode");
+			request.setAttribute("cou", dao.read(lcode));
 			request.setAttribute("pageName", "/cou/read.jsp");
 			dis.forward(request, response);
 			break;
@@ -56,6 +63,7 @@ public class CoursesServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		switch(request.getServletPath()) {
 		case "/cou/insert":
@@ -69,6 +77,9 @@ public class CoursesServlet extends HttpServlet {
 			System.out.println(vo.toString());
 			dao.insert(vo);
 			response.sendRedirect("/cou/list");
+			break;
+		case "/cou/delete":
+			out.print(dao.delete(request.getParameter("lcode")));
 			break;
 		}
 	}

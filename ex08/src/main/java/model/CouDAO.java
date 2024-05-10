@@ -2,6 +2,9 @@ package model;
 import java.util.*;
 
 public interface CouDAO {
+	//강좌삭제
+	public boolean delete(String lcode);
+	
 	//강좌정보
 	public CouVO read(String lcode);
 	

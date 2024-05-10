@@ -115,6 +115,20 @@ public class CouDAOImpl implements CouDAO{
 		}
 		return cou;
 	}
+
+	@Override
+	public boolean delete(String lcode) {
+		try {
+			String sql="delete from courses where lcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, lcode);
+			ps.execute();
+			return true;
+		}catch(Exception e) {
+			System.out.println("강좌삭제:" + e.toString());
+			return false;
+		}
+	}
 }
 
 
