@@ -4,6 +4,27 @@ import java.sql.*;
 
 public class EnrollDAO {
 	Connection con=Database.CON;
+	
+	//수강취소
+	public boolean delete(String scode, String lcode) {
+		try {
+			String sql="delete from enrollments where scode=? and lcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, scode);
+			ps.setString(2, lcode);
+			ps.execute();
+			
+			sql="update courses set persons=persons-1 where lcode=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, lcode);
+			ps.execute();
+			return true;
+		}catch(Exception e){
+			System.out.println("수강취소:" + e.toString());
+			return false;
+		}
+	}
+	
 	//수강신청
 	public boolean insert(String scode, String lcode) {
 		try {

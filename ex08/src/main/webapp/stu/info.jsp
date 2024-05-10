@@ -51,7 +51,22 @@
 	//삭제버튼을 클릭한경우
 	$("#div_enroll").on("click", ".delete", function(){
 		const lcode=$(this).attr("lcode");
-		alert(scode + ":" + lcode);
+		if(confirm(lcode +  "번 강좌을 수강취소하실래요?")){
+			$.ajax({
+				type:"post",
+				url:"/enroll/delete",
+				data:{scode, lcode},
+				success:function(data){
+					if(data=="true"){
+						alert("수강취소완료!");
+						getData();
+						getCou();
+					}else{
+						alert("수강취소실패!");
+					}
+				}
+			});
+		}
 	});
 	
 	//수강신청버튼을 클릭한 경우
