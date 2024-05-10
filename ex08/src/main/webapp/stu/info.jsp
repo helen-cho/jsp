@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
-	<h1>수강신청목록</h1>
+	<h1 class="mt-5">수강신청목록</h1>
+	<div class="input-group mb-2">
+		<div id="div_cou"></div>
+		<button class="btn btn-primary">수강신청</button>
+	</div>
 	<div id="div_enroll"></div>
 </div>
 <script id="temp_enroll" type="x-handlebars-template">
@@ -26,6 +30,14 @@
 		{{/each}}
 	</table>
 </script>
+<script id="temp_cou" type="x-handlebars-template">
+	<select class="form-select">
+		{{#each .}}
+			<option>{{lname}}:{{pname}}&nbsp;&nbsp;({{persons}}/{{capacity}})</option>
+		{{/each}}
+	</select>
+</script>
+
 <script>
 	let scode="${stu.scode}";
 	getData();
@@ -38,6 +50,20 @@
 			success:function(data){
 				const temp=Handlebars.compile($("#temp_enroll").html());
 				$("#div_enroll").html(temp(data));
+			}
+		});
+	}
+	
+	getCou();
+	function getCou(){
+		$.ajax({
+			type:"get",
+			url:"/cou/list.json",
+			data:{page:1, size:100, key:'lcode', word:''},
+			dataType:"json",
+			success:function(data){
+				const temp=Handlebars.compile($("#temp_cou").html());
+				$("#div_cou").html(temp(data));
 			}
 		});
 	}

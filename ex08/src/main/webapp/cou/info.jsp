@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div>
+<div class="mt-5">
 	<h1>수강신청한 학생목록</h1>
 	<div id="div_stu"></div>
 </div>
@@ -7,12 +7,12 @@
 <script id="temp_stu" type="x-handlebars-templage">
 	<table class="table table-bordered table-hover">
 		<tr class="text-center">
-			<td>학생번호</td>
-			<td>학생이름</td>
-			<td>학생학과</td>
-			<td>학생학년</td>
-			<td>신청일</td>
-			<td>점수</td>
+			<td class="bg-primary text-white">학생번호</td>
+			<td class="bg-primary text-white">학생이름</td>
+			<td class="bg-primary text-white">학생학과</td>
+			<td class="bg-primary text-white">학생학년</td>
+			<td class="bg-primary text-white">신청일</td>
+			<td class="bg-primary text-white">점수</td>
 		</tr>
 		{{#each .}}
 		<tr class="text-center">
