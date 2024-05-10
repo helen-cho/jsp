@@ -14,13 +14,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      	<div class="mb-1">
-      		<select class="form-select" id="word">
-      			<option value="전산">컴퓨터공학과</option>
-      			<option value="전자">전자공학과</option>
-      			<option value="건축">건축공학과</option>
-      		</select>
-      	</div>
         <div id="div_pro"></div>
       </div>
       <div class="modal-footer">
@@ -48,11 +41,10 @@
 	let page=1;
 	let size=100;
 	let key="dept";
-	let word=$("#word").val();
+	let word=$(frm.dept).val();
 	
-	//학과가 변경될 경우
-	$("#word").on("change", function(){
-		word=$("#word").val();
+	$(frm.dept).on("change", function(){
+		word=$(frm.dept).val();
 		getData();
 	});
 	
@@ -61,7 +53,7 @@
 		const pcode=$(this).attr("pcode");
 		const pname=$(this).attr("pname");
 		//alert(pcode + pname);
-		$(frm.instructor).val(pcode);
+		$(frm.advisor).val(pcode);
 		$(frm.pname).val(pname);
 		$("#modal").modal("hide");
 	});
