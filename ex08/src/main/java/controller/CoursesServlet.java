@@ -44,7 +44,7 @@ public class CoursesServlet extends HttpServlet {
 			request.setAttribute("pageName", "/cou/list.jsp");
 			dis.forward(request, response);
 			break;
-		case "/cou/list.json": //테스트 /cou/list.json?key=lname&word=리&page=1&size=2
+		case "/cou/list.json": //테스트 /cou/list.json?key=instructor&word=510&page=1&size=100
 			QueryVO vo=new QueryVO();
 			vo.setKey(request.getParameter("key"));
 			vo.setWord(request.getParameter("word"));

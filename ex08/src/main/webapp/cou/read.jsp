@@ -32,6 +32,7 @@
 		</table>
 	</div>
 </div>
+
 <script>
 	//수정버튼을 클릭한경우
 	$("#update").on("click", function(){
