@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/enroll/list.json", "/enroll/slist.json"})
+@WebServlet(value={"/enroll/list.json", "/enroll/slist.json", "/enroll/insert"})
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     EnrollDAO dao=new EnrollDAO();
@@ -35,6 +35,19 @@ public class EnrollServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		switch(request.getServletPath()) {
+		case "/enroll/insert":
+			String scode=request.getParameter("scode");
+			String lcode=request.getParameter("lcode");
+			out.print(dao.insert(scode, lcode));
+			break;
+		}
 	}
-
 }
+
+
+
+
+
+

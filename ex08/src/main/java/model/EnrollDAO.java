@@ -4,7 +4,26 @@ import java.sql.*;
 
 public class EnrollDAO {
 	Connection con=Database.CON;
-	
+	//수강신청
+	public boolean insert(String scode, String lcode) {
+		try {
+			String sql="insert into enrollments(scode, lcode, edate, grade)";
+			sql += " values(?, ?, now(), 0)";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, scode);
+			ps.setString(2, lcode);
+			ps.execute();
+			
+			sql="update courses set persons=persons+1 where lcode=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, lcode);
+			ps.execute();
+			return true;
+		}catch(Exception e){
+			System.out.println("수강신청:" + e.toString());
+			return false;
+		}
+	}
 	//특정강좌의 수강신청목록
 	public ArrayList<GradeVO> slist(String lcode){
 		ArrayList<GradeVO> array=new ArrayList<GradeVO>();
