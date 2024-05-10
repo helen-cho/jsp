@@ -81,6 +81,18 @@ public class CoursesServlet extends HttpServlet {
 		case "/cou/delete":
 			out.print(dao.delete(request.getParameter("lcode")));
 			break;
+		case "/cou/update":
+			vo=new CouVO();
+			vo.setLcode(request.getParameter("lcode"));
+			vo.setLname(request.getParameter("lname"));
+			vo.setRoom(request.getParameter("room"));
+			vo.setCapacity(Integer.parseInt(request.getParameter("capacity")));
+			vo.setInstructor(request.getParameter("instructor"));
+			vo.setHours(Integer.parseInt(request.getParameter("hours")));
+			System.out.println(vo.toString());
+			dao.update(vo);
+			response.sendRedirect("/cou/read?lcode=" + vo.getLcode());
+			break;
 		}
 	}
 

@@ -2,6 +2,9 @@ package model;
 import java.util.*;
 
 public interface CouDAO {
+	//강좌수정
+	public void update(CouVO vo);
+	
 	//강좌삭제
 	public boolean delete(String lcode);
 	

@@ -129,6 +129,24 @@ public class CouDAOImpl implements CouDAO{
 			return false;
 		}
 	}
+
+	@Override
+	public void update(CouVO vo) {
+		try {
+			String sql="update courses set lname=?,hours=?,room=?,instructor=?,capacity=?";
+			sql += " where lcode=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(6, vo.getLcode());
+			ps.setString(1, vo.getLname());
+			ps.setInt(2, vo.getHours());
+			ps.setString(3, vo.getRoom());
+			ps.setString(4, vo.getInstructor());
+			ps.setInt(5, vo.getCapacity());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("강좌수정:" + e.toString());
+		}
+	}
 }
 
 

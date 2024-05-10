@@ -56,7 +56,7 @@
 		$("#modal").modal("show");	
 	});
 	
-	$(frm.advisor).on("click", function(){
+	$(frm.instructor).on("click", function(){
 		$("#modal").modal("show");	
 	});
 	
@@ -69,7 +69,7 @@
 			$(frm.lname).focus();
 			return;
 		}
-		if(confirm("새로운 강좌를 등록하실래요?")){
+		if(confirm("강좌정보를 수정하실래요?")){
 			frm.method="post";
 			frm.submit();
 		}
