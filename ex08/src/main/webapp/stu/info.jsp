@@ -17,6 +17,7 @@
 			<td class="bg-primary text-white">강의실</td>
 			<td class="bg-primary text-white">신청인원</td>
 			<td class="bg-primary text-white">담당교수</td>
+			<td class="bg-primary text-white">신청일</td>
 		</tr>
 		{{#each .}}
 		<tr class="text-center">
@@ -26,6 +27,7 @@
 			<td>{{room}}</td>
 			<td>{{persons}}/{{capacity}}</td>
 			<td>{{pname}}({{pcode}})</td>
+			<td>{{edate}}</td>
 		</tr>
 		{{/each}}
 	</table>
@@ -33,7 +35,10 @@
 <script id="temp_cou" type="x-handlebars-template">
 	<select class="form-select">
 		{{#each .}}
-			<option>{{lname}}:{{pname}}&nbsp;&nbsp;({{persons}}/{{capacity}})</option>
+			<option>
+				{{lname}}:{{pname}}&nbsp;&nbsp;
+				({{persons}}/{{capacity}})
+			</option>
 		{{/each}}
 	</select>
 </script>

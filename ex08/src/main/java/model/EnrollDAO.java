@@ -48,7 +48,7 @@ public class EnrollDAO {
 				vo.setPcode(rs.getString("instructor"));
 				vo.setPersons(rs.getInt("persons"));
 				vo.setCapacity(rs.getInt("capacity"));
-				vo.setEdata(rs.getString("edate"));
+				vo.setEdate(rs.getString("edate"));
 				vo.setGrade(rs.getInt("grade"));
 				vo.setPname(rs.getString("pname"));
 				System.out.println(vo.toString());

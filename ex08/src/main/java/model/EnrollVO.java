@@ -3,7 +3,7 @@ package model;
 public class EnrollVO extends CouVO{
 	private String scode;
 	private int grade;
-	private String edata;
+	private String edate;
 	
 	public String getScode() {
 		return scode;
@@ -17,16 +17,16 @@ public class EnrollVO extends CouVO{
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	public String getEdata() {
-		return edata;
+	public String getEdate() {
+		return edate;
 	}
-	public void setEdata(String edata) {
-		this.edata = edata;
+	public void setEdate(String edate) {
+		this.edate = edate;
 	}
 	
 	@Override
 	public String toString() {
-		return "EnrollVO [scode=" + scode + ", grade=" + grade + ", edata=" + edata + ", getLcode()=" + getLcode()
+		return "EnrollVO [scode=" + scode + ", grade=" + grade + ", edata=" + edate + ", getLcode()=" + getLcode()
 				+ ", getLname()=" + getLname() + ", getHours()=" + getHours() + ", getRoom()=" + getRoom()
 				+ ", getCapacity()=" + getCapacity() + ", getPersons()=" + getPersons() + ", getPcode()=" + getPcode()
 				+ ", getPname()=" + getPname() + "]";
