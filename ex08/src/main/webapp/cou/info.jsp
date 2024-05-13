@@ -48,7 +48,6 @@
 			return;
 		}
 		if(!confirm(chk + "개 성적을 수정하실래요?")) return;
-		
 		//성적수정
 		let cnt=0;
 		$("#div_stu .chk:checked").each(function(){
@@ -63,7 +62,7 @@
 				success:function(){
 					cnt++;
 					if(chk==cnt){
-						alert("수정완료!");
+						alert(cnt + "개 성적 수정완료!");
 						getData();
 					}
 				}
