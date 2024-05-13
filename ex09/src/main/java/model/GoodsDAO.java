@@ -5,6 +5,21 @@ import java.util.*;
 
 public class GoodsDAO {
 	Connection con=Database.CON;
+	//상품삭제
+	public boolean delete(String gid) {
+		try {
+			String sql="delete from goods";
+			sql += " where gid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, gid);
+			ps.execute();
+			return true;
+		}catch(Exception e) {
+			System.out.println("상품삭제:" + e.toString());
+			return false;
+		}
+	}
+	
 	//상품목록
 	public ArrayList<GoodsVO> list(){
 		ArrayList<GoodsVO> array=new ArrayList<GoodsVO>();

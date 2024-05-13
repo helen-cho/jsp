@@ -15,7 +15,8 @@ import model.NaverAPI;
 import model.*;
 import model.*;
 
-@WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", "/goods/insert", "/goods/list"})
+@WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", 
+		"/goods/insert", "/goods/list", "/goods/delete"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GoodsDAO dao=new GoodsDAO();
@@ -61,6 +62,10 @@ public class GoodsServlet extends HttpServlet {
 			vo.setBrand(request.getParameter("brand"));
 			vo.setImage(request.getParameter("image"));
 			out.print(dao.insert(vo));
+			break;
+		case "/goods/delete":
+			String gid=request.getParameter("gid");
+			out.print(dao.delete(gid));
 			break;
 		}
 	}

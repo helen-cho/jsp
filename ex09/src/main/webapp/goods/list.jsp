@@ -20,13 +20,35 @@
 				<div>{{regDate}}</div>
 			</td>
 			<td>{{price}}</td>
-			<td><button class="btn btn-danger delete">삭제</button></td>
+			<td><button class="btn btn-danger delete" gid="{{gid}}">삭제</button></td>
 		</tr>
 		{{/each}}
 	</table>
 </script>
 <script>
 	getData();
+	
+	//삭제버튼을 클릭한 경우
+	$("#div_shop").on("click",".delete", function(){
+		const gid=$(this).attr("gid");
+		if(confirm(gid + "번 상품을 삭제하실래요?")){
+			//삭제하기
+			$.ajax({
+				type:"post",
+				url:"/goods/delete",
+				data:{gid},
+				success:function(data){
+					if(data=="true"){
+						alert("삭제성공!");
+						getData();
+					}else{
+						alert("삭제실패!");
+					}
+				}
+			});
+		}
+	});
+	
 	function getData(){
 		$.ajax({
 			type:"get",
