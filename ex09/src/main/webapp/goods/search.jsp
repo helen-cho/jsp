@@ -20,14 +20,15 @@
 <script id="temp_shop" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
 		<tr class="text-center">
-			<td>아이디</td><td colspan=2>상품명</td><td>상품가격</td>
+			<td>아이디</td><td colspan=2>상품명</td><td>상품가격</td><td>저장</td>
 		</tr>
 		{{#each items}}
-		<tr>
+		<tr gid="{{productId}}" img="{{image}}" title="{{title}}" brand="{{brand}}" price="{{lprice}}">
 			<td>{{productId}}</td>
 			<td><img src={{image}} width="50"></td>
 			<td><div class="ellipsis">{{{title}}}</div></td>
 			<td>{{lprice}}</td>
+			<td><button class="btn btn-success insert">저장</button></td>
 		</tr>
 		{{/each}}
 	</table>
@@ -36,6 +37,17 @@
 	let query=$(frm.query).val();
 	let page=1;
 	let size=5;
+	
+	//저장버튼을 클릭한 경우
+	$("#div_shop").on("click", ".insert", function(){
+		let tr=$(this).parent().parent();
+		let gid=tr.attr("gid");
+		let title=tr.attr("title");
+		let image=tr.attr("img");
+		let price=tr.attr("price");
+		let brand=tr.attr("brand");
+		console.log(gid, title, image, price, brand);
+	});
 	
 	$("#next").on("click", function(){
 		page++;

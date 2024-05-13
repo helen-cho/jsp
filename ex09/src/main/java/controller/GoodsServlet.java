@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.NaverAPI;
 import model.*;
+import model.*;
 
-@WebServlet(value={"/goods/search", "/goods/search.json"})
+@WebServlet(value={"/goods/search", "/goods/search.json", "/goods/insert"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	GoodsDAO dao=new GoodsDAO();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -38,6 +40,30 @@ public class GoodsServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
+		switch(request.getServletPath()) {
+		case "/goods/insert":
+			GoodsVO vo=new GoodsVO();
+			vo.setGid(request.getParameter("gid"));
+			vo.setTitle(request.getParameter("title"));
+			vo.setPrice(Integer.parseInt(request.getParameter("price")));
+			vo.setBrand(request.getParameter("brand"));
+			vo.setImage(request.getParameter("image"));
+			out.print(dao.insert(vo));
+			break;
+		}
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
