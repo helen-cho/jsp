@@ -12,7 +12,7 @@
 		<tr>
 			<td>{{productId}}</td>
 			<td><img src={{image}} width="50"></td>
-			<td><div class="ellipsis">{{{title}}}</td></td>
+			<td><div class="ellipsis">{{{title}}}</div></td>
 			<td>{{lprice}}</td>
 		</tr>
 		{{/each}}
