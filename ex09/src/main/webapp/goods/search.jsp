@@ -47,6 +47,19 @@
 		let price=tr.attr("price");
 		let brand=tr.attr("brand");
 		console.log(gid, title, image, price, brand);
+		//상품등록
+		$.ajax({
+			type:"post",
+			url:"/goods/insert",
+			data:{gid, title, image, price, brand},
+			success:function(data){
+				if(data=="true"){
+					alert("입력성공!")
+				}else{
+					alert("이미등록한 상품입니다!");
+				}
+			}
+		});
 	});
 	
 	$("#next").on("click", function(){
