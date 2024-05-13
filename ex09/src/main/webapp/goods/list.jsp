@@ -13,14 +13,14 @@
 		{{#each .}}
 		<tr>
 			<td class="text-center"><input type="checkbox" class="chk"></td>
-			<td>{{gid}}</td>
-			<td><img src={{image}} width="50"></td>
+			<td class="text-center">{{gid}}</td>
+			<td class="text-center"><img src={{image}} width="50"></td>
 			<td>
 				<div class="ellipsis">{{{title}}}</div>
 				<div>{{regDate}}</div>
 			</td>
-			<td>{{price}}</td>
-			<td><button class="btn btn-danger delete" gid="{{gid}}">삭제</button></td>
+			<td class="text-end">{{price}}</td>
+			<td class="text-center"><button class="btn btn-danger delete" gid="{{gid}}">삭제</button></td>
 		</tr>
 		{{/each}}
 	</table>
