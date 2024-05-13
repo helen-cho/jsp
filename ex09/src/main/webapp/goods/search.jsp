@@ -20,10 +20,12 @@
 <script id="temp_shop" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
 		<tr class="text-center">
+			<td><input type="checkbox" id="all"></td>
 			<td>아이디</td><td colspan=2>상품명</td><td>상품가격</td><td>저장</td>
 		</tr>
 		{{#each items}}
 		<tr gid="{{productId}}" img="{{image}}" title="{{title}}" brand="{{brand}}" price="{{lprice}}">
+			<td><input type="checkbox" class="chk"></td>
 			<td>{{productId}}</td>
 			<td><img src={{image}} width="50"></td>
 			<td><div class="ellipsis">{{{title}}}</div></td>
@@ -37,6 +39,19 @@
 	let query=$(frm.query).val();
 	let page=1;
 	let size=5;
+	
+	//전체선택 체크박스를 클릭한 경우
+	$("#div_shop").on("click", "#all", function(){
+		if($(this).is(":checked")){
+			$("#div_shop .chk").each(function(){
+				$(this).prop("checked", true);
+			});
+		}else{
+			$("#div_shop .chk").each(function(){
+				$(this).prop("checked", false);
+			});
+		}
+	});
 	
 	//저장버튼을 클릭한 경우
 	$("#div_shop").on("click", ".insert", function(){
