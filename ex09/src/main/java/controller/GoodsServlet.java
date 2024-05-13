@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import model.NaverAPI;
 import model.*;
 import model.*;
 
-@WebServlet(value={"/goods/search", "/goods/search.json", "/goods/insert"})
+@WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", "/goods/insert", "/goods/list"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GoodsDAO dao=new GoodsDAO();
@@ -24,6 +26,14 @@ public class GoodsServlet extends HttpServlet {
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
+		case "/goods/list.json":
+			Gson gson=new Gson();
+			out.print(gson.toJson(dao.list()));
+			break;
+		case "/goods/list":
+			request.setAttribute("pageName", "/goods/list.jsp");
+			dis.forward(request, response);
+			break;
 		case "/goods/search":
 			request.setAttribute("pageName", "/goods/search.jsp");
 			dis.forward(request, response);

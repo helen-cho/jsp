@@ -54,6 +54,7 @@
 		if(!confirm(chk + "개 상품을 등록하실래요?")) return;
 		//상품등록
 		let cnt=0;
+		let success=0;
 		$("#div_shop .chk:checked").each(function(){
 			let tr=$(this).parent().parent();
 			let gid=tr.attr("gid");
@@ -68,8 +69,9 @@
 				data:{gid, title, image, price, brand},
 				success:function(data){
 					cnt++;
+					if(data=="true") success++;
 					if(chk==cnt){
-						alert("등록성공!");
+						alert(success + "개 상품 등록성공!");
 						getData();
 					}
 				}
