@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.NaverAPI;
+import model.*;
 
 @WebServlet(value={"/goods/search", "/goods/search.json"})
 public class GoodsServlet extends HttpServlet {
@@ -26,7 +27,11 @@ public class GoodsServlet extends HttpServlet {
 			dis.forward(request, response);
 			break;
 		case "/goods/search.json":
-			out.print(NaverAPI.main());
+			QueryVO vo=new QueryVO();
+			vo.setWord(request.getParameter("query"));
+			vo.setPage(Integer.parseInt(request.getParameter("page")));
+			vo.setSize(Integer.parseInt(request.getParameter("size")));
+			out.print(NaverAPI.main(vo));
 			break;
 		}
 	}

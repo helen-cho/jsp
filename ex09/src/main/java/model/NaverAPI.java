@@ -8,18 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NaverAPI {
-    public static String main() {
+    public static String main(QueryVO vo) {
         String clientId = "DSISkunI4gxjpwj6Yl6J"; //애플리케이션 클라이언트 아이디
         String clientSecret = "CxLnF9_VmQ"; //애플리케이션 클라이언트 시크릿
 
         String text = null;
         try {
-            text = URLEncoder.encode("쇼파", "UTF-8");
+            text = URLEncoder.encode(vo.getWord(), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("검색어 인코딩 실패",e);
         }
 
-        String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text;    // JSON 결과
+        int start=(vo.getPage()-1) * vo.getSize() + 1;
+        int display=vo.getSize();
+        String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text;// JSON 결과
+        apiURL += "&display=" + display + "&start=" + start;
         //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // XML 결과
 
         Map<String, String> requestHeaders = new HashMap<>();
