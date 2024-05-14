@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<style>
+	#div_shop img {
+		cursor: pointer;
+		border-radius:10px;
+	}
+</style>
 <div>
 	<h1 class="my-5">상품목록</h1>
 	<div class="row mb-2">
@@ -36,7 +42,7 @@
 			<td class="text-end">{{price}}</td>
 			<td class="text-center">
 				<button class="btn btn-danger btn-sm delete" gid="{{gid}}">삭제</button>
-				<jsp:include page="modal_image.jsp"/></td>
+				<jsp:include page="modal_image.jsp"/>
 			</td>
 		</tr>
 		{{/each}}
@@ -48,6 +54,12 @@
 	let word="";
 	//getData();
 	getTotal();
+	
+	//이미지를 클릭했을때
+	$("#div_shop").on("click", "img", function(){
+		const index=$(this).attr("index");
+		$("#modal" + index).modal("show");
+	});
 	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
@@ -111,11 +123,6 @@
 		}
 	});
 	
-	//이미지를 클릭한 경우
-	$("#div_shop").on("click", "img", function(){
-		const index=$(this).attr("index");
-		$("#modal" + index).modal("show");
-	});
 	
 	//삭제버튼을 클릭한 경우
 	$("#div_shop").on("click",".delete", function(){
