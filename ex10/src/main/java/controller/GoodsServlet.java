@@ -16,7 +16,7 @@ import model.*;
 import model.*;
 
 @WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", 
-		"/goods/insert", "/goods/list", "/goods/delete"})
+		"/goods/insert", "/goods/list", "/goods/delete", "/goods/total"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GoodsDAO dao=new GoodsDAO();
@@ -27,6 +27,9 @@ public class GoodsServlet extends HttpServlet {
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
+		case "/goods/total":
+			out.print(dao.total(request.getParameter("word")));
+			break;
 		case "/goods/list.json": //테스트 /goods/list.json?word=&page=1&size=3
 			Gson gson=new Gson();
 			QueryVO query=new QueryVO();

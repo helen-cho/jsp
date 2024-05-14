@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div>
-	<h1>상품목록</h1>
+	<h1 class="my-5">상품목록</h1>
 	<div class="row mb-2">
 		<div class="col">
 			<button class="btn btn-danger" id="delete">선택삭제</button>
 		</div>
+		<div class="col-8 col-md-4">
+			<form name="frm">
+				<div class="input-group">
+					<span id="total" class="me-2 mt-2"></span>
+					<input class="form-control" placeholder="검색어" name="word">
+					<button class="btn btn-primary">검색</button>
+				</div>
+			</form>
+		</div>
 	</div>
 	<div id="div_shop"></div>
+	<div id="pagination" class="pagination justify-content-center mt-5"></div>
 </div>
 <script id="temp_shop" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
@@ -25,7 +35,7 @@
 			</td>
 			<td class="text-end">{{price}}</td>
 			<td class="text-center">
-				<button class="btn btn-danger delete" gid="{{gid}}">삭제</button>
+				<button class="btn btn-danger btn-sm delete" gid="{{gid}}">삭제</button>
 				<jsp:include page="modal_image.jsp"/></td>
 			</td>
 		</tr>
@@ -36,7 +46,16 @@
 	let page=1;
 	let size=5;
 	let word="";
-	getData();
+	//getData();
+	getTotal();
+	
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		word=$(frm.word).val();
+		//getData();
+		page=1;
+		getTotal();
+	});
 	
 	//선택삭제버튼을 클릭한경우
 	$("#delete").on("click", function(){
@@ -60,7 +79,8 @@
 					if(data=="true") success++;
 					if(cnt==chk) {
 						alert(success + "개 상품이 삭제되었습니다.");
-						getData();
+						//getData();
+						getTotal();
 					}
 				}
 			});
@@ -109,7 +129,8 @@
 				success:function(data){
 					if(data=="true"){
 						alert("삭제성공!");
-						getData();
+						//getData();
+						getTotal();
 					}else{
 						alert("삭제실패!");
 					}
@@ -130,4 +151,42 @@
 			}
 		});
 	}
+	
+	function getTotal(){
+		$.ajax({
+			type:"get",
+			url:"/goods/total",
+			data:{word},
+			success:function(data){
+				const total=parseInt(data);
+				if(total==0) {
+					alert("검색한 상품이 없습니다!");
+					return;
+				}
+				const totalPage=Math.ceil(total/size);
+				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
+				if(total > size){
+					$("#pagination").show();
+				}else{
+					$("#pagination").hide();
+				}
+				$("#total").html("검색수: " + total);
+			}
+		});
+	}
+	
+	$('#pagination').twbsPagination({
+		totalPages:10, 
+		visiblePages: 5, 
+		startPage : 1,
+		initiateStartPageClick: false, 
+		first:'<i>처음</i>', 
+		prev :'<i>이전</i>',
+		next :'<i>다음</i>',
+		last :'<i>마지막</i>',
+		onPageClick: function (event, clickPage) {
+			 page=clickPage; 
+			 getData();
+		}
+	});
 </script>

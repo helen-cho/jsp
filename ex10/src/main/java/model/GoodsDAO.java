@@ -5,6 +5,24 @@ import java.util.*;
 
 public class GoodsDAO {
 	Connection con=Database.CON;
+	//검색수
+	public int total(String word) {
+		int total=0;
+		try {
+			String sql="select count(*) from goods";
+			sql +=" where title like ?";			
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, "%" + word + "%");
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt("count(*)");
+			}
+		}catch(Exception e){
+			System.out.println("검색수:" + e.toString());
+		}
+		return total;
+	}
+	
 	//상품삭제
 	public boolean delete(String gid) {
 		try {
