@@ -1,8 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div>
-	<h1>학교소개</h1>
-	<h3>What is Lorem Ipsum?</h3>
-	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-	<h3>What is Lorem Ipsum?</h3>
-	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<style>
+	.brand {
+		font-size:12px;
+	}
+	#div_shop img {
+		border-radius:10px;
+	}
+</style>
+<div class="my-5">
+	<div id="div_shop" class="row"></div>
 </div>
+<script id="temp_shop" type="x-handlebars-template">
+	{{#each .}}
+		<div class="col-2 col-md-4 col-lg-2 mb-5">
+			<div class="mb-2"><img src="{{image}}" width="90%"></div>
+			<div class="brand">{{brand}}</div>
+			<div class="ellipsis">{{title}}</div>
+			<div><b>{{price}}원</b></div>
+		</div>
+	{{/each}}
+</script>
+<script>
+	let size=12;
+	let page=1;
+	let word="";
+	
+	getData();
+	function getData(){
+		$.ajax({
+			type:"get",
+			url:"/goods/list.json",
+			dataType:"json",
+			data:{size, page, word},
+			success:function(data){
+				const temp=Handlebars.compile($("#temp_shop").html());
+				$("#div_shop").html(temp(data));
+			}
+		});
+	}
+</script>
