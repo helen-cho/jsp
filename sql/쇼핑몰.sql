@@ -40,8 +40,12 @@ create table cart(
     foreign key(gid) references goods(gid)
 );
 
+create view view_cart as
+select c.*, g.title, g.price, g.image 
+from cart c, goods g
+where c.gid=g.gid;
 
-
+select * from  view_cart;
 
 
 

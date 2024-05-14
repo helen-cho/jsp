@@ -10,6 +10,9 @@
         <li class="nav-item">
         	<a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
+        <li class="nav-item" id="cart-item">
+        	<a class="nav-link active" aria-current="page" href="/cart/list">장바구니</a>
+        </li>
         <li class="nav-item">
         	<a class="nav-link active" aria-current="page" href="/goods/search">상품검색</a>
         </li>
@@ -37,10 +40,12 @@
 		$("#login").hide();
 		$("#logout").show();
 		$("#uid a").html(uid + "님");
+		$("#cart-item").show();
 	}else{
 		$("#login").show();
 		$("#logout").hide();
 		$("#uid").hide();
+		$("#cart-item").hide();
 	}
 	
 	$("#logout").on("click", "a", function(e){

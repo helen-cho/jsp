@@ -20,8 +20,37 @@
 			<div class="mb-3">카드할인: 하나카드 무이자 최대12개월</div>
 			<div class="my-5">
 				<button class="px-5 btn btn-warning">바로구매</button>
-				<button class="px-5 btn btn-success">장바구니</button>
+				<button class="px-5 btn btn-success" id="cart">장바구니</button>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	const gid="${goods.gid}";
+	$("#cart").on("click", function(){
+		if(uid){
+			//장바구니 넣기
+			$.ajax({
+				type:"post",
+				url:"/cart/insert",
+				data:{uid, gid},
+				success:function(data){
+					if(data=="true"){
+						alert("장바구에 넣었습니다!");
+					}else{
+						alert("장바구에 있는 상품입니다!")
+					}
+				}
+			});
+		}else{
+			sessionStorage.setItem("target", "/goods/read?gid=" + gid);
+			location.href="/user/login";
+		}
+	});
+</script>
+
+
+
+
+
+

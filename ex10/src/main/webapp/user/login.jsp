@@ -54,7 +54,12 @@
 					alert("비밀번호가 일치하지않습니다!");
 				}else if(result==1){
 					sessionStorage.setItem("uid", uid);
-					location.href="/";
+					const target=sessionStorage.getItem("target");
+					if(target){
+						location.href=target;
+					}else{
+						location.href="/";
+					}
 				}
 			}
 		});
