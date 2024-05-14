@@ -42,8 +42,34 @@
 			return;
 		}
 		//로그인체크
+		$.ajax({
+			type:"post",
+			url:"/user/login",
+			data:{uid, upass},
+			success:function(data){
+				const result=parseInt(data);
+				if(result==0){
+					alert("아아디가 존재하지않습니다!");
+				}else if(result==2){
+					alert("비밀번호가 일치하지않습니다!");
+				}else if(result==1){
+					sessionStorage.setItem("uid", uid);
+					location.href="/";
+				}
+			}
+		});
 	});
 </script>
+
+
+
+
+
+
+
+
+
+
 
 
 

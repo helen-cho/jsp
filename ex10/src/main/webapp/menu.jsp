@@ -32,21 +32,22 @@
   </div>
 </nav>
 <script>
-	const uid="${user.uid}";
-	const uname="${user.uname}";
+	const uid=sessionStorage.getItem("uid");
 	if(uid){
 		$("#login").hide();
 		$("#logout").show();
-		$("#uid a").html(uname);
+		$("#uid a").html(uid + "님");
 	}else{
 		$("#login").show();
 		$("#logout").hide();
+		$("#uid").hide();
 	}
 	
 	$("#logout").on("click", "a", function(e){
 		e.preventDefault();
-		if(confirm("정말로 로그아웃아실래요?")){
-			location.href="/user/logout";
+		if(confirm("정말로 로그아웃하실래요?")){
+			sessionStorage.clear();
+			location.href="/";
 		}
 	});
 </script>
