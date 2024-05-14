@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div id="div_shop"></div>
-	<div id="pagination" class="pagination justify-content-center mt-5"></div>
+	<div id="pagination" class="pagination justify-content-center"></div>
 </div>
 <script id="temp_shop" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
@@ -187,10 +187,10 @@
 		visiblePages: 5, 
 		startPage : 1,
 		initiateStartPageClick: false, 
-		first:'<i>처음</i>', 
-		prev :'<i>이전</i>',
-		next :'<i>다음</i>',
-		last :'<i>마지막</i>',
+		first:'<span><<</span>', 
+		prev :'<span><</span>',
+		next :'<span>></span>',
+		last :'<span>>></span>',
 		onPageClick: function (event, clickPage) {
 			 page=clickPage; 
 			 getData();

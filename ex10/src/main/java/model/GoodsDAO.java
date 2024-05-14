@@ -5,6 +5,29 @@ import java.util.*;
 
 public class GoodsDAO {
 	Connection con=Database.CON;
+	//상품정보
+	public GoodsVO read(String gid) {
+		GoodsVO vo=new GoodsVO();
+		try {
+			String sql="select * from goods";
+			sql +=" where gid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, gid);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				vo.setGid(rs.getString("gid"));
+				vo.setTitle(rs.getString("title"));
+				vo.setImage(rs.getString("image"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setBrand(rs.getString("brand"));
+				vo.setRegDate(rs.getString("regDate"));
+			}
+		}catch(Exception e){
+			System.out.println("상품정보:" + e.toString());
+		}
+		return vo;
+	}
+	
 	//검색수
 	public int total(String word) {
 		int total=0;
