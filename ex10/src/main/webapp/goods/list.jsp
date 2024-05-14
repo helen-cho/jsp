@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div id="div_shop"></div>
-	<div id="pagination" class="pagination justify-content-center"></div>
+	<ul id="pagination" class="pagination justify-content-center pagination-sm"></ul>
 </div>
 <script id="temp_shop" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">

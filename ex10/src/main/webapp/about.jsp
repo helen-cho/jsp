@@ -4,7 +4,7 @@
 		font-size:12px;
 	}
 	#div_shop img {
-		border-radius:10px;
+		border-radius:5px;
 	}
 </style>
 <div class="my-5">
@@ -19,16 +19,18 @@
 		</div>
 	</div>
 	<div id="div_shop" class="row"></div>
-	<div id="pagination" class="pagination justify-content-center"></div>
+	<ul id="pagination" class="pagination justify-content-center pagination-sm"></ul>
 </div>
 <script id="temp_shop" type="x-handlebars-template">
 	{{#each .}}
-		<div class="col-2 col-md-4 col-lg-2 mb-5">
-			<div class="mb-2">
-				<a href="/goods/read?gid={{gid}}"><img src="{{image}}" width="90%"></a>
+		<div class="col-6 col-md-4 col-lg-2 mb-5">
+			<div class="mb-2 text-center">
+				<a href="/goods/read?gid={{gid}}"><img src="{{image}}" width="95%"></a>
 			</div>
-			<div class="brand">{{brand}}</div>
-			<div class="ellipsis">{{title}}</div>
+			<div class="brand">
+				<span>{{brand}}</span>
+			</div>
+			<div class="ellipsis">{{{title}}}</div>
 			<div><b>{{fmtPrice price}}원</b></div>
 		</div>
 	{{/each}}
@@ -96,7 +98,7 @@
 		startPage : 1,
 		initiateStartPageClick: false, 
 		first:'<span><<</span>', 
-		prev :'<span><</span>',
+		prev :'<sapn><</span>',
 		next :'<span>></span>',
 		last :'<span>>></span>',
 		onPageClick: function (event, clickPage) {

@@ -1,10 +1,12 @@
 package model;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class GoodsDAO {
 	Connection con=Database.CON;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 	//상품정보
 	public GoodsVO read(String gid) {
 		GoodsVO vo=new GoodsVO();
@@ -20,7 +22,7 @@ public class GoodsDAO {
 				vo.setImage(rs.getString("image"));
 				vo.setPrice(rs.getInt("price"));
 				vo.setBrand(rs.getString("brand"));
-				vo.setRegDate(rs.getString("regDate"));
+				vo.setRegDate(sdf.format(rs.getTimestamp("regDate")));
 			}
 		}catch(Exception e){
 			System.out.println("상품정보:" + e.toString());

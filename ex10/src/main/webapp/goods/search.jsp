@@ -33,7 +33,7 @@
 			<td><img src={{image}} width="50"></td>
 			<td><div class="ellipsis">{{{title}}}</div></td>
 			<td>{{lprice}}</td>
-			<td><button class="btn btn-success insert">저장</button></td>
+			<td><button class="btn btn-success btn-sm insert">저장</button></td>
 		</tr>
 		{{/each}}
 	</table>

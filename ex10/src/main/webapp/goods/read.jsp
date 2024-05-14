@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<style>
+	#info img {
+		border-radius: 10px;
+	}
+</style>
 <div>
-	<div class="row my-5">
-		<div class="col">
+	<div class="row my-5" id="info">
+		<div class="col-md-6 mb-5">
 			<img src="${goods.image}" width="80%">
 		</div>
 		<div class="col">
-			<h3>${goods.title}</h3>
+			<h4>${goods.title}</h4>
 			<hr>
 			<div class="mb-3">가격: <fmt:formatNumber value="${goods.price}" pattern="#,###원"/></div>
 			<div class="mb-3">브랜드: ${goods.brand}</div>
