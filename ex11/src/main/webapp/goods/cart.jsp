@@ -15,16 +15,16 @@
 			<td>금액</td>
 		</tr>
 		{{#each .}}
-		<tr class="text-center">
+		<tr class="text-center" gid="{{gid}}">
 			<td>{{gid}}</td>
 			<td class="text-start">
 				<img src="{{image}}" width="50px">
 				<a href="/goods/read?gid={{gid}}">{{{title}}}</a>
 			</td>
-			<td>{{price}}</td>
+			<td>{{sum price 1}}</td>
 			<td>
-				<input value="{{qnt}}" size=2>
-				<button class="btn btn-success btn-sm">수정</button>
+				<input class="qnt" value="{{qnt}}" size=2>
+				<button class="btn btn-success btn-sm update">수정</button>
 			</td>
 			<td>{{sum price qnt}}</td>
 		</tr>
@@ -39,6 +39,21 @@
 </script>
 <script>
 	getData();
+	//각행의 수정버튼을 클릭한 경우
+	$("#div_cart").on("click", ".update", function(){
+		const qnt=$(this).parent().find(".qnt").val();
+		const gid=$(this).parent().parent().attr("gid");
+		//alert(uid + ":" + qnt + ":" + gid);
+		$.ajax({
+			type:"post",
+			url:"/cart/update",
+			data:{gid, uid, qnt},
+			success:function(){
+				getData();
+			}
+		});
+	});
+	
 	function getData(){
 		$.ajax({
 			type:"get",

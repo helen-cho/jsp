@@ -4,6 +4,20 @@ import java.util.*;
 
 public class CartDAO {
 	Connection con=Database.CON;
+	//수량수정
+	public void update(CartVO vo) {
+		try {
+			String sql="update cart set qnt=? where gid=? and uid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, vo.getQnt());
+			ps.setString(2, vo.getGid());
+			ps.setString(3, vo.getUid());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("수량수정:" + e.toString());
+		}
+	}
+	
 	//장바구니목록
 	public ArrayList<CartVO> list(String uid){
 		ArrayList<CartVO> array=new ArrayList<CartVO>();
