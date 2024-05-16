@@ -45,13 +45,17 @@ public class GoodsDAO {
 	}
 	
 	//상품정보
-	public GoodsVO read(String gid) {
+	public GoodsVO read(String gid, String uid) {
 		GoodsVO vo=new GoodsVO();
 		try {
-			String sql="select * from goods";
-			sql +=" where gid=?";
+			String sql="select *,";
+			sql +="(select count(*) from favorite f where uid=? and f.gid=g.gid) ucnt,";
+			sql +="(select count(*) from favorite f where f.gid=g.gid) fcnt";
+			sql +=" from goods g";
+			sql +=" where g.gid=?";
 			PreparedStatement ps=con.prepareStatement(sql);
-			ps.setString(1, gid);
+			ps.setString(1, uid);
+			ps.setString(2, gid);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				vo.setGid(rs.getString("gid"));
@@ -60,6 +64,9 @@ public class GoodsDAO {
 				vo.setPrice(rs.getInt("price"));
 				vo.setBrand(rs.getString("brand"));
 				vo.setRegDate(sdf.format(rs.getTimestamp("regDate")));
+				vo.setFcnt(rs.getInt("fcnt"));
+				vo.setUcnt(rs.getInt("ucnt"));
+				System.out.println(vo.toString());
 			}
 		}catch(Exception e){
 			System.out.println("상품정보:" + e.toString());

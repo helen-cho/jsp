@@ -31,7 +31,7 @@
 	{{#each .}}
 		<div class="col-6 col-md-4 col-lg-2 mb-5">
 			<div class="mb-2 text-center">
-				<a href="/goods/read?gid={{gid}}&ucnt={{ucnt}}&fcnt={{fcnt}}"><img src="{{image}}" width="95%"></a>
+				<img gid="{{gid}}" src="{{image}}" width="95%" style="cursor:pointer;">
 			</div>
 			<div class="brand">
 				<span>{{brand}} {{gid}}</span>
@@ -63,6 +63,13 @@
 	
 	//getData();
 	getTotal();
+	
+	//이미지를 클릭한 경우
+	$("#div_shop").on("click", "img", function(){
+		const gid=$(this).attr("gid");
+		//alert(uid + "/" + gid);
+		location.href="/goods/read?uid=" + uid + "&gid=" + gid;
+	});
 	
 	//빈하트를 클릭한 경우
 	$("#div_shop").on("click", ".bi-heart", function(){

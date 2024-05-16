@@ -36,10 +36,11 @@
 </div>
 <script>
 	const gid="${goods.gid}";
-	const ucnt="${param.ucnt}";
-	const fcnt="${param.fcnt}";
+	const ucnt="${goods.ucnt}";
+	const fcnt="${goods.fcnt}";
+	
 	$("#fcnt").html(fcnt);
-	if(ucnt=="0"){
+	if(ucnt==0){
 		$("#heart").removeClass("bi-heart-fill");
 		$("#heart").addClass("bi-heart");
 	}else{

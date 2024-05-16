@@ -29,7 +29,8 @@ public class GoodsServlet extends HttpServlet {
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
 		case "/goods/read":
-			request.setAttribute("goods", dao.read(request.getParameter("gid")));
+			String uid=request.getParameter("uid");
+			request.setAttribute("goods", dao.read(request.getParameter("gid"), uid));
 			request.setAttribute("pageName", "/goods/read.jsp");
 			dis.forward(request, response);
 			break;
@@ -39,7 +40,7 @@ public class GoodsServlet extends HttpServlet {
 		case "/goods/list.json": //테스트 /goods/list.json?word=&page=1&size=3
 			Gson gson=new Gson();
 			QueryVO query=new QueryVO();
-			String uid=request.getParameter("uid");
+			uid=request.getParameter("uid");
 			query.setWord(request.getParameter("word"));
 			query.setPage(Integer.parseInt(request.getParameter("page")));
 			query.setSize(Integer.parseInt(request.getParameter("size")));
