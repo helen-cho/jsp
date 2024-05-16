@@ -14,7 +14,8 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update", "/cart/delete"})
+@WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update", 
+		"/cart/delete", "/favorite/insert", "/favorite/delete"})
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CartDAO dao=new CartDAO();   
@@ -37,6 +38,8 @@ public class CartServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
+		FavoriteDAO fdao=new FavoriteDAO();
+		
 		switch(request.getServletPath()){
 		case "/cart/insert":
 			CartVO vo=new CartVO();
@@ -57,6 +60,19 @@ public class CartServlet extends HttpServlet {
 			vo.setGid(request.getParameter("gid"));
 			dao.delete(vo);
 			break;
+		case "/favorite/insert":
+			String uid=request.getParameter("uid");
+			String gid=request.getParameter("gid");
+			fdao.insert(uid, gid);
+			break;
+		case "/favorite/delete":
+			uid=request.getParameter("uid");
+			gid=request.getParameter("gid");
+			fdao.delete(uid, gid);
+			break;
 		}
 	}
 }
+
+
+

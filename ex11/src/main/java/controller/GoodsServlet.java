@@ -39,10 +39,11 @@ public class GoodsServlet extends HttpServlet {
 		case "/goods/list.json": //테스트 /goods/list.json?word=&page=1&size=3
 			Gson gson=new Gson();
 			QueryVO query=new QueryVO();
+			String uid=request.getParameter("uid");
 			query.setWord(request.getParameter("word"));
 			query.setPage(Integer.parseInt(request.getParameter("page")));
 			query.setSize(Integer.parseInt(request.getParameter("size")));
-			out.print(gson.toJson(dao.list(query)));
+			out.print(gson.toJson(dao.list(query, uid)));
 			break;
 		case "/goods/list":
 			request.setAttribute("pageName", "/goods/list.jsp");

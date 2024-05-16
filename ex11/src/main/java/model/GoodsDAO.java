@@ -8,7 +8,7 @@ public class GoodsDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 	
-	//상품목록
+	//상품목록(좋아요)
 	public ArrayList<GoodsVO> list(QueryVO query, String uid){
 		ArrayList<GoodsVO> array=new ArrayList<GoodsVO>();
 		try {

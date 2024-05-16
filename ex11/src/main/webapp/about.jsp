@@ -7,9 +7,10 @@
 		border-radius:5px;
 	}
 	.bi-heart, .bi-heart-fill{
-		color:pink;
-		float:right;
+		color: red;
+		float: right;
 		font-size:20px;
+		cursor:pointer;
 	}
 </style>
 <div class="my-5">
@@ -30,7 +31,7 @@
 	{{#each .}}
 		<div class="col-6 col-md-4 col-lg-2 mb-5">
 			<div class="mb-2 text-center">
-				<a href="/goods/read?gid={{gid}}"><img src="{{image}}" width="95%"></a>
+				<a href="/goods/read?gid={{gid}}&ucnt={{ucnt}}&fcnt={{fcnt}}"><img src="{{image}}" width="95%"></a>
 			</div>
 			<div class="brand">
 				<span>{{brand}} {{gid}}</span>
@@ -38,7 +39,9 @@
 			<div class="ellipsis">{{{title}}}</div>
 			<div>
 				<b>{{fmtPrice price}}원</b>
-				<i class="bi {{heart 1}}"></i>
+				<span class="bi {{heart ucnt}}" gid="{{gid}}">
+					<span style="font-size:12px;color:red;">{{fcnt}}</span>
+				</span>
 			</div>
 		</div>
 	{{/each}}
@@ -61,6 +64,41 @@
 	//getData();
 	getTotal();
 	
+	//빈하트를 클릭한 경우
+	$("#div_shop").on("click", ".bi-heart", function(){
+		if(uid){
+			const gid=$(this).attr("gid");
+			//alert(uid + ":" + gid);
+			$.ajax({
+				type:"post",
+				url:"/favorite/insert",
+				data:{uid, gid},
+				success:function(){
+					alert("좋아요! 등록")
+					getData();
+				}
+			});
+		}else{
+			location.href="/user/login";
+		}
+		
+	});
+	
+	//채워진 하트를 클릭한 경우
+	$("#div_shop").on("click", ".bi-heart-fill", function(){
+		const gid=$(this).attr("gid");
+		//alert(uid + ":" + gid);
+		$.ajax({
+			type:"post",
+			url:"/favorite/delete",
+			data:{uid, gid},
+			success:function(){
+				alert("좋아요! 취소")
+				getData();
+			}
+		});
+	});
+	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		word=$(frm.word).val();
@@ -74,7 +112,7 @@
 			type:"get",
 			url:"/goods/list.json",
 			dataType:"json",
-			data:{size, page, word},
+			data:{size, page, word, uid},
 			success:function(data){
 				const temp=Handlebars.compile($("#temp_shop").html());
 				$("#div_shop").html(temp(data));

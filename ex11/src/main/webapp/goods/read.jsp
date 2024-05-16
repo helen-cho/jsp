@@ -4,6 +4,11 @@
 	#info img {
 		border-radius: 10px;
 	}
+	
+	.bi-heart, .bi-heart-fill{
+		color: red;
+		cursor:pointer;
+	}
 </style>
 <div>
 	<div class="row my-5" id="info">
@@ -11,8 +16,12 @@
 			<img src="${goods.image}" width="80%">
 		</div>
 		<div class="col">
-			<h4>${goods.title}</h4>
-			<hr>
+			<h4>
+				${goods.title}
+				<span class="bi bi-heart-fill" id="heart">
+					<span id="fcnt" style="font-size:15px;"></span>
+				</span>
+			</h4><hr>
 			<div class="mb-3">가격: <fmt:formatNumber value="${goods.price}" pattern="#,###원"/></div>
 			<div class="mb-3">브랜드: ${goods.brand}</div>
 			<div class="mb-3">등록일: ${goods.regDate}</div>
@@ -27,6 +36,17 @@
 </div>
 <script>
 	const gid="${goods.gid}";
+	const ucnt="${param.ucnt}";
+	const fcnt="${param.fcnt}";
+	$("#fcnt").html(fcnt);
+	if(ucnt=="0"){
+		$("#heart").removeClass("bi-heart-fill");
+		$("#heart").addClass("bi-heart");
+	}else{
+		$("#heart").removeClass("bi-heart");
+		$("#heart").addClass("bi-heart-fill");
+	}
+	
 	//장바구니 버튼을 클릭한경우
 	$("#cart").on("click", function(){
 		if(uid){
