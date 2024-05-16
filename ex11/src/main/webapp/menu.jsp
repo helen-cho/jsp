@@ -13,10 +13,10 @@
         <li class="nav-item" id="cart-item">
         	<a class="nav-link active" aria-current="page" href="/cart/list">장바구니</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="search-item">
         	<a class="nav-link active" aria-current="page" href="/goods/search">상품검색</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="list-item">
         	<a class="nav-link active" aria-current="page" href="/goods/list">상품목록</a>
         </li>
       </ul>
@@ -56,6 +56,14 @@
 		}
 	});
 
+	if(uid=="admin"){
+		$("#search-item").show();
+		$("#list-item").show();
+		$("#cart-item").hide();
+	}else{
+		$("#search-item").hide();
+		$("#list-item").hide();
+	}
 </script>
 
 
