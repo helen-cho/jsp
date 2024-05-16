@@ -59,7 +59,8 @@
 				data:{uid, gid},
 				success:function(){
 					alert("좋아요! 등록")
-					location.href="/goods/read?gid=" + gid;
+					//location.href="/goods/read?gid=" + gid;
+					location.reload(true);
 				}
 			});
 		}else{
@@ -77,7 +78,8 @@
 			data:{uid, gid},
 			success:function(){
 				alert("좋아요! 취소");
-				location.href="/goods/read?gid=" + gid;
+				//location.href="/goods/read?gid=" + gid;
+				location.reload(true);
 			}
 		});
 	});
