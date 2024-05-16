@@ -19,13 +19,11 @@ public class GoodsDAO {
 			sql +=" where title like ?";
 			sql +=" order by regdate desc";
 			sql +=" limit ?, ?";
-			
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, uid);
 			ps.setString(2, "%" + query.getWord() + "%");
 			ps.setInt(3, (query.getPage()-1) * query.getSize());
 			ps.setInt(4, query.getSize());
-			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				GoodsVO vo=new GoodsVO();
