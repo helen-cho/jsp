@@ -7,6 +7,45 @@ import java.util.*;
 public class GoodsDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
+	
+	//상품목록
+	public ArrayList<GoodsVO> list(QueryVO query, String uid){
+		ArrayList<GoodsVO> array=new ArrayList<GoodsVO>();
+		try {
+			String sql="select *,";
+			sql +="(select count(*) from favorite f where uid=? and f.gid=g.gid) ucnt,";
+			sql +="(select count(*) from favorite f where f.gid=g.gid) fcnt";
+			sql +=" from goods g";
+			sql +=" where title like ?";
+			sql +=" order by regdate desc";
+			sql +=" limit ?, ?";
+			
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, uid);
+			ps.setString(2, "%" + query.getWord() + "%");
+			ps.setInt(3, (query.getPage()-1) * query.getSize());
+			ps.setInt(4, query.getSize());
+			
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				GoodsVO vo=new GoodsVO();
+				vo.setGid(rs.getString("gid"));
+				vo.setTitle(rs.getString("title"));
+				vo.setImage(rs.getString("image"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setBrand(rs.getString("brand"));
+				vo.setRegDate(rs.getString("regDate"));
+				vo.setUcnt(rs.getInt("ucnt"));
+				vo.setFcnt(rs.getInt("fcnt"));
+				array.add(vo);
+				System.out.println(vo.toString());
+			}
+		}catch(Exception e){
+			System.out.println("상품목록:" + e.toString());
+		}
+		return array;
+	}
+	
 	//상품정보
 	public GoodsVO read(String gid) {
 		GoodsVO vo=new GoodsVO();

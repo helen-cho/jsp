@@ -6,6 +6,11 @@
 	#div_shop img {
 		border-radius:5px;
 	}
+	.bi-heart, .bi-heart-fill{
+		color:pink;
+		float:right;
+		font-size:20px;
+	}
 </style>
 <div class="my-5">
 	<div class="row mb-3 justify-content-end">
@@ -28,16 +33,24 @@
 				<a href="/goods/read?gid={{gid}}"><img src="{{image}}" width="95%"></a>
 			</div>
 			<div class="brand">
-				<span>{{brand}}</span>
+				<span>{{brand}} {{gid}}</span>
 			</div>
 			<div class="ellipsis">{{{title}}}</div>
-			<div><b>{{fmtPrice price}}원</b></div>
+			<div>
+				<b>{{fmtPrice price}}원</b>
+				<i class="bi {{heart 1}}"></i>
+			</div>
 		</div>
 	{{/each}}
 </script>
 <script>
 	Handlebars.registerHelper("fmtPrice", function(price){
 		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	});
+	
+	Handlebars.registerHelper("heart", function(value){
+		if(value==0) return "bi-heart";
+		else return "bi-heart-fill";
 	});
 </script>
 <script>

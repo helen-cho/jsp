@@ -48,5 +48,27 @@ where c.gid=g.gid;
 select * from  view_cart;
 
 
+insert into users(uid, upass, uname)
+values('admin', 'pass', '관리자');
+
+create table favorite(
+	uid varchar(20) not null,
+    gid char(11) not null,
+    regDate datetime default now(),
+    primary key(uid, gid),
+	foreign key(uid) references users(uid),
+    foreign key(gid) references goods(gid)
+);
+
+desc goods;
+
+
+
+
+
+
+
+
+
 
 

@@ -29,7 +29,7 @@
 			</td>
 			<td>{{sum price 1}}</td>
 			<td>
-				<input class="qnt" value="{{qnt}}" size=2>
+				<input class="qnt" value="{{qnt}}" size=2 style="border-radius:3px;border:1px solid green;">
 				<button class="btn btn-success btn-sm update">수정</button>
 			</td>
 			<td>{{sum price qnt}}</td>
