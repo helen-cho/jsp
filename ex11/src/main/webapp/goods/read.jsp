@@ -18,10 +18,11 @@
 		<div class="col">
 			<h4>
 				${goods.title}
-				<span class="bi bi-heart-fill" id="heart">
+				<span class="bi bi-heart-fill" id="heart" gid="${goods.gid}">
 					<span id="fcnt" style="font-size:15px;"></span>
 				</span>
 			</h4><hr>
+			<div class="mb-3">상품코드: ${goods.gid}</div>
 			<div class="mb-3">가격: <fmt:formatNumber value="${goods.price}" pattern="#,###원"/></div>
 			<div class="mb-3">브랜드: ${goods.brand}</div>
 			<div class="mb-3">등록일: ${goods.regDate}</div>
@@ -47,6 +48,39 @@
 		$("#heart").removeClass("bi-heart");
 		$("#heart").addClass("bi-heart-fill");
 	}
+	
+	//빈하트 클릭한 경우
+	$(".bi-heart").on("click", function(){
+		const gid=$(this).attr("gid");
+		if(uid){
+			$.ajax({
+				type:"post",
+				url:"/favorite/insert",
+				data:{uid, gid},
+				success:function(){
+					alert("좋아요! 등록")
+					location.href="/goods/read?gid=" + gid;
+				}
+			});
+		}else{
+			sessionStorage.setItem("target", "/goods/read/gid=" + gid);
+			location.href="/user/login";
+		}
+	});
+	
+	//채워진 하트를 클릭한 경우
+	$(".bi-heart-fill").on("click", function(){
+		const gid=$(this).attr("gid");
+		$.ajax({
+			type:"post",
+			url:"/favorite/delete",
+			data:{uid, gid},
+			success:function(){
+				alert("좋아요! 취소");
+				location.href="/goods/read?gid=" + gid;
+			}
+		});
+	});
 	
 	//장바구니 버튼을 클릭한경우
 	$("#cart").on("click", function(){

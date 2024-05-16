@@ -68,7 +68,7 @@
 	$("#div_shop").on("click", "img", function(){
 		const gid=$(this).attr("gid");
 		//alert(uid + "/" + gid);
-		location.href="/goods/read?uid=" + uid + "&gid=" + gid;
+		location.href="/goods/read?gid=" + gid;
 	});
 	
 	//빈하트를 클릭한 경우

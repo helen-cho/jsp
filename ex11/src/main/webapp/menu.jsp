@@ -52,7 +52,7 @@
 		e.preventDefault();
 		if(confirm("정말로 로그아웃하실래요?")){
 			sessionStorage.clear();
-			location.href="/";
+			location.href="/user/logout";
 		}
 	});
 

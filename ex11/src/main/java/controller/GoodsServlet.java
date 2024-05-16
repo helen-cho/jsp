@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -25,11 +26,12 @@ public class GoodsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		HttpSession session = request.getSession();
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
 		case "/goods/read":
-			String uid=request.getParameter("uid");
+			String uid=(String)session.getAttribute("uid");
 			request.setAttribute("goods", dao.read(request.getParameter("gid"), uid));
 			request.setAttribute("pageName", "/goods/read.jsp");
 			dis.forward(request, response);
