@@ -4,6 +4,19 @@ import java.util.*;
 
 public class CartDAO {
 	Connection con=Database.CON;
+	//장바구니삭제
+	public void delete(CartVO vo) {
+		try {
+			String sql="delete from cart where gid=? and uid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getGid());
+			ps.setString(2, vo.getUid());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("장바구니삭제:" + e.toString());
+		}
+	}
+	
 	//수량수정
 	public void update(CartVO vo) {
 		try {

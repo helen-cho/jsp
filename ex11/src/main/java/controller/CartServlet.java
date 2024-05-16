@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update"})
+@WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update", "/cart/delete"})
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CartDAO dao=new CartDAO();   
@@ -50,6 +50,12 @@ public class CartServlet extends HttpServlet {
 			vo.setGid(request.getParameter("gid"));
 			vo.setQnt(Integer.parseInt(request.getParameter("qnt")));
 			dao.update(vo);
+			break;
+		case "/cart/delete":
+			vo=new CartVO();
+			vo.setUid(request.getParameter("uid"));
+			vo.setGid(request.getParameter("gid"));
+			dao.delete(vo);
 			break;
 		}
 	}

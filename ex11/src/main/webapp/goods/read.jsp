@@ -27,6 +27,7 @@
 </div>
 <script>
 	const gid="${goods.gid}";
+	//장바구니 버튼을 클릭한경우
 	$("#cart").on("click", function(){
 		if(uid){
 			//장바구니 넣기
@@ -35,10 +36,16 @@
 				url:"/cart/insert",
 				data:{uid, gid},
 				success:function(data){
+					let message="";
 					if(data=="true"){
-						alert("장바구에 넣었습니다!");
+						message ="장바구에 넣었습니다!";
 					}else{
-						alert("장바구에 있는 상품입니다!")
+						message ="장바구에 있는 상품입니다!";
+					}
+					if(confirm(message + "\n장바구니로 이동하실래요?")){
+						location.href="/cart/list";
+					}else{
+						location.href="/";
 					}
 				}
 			});
