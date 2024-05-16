@@ -13,6 +13,7 @@
 			<td>가격</td>
 			<td>수량</td>
 			<td>금액</td>
+			<td>삭제</td>
 		</tr>
 		{{#each .}}
 		<tr class="text-center" gid="{{gid}}">
@@ -27,6 +28,7 @@
 				<button class="btn btn-success btn-sm update">수정</button>
 			</td>
 			<td>{{sum price qnt}}</td>
+			<td><button class="btn btn-danger btn-sm delete">삭제</button></td>
 		</tr>
 		{{/each}}
 	</table>
@@ -52,6 +54,13 @@
 				getData();
 			}
 		});
+	});
+	
+	//각행의 삭제버튼을 클릭한 경우
+	$("#div_cart").on("click", ".delete", function(){
+		const gid=$(this).parent().parent().attr("gid");
+		if(!confirm(gid + "번 상품을 삭제하실래요?")) return;
+		//삭제하기
 	});
 	
 	function getData(){
