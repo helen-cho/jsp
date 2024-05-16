@@ -63,7 +63,7 @@
 				}
 			});
 		}else{
-			sessionStorage.setItem("target", "/goods/read/gid=" + gid);
+			sessionStorage.setItem("target", "/goods/read?gid=" + gid);
 			location.href="/user/login";
 		}
 	});
