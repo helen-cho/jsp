@@ -44,6 +44,7 @@
 					alert("등록성공!");
 					$("#content").val("");
 					$("#modalReview").modal("hide");
+					getData();
 				}
 			});
 		}
