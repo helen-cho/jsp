@@ -54,7 +54,7 @@
 			<jsp:include page="review.jsp"/>
 		</div>
 		<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-			aria-labelledby="nav-profile-tab" tabindex="0">상품설명</div>
+			aria-labelledby="nav-profile-tab" tabindex="0"><h1>상품설명</h1></div>
 	</div>
 </div>
 <script>
