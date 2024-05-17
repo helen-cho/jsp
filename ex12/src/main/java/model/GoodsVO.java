@@ -3,6 +3,7 @@ package model;
 public class GoodsVO {
 	private int ucnt;
 	private int fcnt;
+	private int rcnt;
 	private String gid;
 	private String title;
 	private int price;
@@ -10,6 +11,12 @@ public class GoodsVO {
 	private String image;
 	private String regDate;
 	
+	public int getRcnt() {
+		return rcnt;
+	}
+	public void setRcnt(int rcnt) {
+		this.rcnt = rcnt;
+	}
 	public int getUcnt() {
 		return ucnt;
 	}

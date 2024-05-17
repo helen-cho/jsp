@@ -34,13 +34,13 @@
 				<img gid="{{gid}}" src="{{image}}" width="95%" style="cursor:pointer;">
 			</div>
 			<div class="brand">
-				<span>{{brand}} {{gid}}</span>
+				<span>{{brand}}</span>
 			</div>
 			<div class="ellipsis">{{{title}}}</div>
 			<div>
 				<b>{{fmtPrice price}}원</b>
 				<span class="bi {{heart ucnt}}" gid="{{gid}}">
-					<span style="font-size:12px;color:red;">{{fcnt}}</span>
+					<span style="font-size:12px;color:red;">{{fcnt}}/{{rcnt}}</span>
 				</span>
 			</div>
 		</div>

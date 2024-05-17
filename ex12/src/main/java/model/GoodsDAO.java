@@ -14,7 +14,8 @@ public class GoodsDAO {
 		try {
 			String sql="select *,";
 			sql +="(select count(*) from favorite f where uid=? and f.gid=g.gid) ucnt,";
-			sql +="(select count(*) from favorite f where f.gid=g.gid) fcnt";
+			sql +="(select count(*) from favorite f where f.gid=g.gid) fcnt,";
+			sql +="(select count(*) from review r where r.gid=g.gid) rcnt";
 			sql +=" from goods g";
 			sql +=" where title like ?";
 			sql +=" order by regdate desc";
@@ -35,6 +36,7 @@ public class GoodsDAO {
 				vo.setRegDate(rs.getString("regDate"));
 				vo.setUcnt(rs.getInt("ucnt"));
 				vo.setFcnt(rs.getInt("fcnt"));
+				vo.setRcnt(rs.getInt("rcnt"));
 				array.add(vo);
 				System.out.println(vo.toString());
 			}

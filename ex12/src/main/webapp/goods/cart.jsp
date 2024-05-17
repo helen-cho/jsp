@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div>
+<div id="page-cart">
 	<h1>장바구니</h1>
 	<div id="div_cart"></div>
 	<div id="div_total" class="alert alert-primary text-end">합계:</div>
+	<div class="text-center">
+		<button class="btn btn-primary px-5" id="btn-order">주문하기</button>
+		<a href="/" class="btn btn-secondary px-5">쇼핑계속하기</a>
+	</div>
 </div>
+<div id="page-order" style="display:none;">
+	<jsp:include page="order.jsp"></jsp:include>
+</div>
+
 <script id="temp_cart" type="x-handlebars-template">
 	<div class="mb-2">
 		<button class="btn btn-danger" id="delete">선택상품삭제</button>
@@ -21,7 +29,7 @@
 		</tr>
 		{{#each .}}
 		<tr class="text-center" gid="{{gid}}">
-			<td><input type="checkbox" class="chk"></td>
+			<td><input type="checkbox" class="chk" goods="{{toString @this}}"></td>
 			<td>{{gid}}</td>
 			<td class="text-start">
 				<img src="{{image}}" width="50px">
@@ -43,9 +51,34 @@
 		const sum=price*qnt;
 		return sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	});
+	
+	Handlebars.registerHelper("toString", function(goods){
+		return JSON.stringify(goods);
+	});
 </script>
 <script>
 	getData();
+	
+	//주문하기 버튼을 클릭한 경우
+	$("#btn-order").on("click", function(){
+		const chk=$("#div_cart .chk:checked").length;
+		if(chk==0) {
+			alert("주문할 상품을 선택하세요!");
+			return;
+		}
+		
+		//체크된 상품정보를 data 배열저장
+		let data=[];
+		$("#div_cart .chk:checked").each(function(){
+			const goods=$(this).attr("goods");
+			data.push(JSON.parse(goods));
+		});
+		console.log(data);
+		getOrder(data);
+		$("#page-cart").hide();
+		$("#page-order").show();
+	});
+	
 	//선택삭제하기 버튼을 클릭한 경우
 	$("#div_cart").on("click", "#delete", function(){
 		const chk=$("#div_cart .chk:checked").length;
