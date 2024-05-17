@@ -1,8 +1,39 @@
 package model;
 import java.sql.*;
+import java.util.*;
+import java.text.*;
 
 public class ReviewDAO {
 	Connection con=Database.CON;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//리뷰목록
+	public ArrayList<ReviewVO> list(QueryVO vo, String gid){
+		ArrayList<ReviewVO> array=new ArrayList<ReviewVO>();
+		try {
+			String sql="select * from review where gid=?";
+			sql += " order by rid desc";
+			sql += " limit ?,?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, gid);
+			ps.setInt(2, (vo.getPage()-1) * vo.getSize());
+			ps.setInt(3, vo.getSize());
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ReviewVO rvo=new ReviewVO();
+				rvo.setRid(rs.getInt("rid"));
+				rvo.setGid(rs.getString("gid"));
+				rvo.setUid(rs.getString("uid"));
+				rvo.setContent(rs.getString("content"));
+				rvo.setRevDate(sdf.format(rs.getTimestamp("revDate")));
+				array.add(rvo);
+				System.out.println(rvo.toString());
+			}
+			
+		}catch(Exception e) {
+			System.out.println("리뷰목록:" + e.toString());
+		}
+		return array;
+	}
 	
 	//리뷰등록
 	public void insert(ReviewVO vo) {

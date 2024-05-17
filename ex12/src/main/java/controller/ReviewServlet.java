@@ -1,18 +1,37 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import model.*;
 
-@WebServlet(value={"/review/insert"})
+@WebServlet(value={"/review/insert", "/review/list.json"})
 public class ReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ReviewDAO dao=new ReviewDAO();   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+    	switch(request.getServletPath()) {
+		case "/review/list.json": //테스트 /review/list.json?page=1&size=5&gid=82091823866
+			QueryVO vo=new QueryVO();
+			vo.setPage(Integer.parseInt(request.getParameter("page")));
+			vo.setSize(Integer.parseInt(request.getParameter("size")));
+			String gid=request.getParameter("gid");
+			Gson gson=new Gson();
+			out.print(gson.toJson(dao.list(vo, gid)));
+			break;
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
