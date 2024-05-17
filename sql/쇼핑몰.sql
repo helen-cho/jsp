@@ -62,6 +62,47 @@ create table favorite(
 
 desc goods;
 
+insert into favorite(uid, gid)
+values('red','19108316833');
+insert into favorite(uid, gid)
+values('blue','19108316833');
+insert into favorite(uid, gid)
+values('sky','19108316833');
+insert into favorite(uid, gid)
+values('red','28652129554');
+
+select * from favorite;
+
+select * from favorite
+where uid='red';
+
+select *, 
+(select count(*) from favorite f where uid='red' and f.gid=g.gid) ucnt,
+(select count(*) from favorite f where f.gid=g.gid) fcnt
+from goods g
+order by regDate desc;
+
+
+
+select * from favorite;
+
+
+create table review(
+	rid int auto_increment primary key,
+    gid char(11) not null,
+    uid varchar(20) not null,
+    content text not null,
+    revDate datetime default now(),
+    foreign key(gid) references goods(gid),
+    foreign key(uid) references users(uid)
+);
+
+insert into review(gid, uid, content)
+select gid,uid,content from review;
+
+
+select * from review;
+
 
 
 
