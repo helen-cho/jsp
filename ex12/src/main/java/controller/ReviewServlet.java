@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
-@WebServlet(value={"/review/insert", "/review/list.json"})
+@WebServlet(value={"/review/insert", "/review/list.json", "/review/total"})
 public class ReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ReviewDAO dao=new ReviewDAO();   
@@ -30,6 +30,10 @@ public class ReviewServlet extends HttpServlet {
 			String gid=request.getParameter("gid");
 			Gson gson=new Gson();
 			out.print(gson.toJson(dao.list(vo, gid)));
+			break;
+		case  "/review/total":
+			gid=request.getParameter("gid");
+			out.print(dao.total(gid));
 			break;
 		}
 	}

@@ -6,6 +6,21 @@ import java.text.*;
 public class ReviewDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//전체리뷰수
+	public int total(String gid) {
+		int total=0;
+		try {
+			String sql="select count(*) from review where gid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, gid);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) total=rs.getInt("count(*)");
+		}catch(Exception e) {
+			System.out.println("전체리뷰수:" + e.toString());
+		}
+		return total;
+	}
+	
 	//리뷰목록
 	public ArrayList<ReviewVO> list(QueryVO vo, String gid){
 		ArrayList<ReviewVO> array=new ArrayList<ReviewVO>();
