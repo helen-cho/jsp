@@ -42,6 +42,15 @@
 		const rid=$(this).parent().attr("rid");
 		if(!confirm(rid + "번 리뷰를 삭제하실래요?")) return;
 		//삭제하기
+		$.ajax({
+			type:"post",
+			url:"/review/delete",
+			data:{rid},
+			success:function(){
+				alert("리뷰삭제성공!");
+				getTotal();
+			}
+		});
 	});
 	
 	//수정버튼을 클릭한 경우
@@ -50,6 +59,27 @@
 		const content=$(this).attr("content");
 		$("#modalReview").modal("show");
 		$("#modalReview #content").val(content);
+		$("#rid").val(rid);
+		$("#btn-insert").hide();
+		$("#btn-update").show();
+	});
+	
+	//모달의 수정버튼을 클릭한 경우
+	$("#btn-update").on("click", function(){
+		const content=$("#content").val();
+		const rid=$("#rid").val();
+		//alert(rid + "\n" + content);
+		if(!confirm("리뷰내용을 수정하실래요?")) return;
+		$.ajax({
+			type:"post",
+			url:"/review/update",
+			data:{rid, content},
+			success:function(){
+				$("#modalReview").modal("hide");
+				alert("리뷰수정성공!");
+				getTotal();
+			}
+		});
 	});
 	
 	//getData();
@@ -74,10 +104,15 @@
 			data:{gid: gid1},
 			success:function(data){
 				const total=parseInt(data);
+				if(total==0) {
+					getData();
+					$("#pagination").hide();
+					return;
+				}
+				const totalPage=Math.ceil(total/size);
+				$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
 				if(total > size){
 					$("#pagination").show();
-					const totalPage=Math.ceil(total/size);
-					$("#pagination").twbsPagination("changeTotalPages", totalPage, page);
 				}else{
 					$("#pagination").hide();
 				}
@@ -85,9 +120,13 @@
 		});
 	}
 	
+	//리뷰쓰기 버튼을 클릭한 경우
 	$("#insert").on("click", function(){
 		if(uid){
+			$("#content").val("");
 			$("#modalReview").modal("show");
+			$("#btn-insert").show();
+			$("#btn-update").hide();
 		}else{
 			const target=window.location.href;
 			sessionStorage.setItem("target", target);

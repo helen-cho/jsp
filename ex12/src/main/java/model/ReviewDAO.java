@@ -6,6 +6,32 @@ import java.text.*;
 public class ReviewDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	//리뷰삭제
+	public void update(ReviewVO vo) {
+		try {
+			String sql="update review set content=? where rid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, vo.getContent());
+			ps.setInt(2, vo.getRid());
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("리뷰수정:" + e.toString());
+		}
+	}
+	
+	//리뷰삭제
+	public void delete(int rid) {
+		try {
+			String sql="delete from review where rid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, rid);
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("리뷰삭제:" + e.toString());
+		}
+	}
+	
 	//전체리뷰수
 	public int total(String gid) {
 		int total=0;

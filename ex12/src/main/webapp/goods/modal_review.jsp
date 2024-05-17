@@ -17,9 +17,11 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal"aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
+				<input id="rid" type="hidden">
 				<textarea id="content" rows="10" class="form-control" placeholder="내용을 입력하세요."></textarea>
 			</div>
 			<div class="text-center mt-3 mb-5">
+				<button type="button" class="btn btn-success px-5" id="btn-update">수정</button>
 				<button type="button" class="btn btn-primary px-5" id="btn-insert">등록</button>
 				<button type="button" class="btn btn-secondary px-5"
 					data-bs-dismiss="modal">취소</button>
