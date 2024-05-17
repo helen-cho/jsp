@@ -2,6 +2,7 @@
 <div>
 	<h1>주문하기</h1>
 	<div id="div_order"></div>
+	<div id="div_order_total" class="alert alert-primary text-end">합계:</div>
 </div>
 <script id="temp_order" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
@@ -30,6 +31,14 @@
 	function getOrder(data){
 		const temp=Handlebars.compile($("#temp_order").html());
 		$("#div_order").html(temp(data));
+		let total=0;
+		$(data).each(function(){
+			const price=this.price;
+			const qnt=this.qnt;
+			const sum=price*qnt;
+			total += sum;
+		});
+		$("#div_order_total").html("합계:" + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	}
 </script>
 
