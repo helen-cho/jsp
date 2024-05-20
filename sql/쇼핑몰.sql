@@ -103,6 +103,42 @@ select gid,uid,content from review;
 
 select * from review;
 
+/*주문자 정보*/
+create table purchase( 
+	pid char(13) not null primary key,
+    uid varchar(20) not null,
+    rname varchar(20) not null,
+    rphone varchar(20) not null,
+    raddress1 varchar(500) not null,
+    raddress2 varchar(500) not null,
+    pdate datetime default now(),
+    sum int default 0,
+    status int default 0, /*0:결제대기,1:결제확인,2:배송준비, 3:배송완료, 4.주문완료*/
+    foreign key(uid) references users(uid)
+);
+
+/*주문상품 정보*/
+create table orders(
+	pid char(13) not null,
+    gid char(11) not null,
+    price int default 0,
+    qnt int default 0,
+    primary key(pid, gid),
+    foreign key(pid) references purchase(pid),
+    foreign key(gid) references goods(gid)
+);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

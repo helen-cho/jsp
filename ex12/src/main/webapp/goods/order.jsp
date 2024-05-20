@@ -1,8 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<style>
+	span {
+		width: 150px;
+	}
+</style>
 <div>
 	<h1>주문하기</h1>
 	<div id="div_order"></div>
 	<div id="div_order_total" class="alert alert-primary text-end">합계:</div>
+	<div class="row justify-content-center my-5">
+		<div class="col-10 col-md-8">
+			<div class="card">
+				<div class="card-header text-center">
+					<h3>배송지정보</h3>
+				</div>
+				<div class="card-body">
+					<form name="frm">
+						<div class="input-group mb-2">
+							<span class="input-group-text">주문자명</span>
+							<input class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<span class="input-group-text">전화번호</span>
+							<input class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<span class="input-group-text">주소</span>
+							<input class="form-control">
+							<button class="btn btn-primary">검색</button>
+						</div>
+						<div>
+							<input class="form-control" placeholder="상세주소">
+						</div>
+						<div class="text-center my-3">
+							<button class="btn btn-primary px-5">주문하기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script id="temp_order" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
