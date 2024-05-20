@@ -38,7 +38,7 @@ public class GoodsDAO {
 				vo.setFcnt(rs.getInt("fcnt"));
 				vo.setRcnt(rs.getInt("rcnt"));
 				array.add(vo);
-				System.out.println(vo.toString());
+				//System.out.println(vo.toString());
 			}
 		}catch(Exception e){
 			System.out.println("상품목록:" + e.toString());

@@ -67,7 +67,7 @@ public class ReviewDAO {
 				rvo.setContent(rs.getString("content"));
 				rvo.setRevDate(sdf.format(rs.getTimestamp("revDate")));
 				array.add(rvo);
-				System.out.println(rvo.toString());
+				//System.out.println(rvo.toString());
 			}
 			
 		}catch(Exception e) {

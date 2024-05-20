@@ -113,7 +113,7 @@ create table purchase(
     raddress2 varchar(500) not null,
     pdate datetime default now(),
     sum int default 0,
-    status int default 0, /*0:결제대기,1:결제확인,2:배송준비, 3:배송완료, 4.주문완료*/
+    status int default 0, /*0:결제대기,1:결제확인,2:배송준비,3:배송완료, 4.주문완료*/
     foreign key(uid) references users(uid)
 );
 
@@ -130,12 +130,21 @@ create table orders(
 
 
 
+desc users;
+alter table users add column phone varchar(20);
+alter table users add column address1 varchar(500);
+alter table users add column address2 varchar(500);
 
+update users 
+set phone='010-1010-2020',
+address1='인천 서구 서곶로120 루원시티포레나',
+address2='213동 1104호'
+where uid='red';
 
+select * from users;
 
-
-
-
+select * from purchase;
+select * from orders;
 
 
 

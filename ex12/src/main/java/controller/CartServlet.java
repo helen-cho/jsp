@@ -17,7 +17,8 @@ import model.*;
 
 @WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update", 
 		"/cart/delete", "/favorite/insert", "/favorite/delete", 
-		"/order/list","/purchase/insert", "/orders/insert", "/purchase/list.json"})
+		"/order/list","/purchase/insert", "/orders/insert", "/purchase/list.json",
+		"/order/list.json"})
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CartDAO dao=new CartDAO();  
@@ -30,6 +31,9 @@ public class CartServlet extends HttpServlet {
 		Gson gson=new Gson();
 		
 		switch(request.getServletPath()) {
+		case "/order/list.json": //테스트 /order/list.json?pid=02f09e73-96de
+			out.print(gson.toJson(odao.olist(request.getParameter("pid"))));
+			break;
 		case "/cart/list.json": //테스트 /cart/list.json?uid=red	
 			out.print(gson.toJson(dao.list(request.getParameter("uid"))));
 			break;
@@ -103,7 +107,7 @@ public class CartServlet extends HttpServlet {
 			ovo.setGid(request.getParameter("gid"));
 			ovo.setPrice(Integer.parseInt(request.getParameter("price")));
 			ovo.setQnt(Integer.parseInt(request.getParameter("qnt")));
-			System.out.println(ovo.toString());
+			//System.out.println(ovo.toString());
 			odao.insert(ovo);
 			break;
 		}

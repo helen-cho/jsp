@@ -6,6 +6,31 @@ import java.util.*;
 public class OrderDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	//특정 주문의 상품목록
+	public ArrayList<OrderVO> olist(String pid){
+		ArrayList<OrderVO> array=new ArrayList<OrderVO>();
+		try {
+			String sql="select * from view_orders where pid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, pid);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				OrderVO vo=new OrderVO();
+				vo.setPid(rs.getString("pid"));
+				vo.setGid(rs.getString("gid"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setQnt(rs.getInt("qnt"));
+				vo.setTitle(rs.getString("title"));
+				vo.setImage(rs.getString("image"));
+				array.add(vo);
+			}
+		}catch(Exception e) {
+			System.out.println("주문한 상품목록:" + e.toString());
+		}
+		return array;
+	}
+	
 	//특정 유저의 주문목록
 	public ArrayList<PurchaseVO> list(String uid){
 		ArrayList<PurchaseVO> array=new ArrayList<PurchaseVO>();

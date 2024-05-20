@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div class="ellipsis content" style="cursor:pointer">
-				{{rid}}:{{content}}
+				{{rid}}:{{{content}}}
 			</div>
 		</div>
 		<hr>
