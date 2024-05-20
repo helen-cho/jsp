@@ -7,6 +7,38 @@ public class OrderDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
+	//특정 유저의 주문목록
+	public ArrayList<PurchaseVO> list(QueryVO query){
+		ArrayList<PurchaseVO> array=new ArrayList<PurchaseVO>();
+		try {
+			String sql="select * from purchase ";
+			sql += " where " +  query.getKey() + " like ?";
+			sql += " order by pdate desc";
+			sql += " limit ?, ?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, "%" + query.getWord() + "%");
+			ps.setInt(2, (query.getPage()-1) * query.getSize());
+			ps.setInt(3, query.getSize());
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				PurchaseVO vo=new PurchaseVO();
+				vo.setPid(rs.getString("pid"));
+				vo.setUid(rs.getString("uid"));
+				vo.setUname(rs.getString("rname"));
+				vo.setPhone(rs.getString("rphone"));
+				vo.setAddress1(rs.getString("raddress1"));
+				vo.setAddress2(rs.getString("raddress2"));
+				vo.setSum(rs.getInt("sum"));
+				vo.setStatus(rs.getInt("status"));
+				vo.setPdate(sdf.format(rs.getTimestamp("pdate")));
+				System.out.println(vo.toString());
+				array.add(vo);
+			}
+		}catch(Exception e) {
+			System.out.println("모든주문목록:" + e.toString());
+		}
+		return array;
+	}
 	//특정 주문의 상품목록
 	public ArrayList<OrderVO> olist(String pid){
 		ArrayList<OrderVO> array=new ArrayList<OrderVO>();

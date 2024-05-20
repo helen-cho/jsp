@@ -21,6 +21,9 @@
         </li>
         <li class="nav-item" id="list-item">
         	<a class="nav-link active" aria-current="page" href="/goods/list">상품목록</a>
+       	<li class="nav-item" id="admin_order-item">
+        	<a class="nav-link active" aria-current="page" href="/admin/order/list">주문관리</a>
+        </li>
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
@@ -66,9 +69,11 @@
 		$("#list-item").show();
 		$("#cart-item").hide();
 		$("#order-item").hide();
+		$("#admin_order-item").show();
 	}else{
 		$("#search-item").hide();
 		$("#list-item").hide();
+		$("#admin_order-item").hide();
 	}
 </script>
 

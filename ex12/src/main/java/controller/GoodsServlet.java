@@ -18,7 +18,7 @@ import model.*;
 
 @WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", 
 		"/goods/insert", "/goods/list", "/goods/delete", "/goods/total", 
-		"/goods/read"})
+		"/goods/read", "/admin/order/list"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GoodsDAO dao=new GoodsDAO();
@@ -30,6 +30,10 @@ public class GoodsServlet extends HttpServlet {
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
 		switch(request.getServletPath()) {
+		case "/admin/order/list":
+			request.setAttribute("pageName", "/admin/orders.jsp");
+			dis.forward(request, response);
+			break;
 		case "/goods/read":
 			String uid=(String)session.getAttribute("uid");
 			request.setAttribute("goods", dao.read(request.getParameter("gid"), uid));
