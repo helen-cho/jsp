@@ -2,6 +2,7 @@
 <div>
 	<h1>주문관리</h1>
 	<div id="div_purchase"></div>
+	<jsp:include page="/user/modal_orders.jsp"/>
 </div>
 <script id="temp_purchase" type="x-handlebars-template">
 	<table class="table table-bordered table-hover">
@@ -55,6 +56,17 @@
 	let word="";
 	let page=1;
 	let size=5;
+	
+	//주문상품 버튼을 클릭한 경우
+	$("#div_purchase").on("click", ".orders", function(){
+		const pid=$(this).attr("pid");
+		const address1=$(this).attr("address1");
+		const address2=$(this).attr("address2");
+		$("#modalOrders").modal("show");
+		$("#pid").html("주문번호:" + pid);
+		$("#address").html("배송지: " + address1 + " " + address2);
+		getOrders(pid);
+	});
 	
 	//상태변경 버튼을 클릭한 경우
 	$("#div_purchase").on("click", ".update", function(){
