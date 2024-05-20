@@ -19,7 +19,7 @@
 			<td>{{pid}}</td>
 			<td>{{phone}}</td>
 			<td>{{pdate}}</td>
-			<td>{{sum}}</td>
+			<td class="text-end">{{sum sum 1}}원</td>
 			<td>{{status status}}</td>
 			<td><button class="btn btn-primary btn-sm orders" 
 					pid="{{pid}}" address1="{{address1}}" address2="{{address2}}">주문상품</td>

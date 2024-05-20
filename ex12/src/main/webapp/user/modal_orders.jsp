@@ -36,8 +36,10 @@
 		<tr class="text-center" gid="{{gid}}">
 			<td>{{gid}}</td>
 			<td class="text-start">
-				<img src="{{image}}" width="50px">
-				<a href="/goods/read?gid={{gid}}">{{{title}}}</a>
+				<div class="ellipsis">
+					<img src="{{image}}" width="50px">
+					<a href="/goods/read?gid={{gid}}">{{{title}}}</a>
+				</div>
 			</td>
 			<td>{{sum price 1}}</td>
 			<td>{{qnt}}</td>
