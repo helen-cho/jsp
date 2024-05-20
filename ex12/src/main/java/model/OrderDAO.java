@@ -7,6 +7,19 @@ public class OrderDAO {
 	Connection con=Database.CON;
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
+	//주문의 상태변경
+	public void update(String pid, int status) {
+		try {
+			String sql="update purchase set status=? where pid=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1, status);
+			ps.setString(2, pid);
+			ps.execute();
+		}catch(Exception e) {
+			System.out.println("주문상태변경:" + e.toString());
+		}
+	}
+	
 	//특정 유저의 주문목록
 	public ArrayList<PurchaseVO> list(QueryVO query){
 		ArrayList<PurchaseVO> array=new ArrayList<PurchaseVO>();

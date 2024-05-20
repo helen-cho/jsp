@@ -18,7 +18,7 @@ import model.*;
 
 @WebServlet(value={"/goods/list.json","/goods/search", "/goods/search.json", 
 		"/goods/insert", "/goods/list", "/goods/delete", "/goods/total", 
-		"/goods/read", "/admin/order/list", "/admin/order/list.json"})
+		"/goods/read", "/admin/order/list", "/admin/order/list.json", "/admin/order/update"})
 public class GoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GoodsDAO dao=new GoodsDAO();
@@ -95,6 +95,11 @@ public class GoodsServlet extends HttpServlet {
 		case "/goods/delete":
 			String gid=request.getParameter("gid");
 			out.print(dao.delete(gid));
+			break;
+		case "/admin/order/update":
+			String pid=request.getParameter("pid");
+			int status=Integer.parseInt(request.getParameter("status"));
+			odao.update(pid, status);
 			break;
 		}
 	}
