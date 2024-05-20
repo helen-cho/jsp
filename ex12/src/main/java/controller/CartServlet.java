@@ -16,23 +16,33 @@ import com.google.gson.Gson;
 import model.*;
 
 @WebServlet(value={"/cart/insert", "/cart/list.json", "/cart/list", "/cart/update", 
-		"/cart/delete", "/favorite/insert", "/favorite/delete", "/purchase/insert", "/orders/insert"})
+		"/cart/delete", "/favorite/insert", "/favorite/delete", 
+		"/order/list","/purchase/insert", "/orders/insert", "/purchase/list.json"})
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    CartDAO dao=new CartDAO();   
+    CartDAO dao=new CartDAO();  
+    OrderDAO odao=new OrderDAO();
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		RequestDispatcher dis=request.getRequestDispatcher("/home.jsp");
+		Gson gson=new Gson();
 		
 		switch(request.getServletPath()) {
-		case "/cart/list.json": //테스트 /cart/list.json?uid=red
-			Gson gson=new Gson();
+		case "/cart/list.json": //테스트 /cart/list.json?uid=red	
 			out.print(gson.toJson(dao.list(request.getParameter("uid"))));
 			break;
 		case "/cart/list":
 			request.setAttribute("pageName", "/goods/cart.jsp");
 			dis.forward(request, response);
+			break;
+		case "/order/list":
+			request.setAttribute("pageName", "/user/order.jsp");
+			dis.forward(request, response);
+			break;
+		case "/purchase/list.json": //테스트 /purchase/list.json?uid=red
+			out.print(gson.toJson(odao.list(request.getParameter("uid"))));
 			break;
 		}
 	}

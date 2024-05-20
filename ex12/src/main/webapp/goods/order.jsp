@@ -95,10 +95,19 @@
 						url:"/orders/insert",
 						data:{pid, gid, price, qnt},
 						success:function(){
-							order_cnt++;
-							if(cnt==order_cnt){
-								alert("주문상품등록완료!");
-							}
+							//장바구니 삭제
+							$.ajax({
+								type:"post",
+								url:"/cart/delete",
+								data:{uid, gid},
+								success:function(){
+									order_cnt++;
+									if(cnt==order_cnt){
+										alert(order_cnt + "개 주문상품등록완료!");
+										location.href="/";
+									}
+								}
+							});
 						}
 					});
 				});
