@@ -18,20 +18,21 @@
 					<form name="frm">
 						<div class="input-group mb-2">
 							<span class="input-group-text">주문자명</span>
-							<input class="form-control">
+							<input name="rname" class="form-control" value="${user.uname}">
 						</div>
 						<div class="input-group mb-2">
 							<span class="input-group-text">전화번호</span>
-							<input class="form-control">
+							<input name="rphone" class="form-control" value="${user.phone}">
 						</div>
 						<div class="input-group mb-2">
 							<span class="input-group-text">주소</span>
-							<input class="form-control">
+							<input name="raddress1" class="form-control" value="${user.address1}">
 							<button class="btn btn-primary">검색</button>
 						</div>
 						<div>
-							<input class="form-control" placeholder="상세주소">
+							<input name="raddress2" class="form-control" placeholder="상세주소" value="${user.address2}">
 						</div>
+						<input name="sum" type="hidden">
 						<div class="text-center my-3">
 							<button class="btn btn-primary px-5">주문하기</button>
 						</div>
@@ -51,7 +52,7 @@
 			<td>금액</td>
 		</tr>
 		{{#each .}}
-		<tr class="text-center" gid="{{gid}}">
+		<tr class="text-center goods" gid="{{gid}}" price="{{price}}" qnt="{{qnt}}">
 			<td>{{gid}}</td>
 			<td class="text-start">
 				<img src="{{image}}" width="50px">
@@ -65,6 +66,46 @@
 	</table>
 </script>
 <script>
+	//주문하기 버튼을 클릭한경우
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		const rname=$(frm.rname).val();
+		const rphone=$(frm.rphone).val();
+		const raddress1=$(frm.raddress1).val();
+		const raddress2=$(frm.raddress2).val();
+		const sum=$(frm.sum).val();
+		console.log(uid, rname, rphone, raddress1, raddress2, sum)
+		const cnt=$("#div_order .goods").length;
+		if(!confirm(cnt  + "개 상품들을 주문하실래요?")) return;
+		//주문정보입력
+		$.ajax({
+			type:"post",
+			url:"/purchase/insert",
+			data:{uid, rname, rphone, raddress1, raddress2, sum},
+			success:function(pid){
+				//주문상품등록
+				let order_cnt=0;
+				$("#div_order .goods").each(function(){
+					const gid=$(this).attr("gid");
+					const price=$(this).attr("price");
+					const qnt=$(this).attr("qnt");
+					console.log(pid, gid, price, qnt);
+					$.ajax({
+						type:"post",
+						url:"/orders/insert",
+						data:{pid, gid, price, qnt},
+						success:function(){
+							order_cnt++;
+							if(cnt==order_cnt){
+								alert("주문상품등록완료!");
+							}
+						}
+					});
+				});
+			}
+		});
+	});
+	
 	function getOrder(data){
 		const temp=Handlebars.compile($("#temp_order").html());
 		$("#div_order").html(temp(data));
@@ -76,6 +117,7 @@
 			total += sum;
 		});
 		$("#div_order_total").html("합계:" + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$(frm.sum).val(total);
 	}
 </script>
 
